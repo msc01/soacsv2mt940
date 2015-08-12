@@ -9,6 +9,13 @@ Aufruf: soacsv2mt940 csvFilename [mt940Filename] [nbr] [openingBalance]
 
 Beispiel: soacsvmt940 bank.csv bank.txt 0 -1523,89
 
+Parameter:
+
+- csvFilename: Name der Eingabe-Datei im .csv-Format, welche ins mt940-Format konvertiert werden soll.
+- mt940Filename: optionaler Name der Ausgabe-Datei; falls der Parameter nicht angegeben wird, wird der Name der Eingabe-Datei genommen und statt der Endung .csv wird die Endung .mt940 angefügt.
+- nbr: optionale Kontoauszugs-Nr., welche im Kopf-Bereich der mt940-Datei (Satzart :28c:) vermerkt wird. Wird der Parameter nicht angegeben, wird 0 genommen.
+- openingBalance: optionaler Eröffungs-Saldo des Kontoauszugs. Wird dieser nicht mit übergeben, so wird 0 gneommen.
+
 ## Hintergrund
 Einsatz-Szenario: Konto bei der Commerzbank, Buchhaltung mittels Collmex; automatische Übernahme der Auszüge der Commerzbank in die Collmex-Buchhaltung.
 
@@ -58,7 +65,6 @@ Folgende Punkte sind noch umzusetzen:
 - Unit Test-Abdeckung erhöhen
 - csv-Datei nach Datum sortieren
 - Ausgabe: Endsaldo
-- auf github stellen
 - Credit/Debit-Ermittlung und "Positivierung" des entsprechenden Betrags in eigener Methode
 - Prüfen der Überschriftenzeile auf die notwendigen Felder / Struktur
 - Kommandozeilenparameter mit options: -n für nbr, damit nicht alle anderen mit angegeben werden müssen, falls eine Nummer übergeben werden soll
