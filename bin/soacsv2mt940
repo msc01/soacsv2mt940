@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+# NAME: soacsv2mt940 -- convert bank Statement Of Account from .CSV format to MT940 format
+#
+# SYNOPSIS: soacsv2mt940 <csv filename> [<mt940 filename>] [<nbr.>] [<opening balance>]
+#
+# EXAMPLE: soacsvmt940 bank.csv bank.txt 0 -1523,89
+#
+
+require_relative '../lib/soacsv2mt940.rb'
+
+module SOACSV2MT940
+  
+  soacsv = SOACSV.new(SOACSV_FILENAME)
+  soamt940 = SOAMT940.new(soacsv.file_read, SOAMT940_FILENAME, SOA_NBR, SOA_OPENING_BALANCE)
+  soamt940.csv2mt940
+  
+end
