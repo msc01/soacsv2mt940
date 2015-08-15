@@ -62,6 +62,8 @@ Die Ausgabe erfolgt im gleichen Verzeichnis und unter gleichem Namen wie die Ein
 ### ToDo
 Folgende Punkte sind noch umzusetzen:
 
+v1.0:
+
 - Unit Test-Abdeckung erhöhen
 - csv-Datei nach Datum sortieren
 - Ausgabe: Endsaldo
@@ -73,6 +75,12 @@ Folgende Punkte sind noch umzusetzen:
 - strftime auf .year, etc. umstellen?
 - GVC anhand :umsatzart setzen
 - Logging
+
+v2.0:
+
+- Datei per Dialog auswählen
+- Server-Version
+
 
 ---
 
