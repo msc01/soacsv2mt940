@@ -25,6 +25,17 @@ module SOACSV2MT940
     def test_mt940datei_erstellt
       assert File.exist? @mt940_filename
     end
+    
+    def test_mt940datei_doppelt_anlegen
+      soamt940_2 = SOAMT940.new(@soacsv.file_read, @mt940_filename, @soa_nbr, @soa_opening_balance)
+      soamt940_2.csv2mt940
+      mt940_filename_duplicate = @mt940_filename + ".1"
+      assert File.exist? mt940_filename_duplicate
+      begin
+        File.delete mt940_filename_duplicate
+      rescue
+      end
+    end
       
     def test_vergleich_anzahl_datensaetze_in_den_dateien
       csv_nbr_of_records = File.foreach(@csv_filename).count
@@ -35,17 +46,16 @@ module SOACSV2MT940
       output = output + 1 # one footer record
       output = output + + 5 # due to record types 20, 21, 25, 28, 60
       
-      assert_equal(mt940_nbr_of_records, output)
+      assert_equal mt940_nbr_of_records, output
     end
     
     def test_vergleich_groesse_csv_datei_mit_mt940_muster_datei
-      assert_equal(File.size(@mt940_filename), File.size(@mt940_template_filename))
+      assert_equal File.size(@mt940_filename), File.size(@mt940_template_filename)
     end
     
     def test_vergleich_inhalt_csv_datei_mit_mt940_muster_datei
-      # tbd
+      skip
     end
-    
     
   end
 

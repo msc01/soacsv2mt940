@@ -2,8 +2,6 @@
 ## Übersicht
 Convert Statement Of Account .CSV to MT940 (swift) format -- Konvertierung Bankauszüge im .CSV-Format ins MT940-Format (SWIFT)
 
-_Anmerkung: SOA steht in diesem Fall NICHT für Service-Orientierte Architektur, sondern für Statement of Account = Bank- oder Kontoauszug_
-
 ## Aufruf
 Aufruf: soacsv2mt940 csvFilename [mt940Filename] [nbr] [openingBalance]
 
@@ -75,6 +73,7 @@ v1.0:
 - strftime auf .year, etc. umstellen?
 - GVC anhand :umsatzart setzen
 - Logging
+- Auf GEM umstellen
 
 v2.0:
 

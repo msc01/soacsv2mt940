@@ -12,11 +12,11 @@ module SOACSV2MT940
     end
       
     def test_datei_einlesen
-      assert_kind_of(Array, @soacsv.file_read)
+      assert_kind_of Array, @soacsv.file_read
     end
   
     def test_datei_enthaelt_etwas
-      assert(@soacsv.file_read.size > 0)
+      assert @soacsv.file_read.size > 0
     end
     
     def test_datei_nicht_vorhanden
@@ -30,7 +30,7 @@ module SOACSV2MT940
       File.foreach @soacsv_filename do |record|
         i = i + 1
       end
-      assert(@soacsv.file_read.size, i-1)
+      assert @soacsv.file_read.size, i-1
     end
   
   end
