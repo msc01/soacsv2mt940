@@ -20,8 +20,7 @@ module SOACSV2MT940
     end
     
     def test_datei_nicht_vorhanden
-      soacsv_filename = "unbekannte.datei"
-      soacsv = SOACSV.new(soacsv_filename)
+      soacsv = SOACSV.new("unbekannte.datei")
       assert_raises StandardError
     end
     

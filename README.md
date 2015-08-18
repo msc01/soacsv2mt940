@@ -62,7 +62,6 @@ Folgende Punkte sind noch umzusetzen:
 
 v1.0:
 
-- Unit Test-Abdeckung erhöhen
 - csv-Datei nach Datum sortieren
 - Ausgabe: Endsaldo
 - Credit/Debit-Ermittlung und "Positivierung" des entsprechenden Betrags in eigener Methode
