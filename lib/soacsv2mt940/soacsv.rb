@@ -30,11 +30,13 @@ module SOACSV2MT940
           i = i + 1
         end
         csv_file.shift # remove first row (header)
+        csv_file.sort_by! { |x| x[:buchungstag] }
         return csv_file
       else
         raise(StandardError, "File not found: #{@csv_filename}")
       end
     end
+    
   
   end
 
