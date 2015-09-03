@@ -62,8 +62,6 @@ Folgende Punkte sind noch umzusetzen:
 
 v1.0:
 
-- csv-Datei nach Datum sortieren
-- Ausgabe: Endsaldo
 - Credit/Debit-Ermittlung und "Positivierung" des entsprechenden Betrags in eigener Methode
 - Prüfen der Überschriftenzeile auf die notwendigen Felder / Struktur
 - Kommandozeilenparameter mit options: -n für nbr, damit nicht alle anderen mit angegeben werden müssen, falls eine Nummer übergeben werden soll
