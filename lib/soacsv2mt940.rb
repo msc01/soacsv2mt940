@@ -12,6 +12,7 @@ require_relative 'soacsv2mt940/soamt940'
 module SOACSV2MT940
 
   LOGGER = Logger.new(STDOUT)
+  LOGGER.level = Logger::DEBUG
   
   if ARGV[0]
     SOACSV_FILENAME = ARGV[0]

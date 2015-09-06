@@ -20,14 +20,14 @@ module SOACSV2MT940
     end
   
     def csv2mt940
-      puts "Konvertierung Commerzbank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):"
+      LOGGER.debug "Konvertierung Commerzbank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):"
       write_header
       write_body
       write_footer
     end
       
     def write_header
-      puts "- Eröffnungs-Saldo: #{sprintf("%#.2f", @soa_opening_balance)}"
+      LOGGER.debug "- Eröffnungs-Saldo: #{sprintf("%#.2f", @soa_opening_balance)}"
       write_record_type_20
       write_record_type_21
       write_record_type_25
@@ -45,12 +45,12 @@ module SOACSV2MT940
           nbr_of_relevant_rows += 1
         end
       end
-      puts "- Umsatz-relevante Datensätze: #{nbr_of_relevant_rows}"
+      LOGGER.debug "- Umsatz-relevante Datensätze: #{nbr_of_relevant_rows}"
     end
     
     def write_footer
       write_record_type_62
-      puts "- Schluß-Saldo: #{sprintf("%#.2f", @soa_closing_balance)}"
+      LOGGER.debug "- Schluß-Saldo: #{sprintf("%#.2f", @soa_closing_balance)}"
     end
     
     def write_record_type_20
@@ -66,7 +66,7 @@ module SOACSV2MT940
     def write_record_type_25    
       record_type_25 = ":25:#{@csv_data[1][:auftraggeber_blz]}/#{@csv_data[1][:auftraggeber_konto]}"
       write_mt940(record_type_25)
-      puts "- BLZ/Konto: #{@csv_data[1][:auftraggeber_blz]} / #{@csv_data[1][:auftraggeber_konto]}"
+      LOGGER.debug "- BLZ/Konto: #{@csv_data[1][:auftraggeber_blz]} / #{@csv_data[1][:auftraggeber_konto]}"
     end
     
     def write_record_type_28
@@ -83,7 +83,7 @@ module SOACSV2MT940
       buchungsdatum = Date.strptime(@csv_data[1][:buchungstag], '%d.%m.%Y')
       record_type_60 = ":60F:#{credit_debit}#{buchungsdatum.strftime('%y%m%d')}EUR#{sprintf("%#.2f", @soa_opening_balance).to_s.gsub(".", ",")}"
       write_mt940(record_type_60)
-      puts "- Kontoauszugsdatum: #{buchungsdatum}"
+      LOGGER.debug "- Kontoauszugsdatum: #{buchungsdatum}"
     end
     
     def write_record_type_61(csv_record)
