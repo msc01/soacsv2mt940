@@ -69,7 +69,6 @@ v1.0:
 - Namensgebung Klassen, Methoden, Variablen optimieren
 - strftime auf .year, etc. umstellen?
 - GVC anhand :umsatzart setzen
-- Logging
 - Auf GEM umstellen
 
 v2.0:

@@ -54,7 +54,8 @@ module SOACSV2MT940
     end
     
     def test_vergleich_inhalt_csv_datei_mit_mt940_muster_datei
-      skip
+      require 'fileutils'
+      assert FileUtils.compare_file(@mt940_filename, @mt940_template_filename)
     end
     
   end
