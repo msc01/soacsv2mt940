@@ -37,7 +37,6 @@ module SOACSV2MT940
       end
     end
     
-  
   end
 
 end

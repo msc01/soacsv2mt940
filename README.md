@@ -12,7 +12,7 @@ Parameter:
 - csvFilename: Name der Eingabe-Datei im .csv-Format, welche ins mt940-Format konvertiert werden soll.
 - mt940Filename: optionaler Name der Ausgabe-Datei; falls der Parameter nicht angegeben wird, wird der Name der Eingabe-Datei genommen und statt der Endung .csv wird die Endung .mt940 angefügt.
 - nbr: optionale Kontoauszugs-Nr., welche im Kopf-Bereich der mt940-Datei (Satzart :28c:) vermerkt wird. Wird der Parameter nicht angegeben, wird 0 genommen.
-- openingBalance: optionaler Eröffungs-Saldo des Kontoauszugs. Wird dieser nicht mit übergeben, so wird 0 gneommen.
+- openingBalance: optionaler Eröffungs-Saldo des Kontoauszugs. Wird dieser nicht mit übergeben, so wird 0 genommen.
 
 ## Hintergrund
 Einsatz-Szenario: Konto bei der Commerzbank, Buchhaltung mittels Collmex; automatische Übernahme der Auszüge der Commerzbank in die Collmex-Buchhaltung.
@@ -21,7 +21,7 @@ Die Commerzbank liefert Bankauszüge aktuell in zwei Formaten aus: als .CSV-Date
 
 Eine Option ist, die Kontoauszüge  zunächst per HBCI mit Chipkarte in das Programm Bank X zu importieren und dann von dort ins MT940-Format zu exportieren, um sie so wiederum nach Collmex zu bekommen.
 
-Da Bank X aber ausschließlich zu diesem Zweck im Einsatz wäre, kostenpflichtig ist und der für HBCI mit Chipkarte notwendige Chipkartenleser unterwegs nur schwerlich einsetzbar ist, wird ein Konvertierungsprogramm benötigt, welches die [.CSV-Kontoauszugsdatei] [1] der Commerzbank entsprechend ins [MT940-Format] [2] ([Details] [3])/ eine [MT940-Datei] [4] für den Import nach Collmex umwandelt.
+Da Bank X aber ausschließlich zu diesem Zweck im Einsatz wäre, kostenpflichtig ist und der für HBCI mit Chipkarte notwendige Chipkartenleser unterwegs nur schwerlich einsetzbar ist, wird ein Konvertierungsprogramm benötigt, welches die [.CSV-Kontoauszugsdatei] [1] der Commerzbank entsprechend ins [MT940-Format] [2] ([Details] [3])/ eine [MT940-Datei] [4] für den Import nach Collmex umwandelt. 
 
 ## Umsetzung
 Das Programm soll später nicht nur lokal sondern ggf. auch als Dienst / Webservice laufen, weshalb es in Ruby umgesetzt ist.

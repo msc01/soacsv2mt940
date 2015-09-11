@@ -17,7 +17,9 @@ module SOACSV2MT940
   if ARGV[0]
     SOACSV_FILENAME = ARGV[0]
   else
-    LOGGER.error("Name of .csv file is needed!")
+    msg = "Name of .csv file is needed!"
+    LOGGER.error(msg)
+    abort("ABORTED! #{msg}")
   end
   
   if ARGV[1]
