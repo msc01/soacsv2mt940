@@ -10,7 +10,7 @@ module SOACSV2MT940
       @csv_data = csv_data
       @filename_mt940 = filename_mt940
       @soa_nbr = soa_nbr
-      @soa_opening_balance = soa_opening_balance
+      @soa_opening_balance = soa_opening_balance.to_f
       @soa_closing_balance = @soa_opening_balance
       filename_index = 0
       while File.exists? @filename_mt940 
@@ -75,11 +75,7 @@ module SOACSV2MT940
     end
     
     def write_record_type_60
-      if @soa_opening_balance >= 0
-        credit_debit = "C"
-      else
-        credit_debit = "D"
-      end
+      credit_debit = get_credit_debit(@soa_opening_balance)
       buchungsdatum = Date.strptime(@csv_data[1][:buchungstag], '%d.%m.%Y')
       record_type_60 = ":60F:#{credit_debit}#{buchungsdatum.strftime('%y%m%d')}EUR#{sprintf("%#.2f", @soa_opening_balance).to_s.gsub(".", ",")}"
       write_mt940(record_type_60)
@@ -90,10 +86,8 @@ module SOACSV2MT940
       buchungsdatum = Date.strptime(csv_record[:buchungstag], '%d.%m.%Y')
       valutadatum = Date.strptime(csv_record[:wertstellung], '%d.%m.%Y')
       betrag = csv_record[:betrag].gsub(",", ".").to_f
-      if betrag >= 0
-        credit_debit = "C"
-      else
-        credit_debit = "D"
+      credit_debit = get_credit_debit(betrag)
+      if (credit_debit == "D")
         betrag *= -1
       end
       betrag = sprintf("%#.2f", betrag).to_s.gsub(".", ",")
@@ -102,14 +96,13 @@ module SOACSV2MT940
     end
 
     def write_record_type_62
-      if @soa_closing_balance >= 0
-        credit_debit = "C"
-      else
-        credit_debit = "D"
-        @soa_closing_balance *= -1
+      betrag = @soa_closing_balance
+      credit_debit = get_credit_debit(betrag)
+      if (credit_debit == "D")
+        betrag *= -1
       end
       buchungsdatum = Date.strptime(@csv_data[1][:buchungstag], '%d.%m.%Y')  
-      record_type_62 = ":62F:#{credit_debit}#{buchungsdatum.strftime('%y%m%d')}EUR#{sprintf("%#.2f", @soa_closing_balance).to_s.gsub(".", ",")}" 
+      record_type_62 = ":62F:#{credit_debit}#{buchungsdatum.strftime('%y%m%d')}EUR#{sprintf("%#.2f", betrag).to_s.gsub(".", ",")}" 
       write_mt940(record_type_62)
     end
     
@@ -128,7 +121,17 @@ module SOACSV2MT940
     end
     
     def convert_umlaute(text)
-      text = text.gsub('ä','ae').gsub('Ä','AE').gsub('ö','oe').gsub('Ö','OE').gsub('ü','ue').gsub('Ü','UE').gsub('ß','ss')
+      text.gsub('ä','ae').gsub('Ä','AE').gsub('ö','oe').gsub('Ö','OE').gsub('ü','ue').gsub('Ü','UE').gsub('ß','ss')
+    end
+    
+    def get_credit_debit(betrag)
+      if (betrag >= 0)
+        credit_debit = "C"
+      else
+        credit_debit = "D"
+      end     
+      LOGGER.debug "--get_credit_debit: Betrag: #{betrag} = #{credit_debit}"
+      return credit_debit      
     end
      
   end

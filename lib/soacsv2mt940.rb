@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-#require 'debug'
+# require 'debug'
 
 require 'date'
 require 'logger'

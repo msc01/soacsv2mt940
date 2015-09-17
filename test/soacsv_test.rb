@@ -23,7 +23,7 @@ module SOACSV2MT940
       soacsv = SOACSV.new("unbekannte.datei")
       assert_raises StandardError
     end
-    
+      
     def test_soacsv_enthaelt_einen_satz_weniger_als_csv_datei
       i = 0
       File.foreach @soacsv_filename do |record|
