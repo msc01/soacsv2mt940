@@ -87,7 +87,7 @@ module SOACSV2MT940
       valutadatum = Date.strptime(csv_record[:wertstellung], '%d.%m.%Y')
       betrag = csv_record[:betrag].gsub(",", ".").to_f
       credit_debit = get_credit_debit(betrag)
-      if (credit_debit == "D")
+      if credit_debit == "D"
         betrag *= -1
       end
       betrag = sprintf("%#.2f", betrag).to_s.gsub(".", ",")
@@ -98,7 +98,7 @@ module SOACSV2MT940
     def write_record_type_62
       betrag = @soa_closing_balance
       credit_debit = get_credit_debit(betrag)
-      if (credit_debit == "D")
+      if credit_debit == "D"
         betrag *= -1
       end
       buchungsdatum = Date.strptime(@csv_data[1][:buchungstag], '%d.%m.%Y')  
@@ -125,12 +125,11 @@ module SOACSV2MT940
     end
     
     def get_credit_debit(betrag)
-      if (betrag >= 0)
+      if betrag >= 0
         credit_debit = "C"
       else
         credit_debit = "D"
       end     
-      LOGGER.debug "--get_credit_debit: Betrag: #{betrag} = #{credit_debit}"
       return credit_debit      
     end
      
