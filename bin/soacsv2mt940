@@ -7,6 +7,7 @@
 # EXAMPLE: soacsvmt940 -c bank.csv -m bank.txt --nbr 0 -b -1523,89
 #
 
+require 'optparse'
 require_relative '../lib/soacsv2mt940.rb'
 
 module SOACSV2MT940

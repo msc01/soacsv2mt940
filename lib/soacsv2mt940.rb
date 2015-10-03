@@ -4,7 +4,6 @@
 
 require 'date'
 require 'logger'
-require 'optparse'
 
 require_relative 'soacsv2mt940/version'
 require_relative 'soacsv2mt940/soacsv'
