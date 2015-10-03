@@ -63,7 +63,6 @@ Folgende Punkte sind noch umzusetzen:
 v1.0:
 
 - Prüfen der Überschriftenzeile auf die notwendigen Felder / Struktur
-- Kommandozeilenparameter mit options: -n für nbr, damit nicht alle anderen mit angegeben werden müssen, falls eine Nummer übergeben werden soll
 - Umstellung auf csv-Verarbeitung aus std-lib
 - Namensgebung Klassen, Methoden, Variablen optimieren
 - strftime auf .year, etc. umstellen?

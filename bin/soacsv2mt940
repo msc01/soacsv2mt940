@@ -4,15 +4,64 @@
 #
 # SYNOPSIS: soacsv2mt940 <csv filename> [<mt940 filename>] [<nbr.>] [<opening balance>]
 #
-# EXAMPLE: soacsvmt940 bank.csv bank.txt 0 -1523,89
+# EXAMPLE: soacsvmt940 -c bank.csv -m bank.txt --nbr 0 -b -1523,89
 #
 
 require_relative '../lib/soacsv2mt940.rb'
 
 module SOACSV2MT940
   
-  soacsv = SOACSV.new(SOACSV_FILENAME)
-  soamt940 = SOAMT940.new(soacsv.file_read, SOAMT940_FILENAME, SOA_NBR, SOA_OPENING_BALANCE)
+  options = {:csvFile => nil, :mt940File => nil, :nbr => nil, :openingBalance => nil}
+
+  parser = OptionParser.new do|opts|
+  	opts.banner = "Usage: soacsvmt940 -c, --csv <file> [-m, --mt940 <file>] [-n, --nbr <number>] [-b, --balance <amount>]"
+    
+  	opts.on('-c', '--csv <filename>', 'Name of .csv input file.') do |csv|
+  		options[:csvFile] = csv;
+  	end
+
+  	opts.on('-m', '--mt940 <filename>', 'Optional: name of .mt940 target file; if not specified, the ending .mt940 will be used.') do |mt940|
+  		options[:mt940File] = mt940;
+  	end
+
+  	opts.on('-n', '--nbr <number>', 'Optional: number of the statement of account; if ommited, 0 will be used.') do |nbr|
+  		options[:nbr] = nbr;
+  	end
+
+  	opts.on('-b', '--balance <amount>', 'Optional: opening balance; 0 will be used if not specified.') do |balance|
+  		options[:balance] = balance;
+  	end
+
+  	opts.on('-h', '--help', 'Displays Help.') do
+  		puts opts
+  		exit
+  	end
+  end
+
+  parser.parse!
+
+  unless options[:csvFile]
+    msg = "Name of .csv file is needed!"
+    LOGGER.error(msg)
+    abort("ABORTED! #{msg}")
+  end
+  
+  unless options[:mt940File]
+    options[:mt940File] = options[:csvFile].gsub("csv", "mt940")
+  end
+  
+  unless options[:nbr]
+    options[:nbr] = 0
+  end
+  
+  if options[:balance]
+    options[:balance] = options[:balance].gsub(",", ".").to_f
+  else
+    options[:balance] = 0.0
+  end
+  
+  soacsv = SOACSV.new(options[:csvFile])
+  soamt940 = SOAMT940.new(soacsv.file_read, options[:mt940File], options[:nbr], options[:balance])
   soamt940.csv2mt940
   
 end
