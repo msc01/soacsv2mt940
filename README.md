@@ -3,16 +3,16 @@
 Convert Statement Of Account .CSV to MT940 (swift) format -- Konvertierung Bankauszüge im .CSV-Format ins MT940-Format (SWIFT)
 
 ## Aufruf
-Aufruf: soacsv2mt940 -c, --csv <file> [-m, --mt940 <file>] [-n, --nbr <number>] [-b, --balance <amount>]
+Aufruf: soacsv2mt940 -c, --csv &lt;file> [-m, --mt940 &lt;file>] [-n, --nbr &lt;number>] [-b, --balance &lt;amount>]
 
 Beispiel: soacsvmt940 -c bank.csv --mt940 bank.txt -n 0 --balance -1523,89
 
 Parameter:
 
-- -c, --csv <filename>: Name der Eingabe-Datei im .csv-Format, welche ins mt940-Format konvertiert werden soll.
-- -m, --mt940 <filename>: optionaler Name der Ausgabe-Datei; falls der Parameter nicht angegeben wird, wird der Name der Eingabe-Datei genommen und statt der Endung .csv wird die Endung .mt940 angefügt.
-- -n, --nbr <number>: optionale Kontoauszugs-Nr., welche im Kopf-Bereich der mt940-Datei (Satzart :28c:) vermerkt wird. Wird der Parameter nicht angegeben, wird 0 genommen.
-- -b, --balance <amount>: optionaler Eröffungs-Saldo des Kontoauszugs. Wird dieser nicht mit übergeben, so wird 0 genommen.
+- -c, --csv &lt;filename>: Name der Eingabe-Datei im .csv-Format, welche ins mt940-Format konvertiert werden soll.
+- -m, --mt940 &lt;filename>: optionaler Name der Ausgabe-Datei; falls der Parameter nicht angegeben wird, wird der Name der Eingabe-Datei genommen und statt der Endung .csv wird die Endung .mt940 angefügt.
+- -n, --nbr &lt;number>: optionale Kontoauszugs-Nr., welche im Kopf-Bereich der mt940-Datei (Satzart :28c:) vermerkt wird. Wird der Parameter nicht angegeben, wird 0 genommen.
+- -b, --balance &lt;amount>: optionaler Eröffungs-Saldo des Kontoauszugs. Wird dieser nicht mit übergeben, so wird 0 genommen.
 - -h, --help: Anzeigen der Hilfe.
 
 ## Hintergrund
