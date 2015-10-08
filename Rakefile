@@ -17,4 +17,6 @@ task :metrics do
   
   sh 'find lib -name "*.rb" -exec flog {} -a -b \;'
   
+  sh 'java -jar /Users/ms1/Programmierung/simian-2.4.0/bin/simian-2.4.0.jar ./**/*.rb'
+  
 end
