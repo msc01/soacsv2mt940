@@ -3,9 +3,13 @@
 Convert Statement Of Account .CSV to MT940 (swift) format -- Konvertierung Bankauszüge im .CSV-Format ins MT940-Format (SWIFT)
 
 ## Aufruf
-Aufruf: soacsv2mt940 -c, --csv &lt;file> [-m, --mt940 &lt;file>] [-n, --nbr &lt;number>] [-b, --balance &lt;amount>]
+Aufruf:
 
-Beispiel: soacsvmt940 -c bank.csv --mt940 bank.txt -n 0 --balance -1523,89
+    soacsv2mt940 -c, --csv <file> [-m, --mt940 <file>] [-n, --nbr <number>] [-b, --balance <amount>]
+
+Beispiel:
+
+    soacsvmt940 -c bank.csv --mt940 bank.txt -n 0 --balance -1523,89
 
 Parameter:
 

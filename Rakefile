@@ -12,11 +12,18 @@ desc "metrics"
 task :metrics do
   path = "coverage/"
   
+  puts
+  puts "= = = Analysis of cyclomatic complexity = = ="
   sh "saikuro -c -i lib -y 0 -w 11 -e 16 -o #{path}"
-  puts "=> Analysis of cyclomatic compexity can be found in #{path}index_cyclo.html\n"
+  puts "=> Report can be found in #{path}index_cyclo.html"
+  puts
   
+  puts "= = = Analysis of FLOG (ABC) complexity = = ="
   sh 'find lib -name "*.rb" -exec flog {} -a -b \;'
+  puts
   
+  puts "= = = Analysis code similarities ('copy & paste') = = ="
   sh 'java -jar /Users/ms1/Programmierung/simian-2.4.0/bin/simian-2.4.0.jar ./**/*.rb'
+  puts
   
 end
