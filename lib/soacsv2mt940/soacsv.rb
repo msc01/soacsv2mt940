@@ -12,7 +12,7 @@ module SOACSV2MT940
 
     def file_read()
       csv_file = []
-      i=0
+      i = 0
       if File.exist? @csv_filename
         File.foreach @csv_filename do |record|
           csv_record = {
