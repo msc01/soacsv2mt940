@@ -67,6 +67,7 @@ Folgende Punkte sind noch umzusetzen:
 
 v1.0:
 
+- Abhängigkeit auf Filesystem/Verzeichnisstruktur aus Rakefile raus nehmen
 - Prüfen der Überschriftenzeile auf die notwendigen Felder / Struktur
 - Umstellung auf csv-Verarbeitung aus std-lib
 - Namensgebung Klassen, Methoden, Variablen optimieren
