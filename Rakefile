@@ -14,7 +14,7 @@ task :metrics do
   
   puts
   puts "= = = Analyze Ruby Style Guide. = = ="
-  sh 'find lib -name "*.rb" -exec rubocop --format html -o "#{path}index_rubocop.html" \;'
+  sh 'find lib -name "*.rb" -exec rubocop --format html -o coverage/index_rubocop.html \;'
   puts "=> Report can be found in #{path}index_rubocop.html"
   puts
   
