@@ -1,22 +1,21 @@
 require 'rake/testtask'
+require 'rubocop/rake_task'
 
 Rake::TestTask.new do |t|
   t.pattern = 'test/*_test.rb'
 end
 
+RuboCop::RakeTask.new
+
 desc 'test'
 task default: :metrics
 task default: :test
+task default: :rubocop
+
 
 desc 'metrics'
 task :metrics do
   path = 'coverage/'
-
-  puts
-  puts '= = = Analyzing Ruby Style Guide = = ='
-  sh "find lib -name \"*.rb\" -exec rubocop --format html -o #{path}index_rubocop.html \\;"
-  puts '=> Report can be found in #{path}index_rubocop.html'
-  puts
 
   puts
   puts '= = = Analysis of cyclomatic complexity = = ='
