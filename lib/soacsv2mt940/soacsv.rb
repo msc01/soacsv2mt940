@@ -1,16 +1,14 @@
 #!/usr/bin/env ruby
 
-# NAME: soacsv -- Mapping statement of account .csv file
-
+# Namespace: SOACSV2MT940 -- wraps everything together
 module SOACSV2MT940
-    
+  # Class SOACSV -- Mapping statement of account .csv file
   class SOACSV
-  
     def initialize(csv_filename)
       @csv_filename = csv_filename
     end
 
-    def file_read()
+    def file_read
       csv_file = []
       i = 0
       if File.exist? @csv_filename
@@ -27,7 +25,7 @@ module SOACSV2MT940
             auftraggeber_iban: record.split(';')[8]
           }
           csv_file[i] = csv_record
-          i = i + 1
+          i += 1
         end
         csv_file.shift # remove first row (header)
         csv_file.sort_by! { |x| x[:buchungstag] }
@@ -36,7 +34,5 @@ module SOACSV2MT940
         raise(StandardError, "File not found: #{@csv_filename}")
       end
     end
-    
   end
-
 end
