@@ -24,9 +24,9 @@ Einsatz-Szenario: Konto bei der Commerzbank, Buchhaltung mittels Collmex; automa
 
 Die Commerzbank liefert Bankauszüge aktuell in zwei Formaten aus: als .CSV-Datei oder per HBCI mit Chipkarte (!). In Collmex können sie allerdings entweder als MT940-Datei importiert oder per HBCI mit PIN (!) eingelesen werden, so dass keine direkte Möglichkeit besteht, die Auszüge von der Commerzbank in Collmex zu importieren.
 
-Eine Option ist, die Kontoauszüge  zunächst per HBCI mit Chipkarte in das Programm Bank X zu importieren und dann von dort ins MT940-Format zu exportieren, um sie so wiederum nach Collmex zu bekommen.
+Eine Option ist, die Kontoauszüge  zunächst per HBCI mit Chipkarte in ein kommerzielles Programm wie bspw. Bank X zu importieren und dann von dort ins MT940-Format zu exportieren, um sie so wiederum nach Collmex zu bekommen.
 
-Da Bank X aber ausschließlich zu diesem Zweck im Einsatz wäre, kostenpflichtig ist und der für HBCI mit Chipkarte notwendige Chipkartenleser unterwegs nur schwerlich einsetzbar ist, wird ein Konvertierungsprogramm benötigt, welches die [.CSV-Kontoauszugsdatei] [1] der Commerzbank entsprechend ins [MT940-Format] [2] ([Details] [3])/ eine [MT940-Datei] [4] für den Import nach Collmex umwandelt. 
+Da eine entsprechende Software dann aber ausschließlich zu diesem Zweck im Einsatz wäre, kostenpflichtig ist und der für HBCI mit Chipkarte notwendige Chipkartenleser unterwegs nur schwerlich einsetzbar ist, wird ein Konvertierungsprogramm benötigt, welches die [.CSV-Kontoauszugsdatei] [1] der Commerzbank entsprechend ins [MT940-Format] [2] ([Details] [3])/ eine [MT940-Datei] [4] für den Import nach Collmex umwandelt. 
 
 ## Umsetzung
 Das Programm soll später nicht nur lokal sondern ggf. auch als Dienst / Webservice laufen, weshalb es in Ruby umgesetzt ist.
