@@ -12,7 +12,6 @@ task default: :metrics
 task default: :test
 task default: :rubocop
 
-
 desc 'metrics'
 task :metrics do
   path = 'coverage/'
