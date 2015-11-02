@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# encoding: UTF-8
+
 require_relative 'test_helper'
 
 # Test-Klasse fuer Minitest Unit-Tests

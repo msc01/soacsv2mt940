@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# encoding: UTF-8
 
 # NAME: soacsv2mt940 -- convert bank Statement Of Account from .CSV format to MT940 format
 #

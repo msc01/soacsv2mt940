@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# encoding: UTF-8
+
 require_relative 'test_helper'
 require_relative '../lib/soacsv2mt940/soacsv'
 require_relative '../lib/soacsv2mt940/soamt940'
