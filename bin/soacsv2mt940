@@ -53,9 +53,7 @@ module SOACSV2MT940
     options[:mt940_file] = options[:csv_file].gsub(/CSV|csv/, 'mt940')
   end
 
-  unless options[:nbr]
-    options[:nbr] = 0
-  end
+  options[:nbr] = 0 unless options[:nbr]
 
   if options[:balance]
     options[:balance] = options[:balance].tr(',', '.').to_f

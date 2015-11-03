@@ -26,7 +26,7 @@ module SOACSV2MT940
     end
 
     def write_header
-      LOGGER.debug "- Eröffnungs-Saldo: #{sprintf('%#.2f', @soa_opening_balance)}"
+      LOGGER.debug "- Eröffnungs-Saldo: #{format('%#.2f', @soa_opening_balance)}"
       write_record_type_20
       write_record_type_21
       write_record_type_25
@@ -49,7 +49,7 @@ module SOACSV2MT940
 
     def write_footer
       write_record_type_62
-      LOGGER.debug "- Schluß-Saldo: #{sprintf('%#.2f', @soa_closing_balance)}"
+      LOGGER.debug "- Schluß-Saldo: #{format('%#.2f', @soa_closing_balance)}"
     end
 
     def write_record_type_20
@@ -76,7 +76,7 @@ module SOACSV2MT940
     def write_record_type_60
       credit_debit = get_credit_debit(@soa_opening_balance)
       datum_kontoauszug = Date.strptime(@csv_data[-1][:buchungstag], '%d.%m.%Y')
-      record_type_60 = ":60F:#{credit_debit}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{sprintf('%#.2f', @soa_opening_balance).to_s.tr('.', ',')}"
+      record_type_60 = ":60F:#{credit_debit}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{format('%#.2f', @soa_opening_balance).to_s.tr('.', ',')}"
       write_mt940(record_type_60)
       LOGGER.debug "- Kontoauszugsdatum: #{datum_kontoauszug}"
     end
@@ -86,10 +86,8 @@ module SOACSV2MT940
       valutadatum = Date.strptime(csv_record[:wertstellung], '%d.%m.%Y')
       betrag = csv_record[:betrag].tr(',', '.').to_f
       credit_debit = get_credit_debit(betrag)
-      if credit_debit == 'D'
-        betrag *= -1
-      end
-      betrag = sprintf('%#.2f', betrag).to_s.tr('.', ',')
+      betrag *= -1 if credit_debit == 'D'
+      betrag = format('%#.2f', betrag).to_s.tr('.', ',')
       record_type_61 = ":61:#{valutadatum.strftime('%y%m%d')}#{buchungsdatum.strftime('%m%d')}#{credit_debit}#{betrag}NONREF"
       write_mt940(record_type_61)
     end
@@ -97,11 +95,9 @@ module SOACSV2MT940
     def write_record_type_62
       betrag = @soa_closing_balance
       credit_debit = get_credit_debit(betrag)
-      if credit_debit == 'D'
-        betrag *= -1
-      end
+      betrag *= -1 if credit_debit == 'D'
       datum_kontoauszug = Date.strptime(@csv_data[-1][:buchungstag], '%d.%m.%Y')
-      record_type_62 = ":62F:#{credit_debit}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{sprintf('%#.2f', betrag).to_s.tr('.', ',')}"
+      record_type_62 = ":62F:#{credit_debit}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{format('%#.2f', betrag).to_s.tr('.', ',')}"
       write_mt940(record_type_62)
     end
 
