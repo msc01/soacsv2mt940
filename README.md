@@ -85,5 +85,5 @@ v2.0:
 
 [1]:data/test.csv
 [2]:http://de.wikipedia.org/wiki/MT940
-[3]:doc/datenstruktur-mt940-swift.pdf
+[3]:data/datenstruktur-mt940-swift.pdf
 [4]:data/soamt940_test_template.mt940

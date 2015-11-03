@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>index_rubocop.html - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../LICENSE.html">LICENSE</a>
+  
+    <li><a href="../README_md.html">README</a>
+  
+    <li><a href="../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../coverage/assets/0_10_0/application_css.html">application.css</a>
+  
+    <li><a href="../coverage/assets/0_10_0/application_js.html">application.js</a>
+  
+    <li><a href="../coverage/index_html.html">index.html</a>
+  
+    <li><a href="../coverage/index_cyclo_html.html">index_cyclo.html</a>
+  
+    <li><a href="../coverage/index_rubocop_html.html">index_rubocop.html</a>
+  
+    <li><a href="../coverage/lib/soacsv2mt940_rb_cyclo_html.html">soacsv2mt940.rb_cyclo.html</a>
+  
+    <li><a href="../coverage/lib/soacsv2mt940_rb_token_html.html">soacsv2mt940.rb_token.html</a>
+  
+    <li><a href="../coverage/lib/soacsv2mt940/soacsv_rb_cyclo_html.html">soacsv.rb_cyclo.html</a>
+  
+    <li><a href="../coverage/lib/soacsv2mt940/soacsv_rb_token_html.html">soacsv.rb_token.html</a>
+  
+    <li><a href="../coverage/lib/soacsv2mt940/soamt940_rb_cyclo_html.html">soamt940.rb_cyclo.html</a>
+  
+    <li><a href="../coverage/lib/soacsv2mt940/soamt940_rb_token_html.html">soamt940.rb_token.html</a>
+  
+    <li><a href="../coverage/lib/soacsv2mt940/version_rb_cyclo_html.html">version.rb_cyclo.html</a>
+  
+    <li><a href="../coverage/lib/soacsv2mt940/version_rb_token_html.html">version.rb_token.html</a>
+  
+    <li><a href="../data/soamt940_test_mt940.html">soamt940_test.mt940</a>
+  
+    <li><a href="../data/soamt940_test_template_mt940.html">soamt940_test_template.mt940</a>
+  
+    <li><a href="../data/test_csv.html">test.csv</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page coverage/index_rubocop.html">
+
+<p>&lt;!DOCTYPE html&gt; &lt;html&gt;</p>
+
+<pre>&lt;head&gt;
+  &lt;meta charset=&#39;UTF-8&#39; /&gt;
+  &lt;title&gt;RuboCop Inspection Report&lt;/title&gt;
+
+  &lt;style&gt;
+  * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  }
+
+  body, html {
+  font-size: 62.5%;
+  }
+  body {
+  background-color: #ecedf0;
+  font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;
+  margin: 0;
+  }
+  code {
+  font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace;
+  font-size: 85%;
+  }
+  #header {
+  background: #f9f9f9;
+  color: #333;
+  border-bottom: 3px solid #ccc;
+  height: 50px;
+  padding: 0;
+  }
+  #header .logo {
+  float: left;
+  margin: 5px 12px 7px 20px;
+  width: 38px;
+  height: 38px;
+  }
+  #header .title {
+  display: inline-block;
+  float: left;
+  height: 50px;
+  font-size: 2.4rem;
+  letter-spacing: normal;
+  line-height: 50px;
+  margin: 0;
+  }
+
+  .information, #offenses {
+  width: 100%;
+  padding: 20px;
+  color: #333;
+  }
+  #offenses {
+  padding: 0 20px;
+  }
+
+  .information .infobox {
+  border-left: 3px solid;
+  border-radius: 4px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  padding: 15px;
+  border-color: #0088cc;
+  font-size: 1.4rem;
+  }
+  .information .infobox .info-title {
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+  margin: 0 0 0.5em;
+  }
+  .information .infobox ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  }
+  .information .infobox ul li {
+  line-height: 1.8rem
+  }
+
+  #offenses .offense-box {
+  border-radius: 4px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  }
+  #offenses .offense-box .box-title h3 {
+  color: #33353f;
+  background-color: #f6f6f6;
+  font-size: 2rem;
+  line-height: 2rem;
+  display: block;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 0;
+  }
+  #offenses .offense-box .offense-reports  {
+  padding: 0 15px;
+  }
+  #offenses .offense-box .offense-reports .report {
+  border-bottom: 1px dotted #ddd;
+  padding: 15px 0px;
+  position: relative;
+  font-size: 1.3rem;
+  }
+  #offenses .offense-box .offense-reports .report:last-child {
+  border-bottom: none;
+  }
+  #offenses .offense-box .offense-reports .report pre code {
+  display: block;
+  background: #000;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  line-height: 1.6rem;
+  }
+  #offenses .offense-box .offense-reports .report .location {
+  font-weight: bold;
+  }
+  #offenses .offense-box .offense-reports .report .message code {
+  padding: 0.3em;
+  background-color: rgba(0,0,0,0.07);
+  border-radius: 3px;
+  }
+  .severity {
+  text-transform: capitalize;
+  font-weight: bold;
+  }
+  .highlight {
+  padding: 2px;
+  border-radius: 2px;
+  font-weight: bold;
+  }
+
+  .severity.refactor {
+  color: rgba(237, 156, 40, 1.0);
+  }
+  .highlight.refactor {
+  background-color: rgba(237, 156, 40, 0.6);
+  border: 1px solid rgba(237, 156, 40, 0.4);
+  }
+
+  .severity.convention {
+  color: rgba(237, 156, 40, 1.0);
+  }
+  .highlight.convention {
+  background-color: rgba(237, 156, 40, 0.6);
+  border: 1px solid rgba(237, 156, 40, 0.4);
+  }
+
+  .severity.warning {
+  color: rgba(150, 40, 239, 1.0);
+  }
+  .highlight.warning {
+  background-color: rgba(150, 40, 239, 0.6);
+  border: 1px solid rgba(150, 40, 239, 0.4);
+  }
+
+  .severity.error {
+  color: rgba(210, 50, 45, 1.0);
+  }
+  .highlight.error {
+  background-color: rgba(210, 50, 45, 0.6);
+  border: 1px solid rgba(210, 50, 45, 0.4);
+  }
+
+  .severity.fatal {
+  color: rgba(210, 50, 45, 1.0);
+  }
+  .highlight.fatal {
+  background-color: rgba(210, 50, 45, 0.6);
+  border: 1px solid rgba(210, 50, 45, 0.4);
+  }
+
+  footer {
+  margin-bottom: 20px;
+  margin-right: 20px;
+  font-size: 1.3rem;
+  color: #777;
+  text-align: right;
+  }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id=&quot;header&quot;&gt;
+    &lt;img class=&quot;logo&quot; src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAKQWlDQ1BJQ0Mg</pre>
+
+<p>UHJvZmlsZQAASA2dlndUU9kWh8+9N73QEiIgJfQaegkg0jtIFQRRiUmAUAKG
+hCZ2RAVGFBEpVmRUwAFHhyJjRRQLg4Ji1wnyEFDGwVFEReXdjGsJ7601896a
+/cdZ39nnt9fZZ+9917oAUPyCBMJ0WAGANKFYFO7rwVwSE8vE9wIYEAEOWAHA
+4WZmBEf4RALU/L09mZmoSMaz9u4ugGS72yy/UCZz1v9/kSI3QyQGAApF1TY8
+fiYX5QKUU7PFGTL/BMr0lSkyhjEyFqEJoqwi48SvbPan5iu7yZiXJuShGlnO
+Gbw0noy7UN6aJeGjjAShXJgl4GejfAdlvVRJmgDl9yjT0/icTAAwFJlfzOcm
+oWyJMkUUGe6J8gIACJTEObxyDov5OWieAHimZ+SKBIlJYqYR15hp5ejIZvrx
+s1P5YjErlMNN4Yh4TM/0tAyOMBeAr2+WRQElWW2ZaJHtrRzt7VnW5mj5v9nf
+Hn5T/T3IevtV8Sbsz55BjJ5Z32zsrC+9FgD2JFqbHbO+lVUAtG0GQOXhrE/v
+IADyBQC03pzzHoZsXpLE4gwnC4vs7GxzAZ9rLivoN/ufgm/Kv4Y595nL7vtW
+O6YXP4EjSRUzZUXlpqemS0TMzAwOl89k/fcQ/+PAOWnNycMsnJ/AF/GF6FVR
+6JQJhIlou4U8gViQLmQKhH/V4X8YNicHGX6daxRodV8AfYU5ULhJB8hvPQBD
+IwMkbj96An3rWxAxCsi+vGitka9zjzJ6/uf6Hwtcim7hTEEiU+b2DI9kciWi
+LBmj34RswQISkAd0oAo0gS4wAixgDRyAM3AD3iAAhIBIEAOWAy5IAmlABLJB
+PtgACkEx2AF2g2pwANSBetAEToI2cAZcBFfADXALDIBHQAqGwUswAd6BaQiC
+8BAVokGqkBakD5lC1hAbWgh5Q0FQOBQDxUOJkBCSQPnQJqgYKoOqoUNQPfQj
+dBq6CF2D+qAH0CA0Bv0BfYQRmALTYQ3YALaA2bA7HAhHwsvgRHgVnAcXwNvh
+SrgWPg63whfhG/AALIVfwpMIQMgIA9FGWAgb8URCkFgkAREha5EipAKpRZqQ
+DqQbuY1IkXHkAwaHoWGYGBbGGeOHWYzhYlZh1mJKMNWYY5hWTBfmNmYQM4H5
+gqVi1bGmWCesP3YJNhGbjS3EVmCPYFuwl7ED2GHsOxwOx8AZ4hxwfrgYXDJu
+Na4Etw/XjLuA68MN4SbxeLwq3hTvgg/Bc/BifCG+Cn8cfx7fjx/GvyeQCVoE
+a4IPIZYgJGwkVBAaCOcI/YQRwjRRgahPdCKGEHnEXGIpsY7YQbxJHCZOkxRJ
+hiQXUiQpmbSBVElqIl0mPSa9IZPJOmRHchhZQF5PriSfIF8lD5I/UJQoJhRP
+ShxFQtlOOUq5QHlAeUOlUg2obtRYqpi6nVpPvUR9Sn0vR5Mzl/OX48mtk6uR
+a5Xrl3slT5TXl3eXXy6fJ18hf0r+pvy4AlHBQMFTgaOwVqFG4bTCPYVJRZqi
+lWKIYppiiWKD4jXFUSW8koGStxJPqUDpsNIlpSEaQtOledK4tE20Otpl2jAd
+Rzek+9OT6cX0H+i99AllJWVb5SjlHOUa5bPKUgbCMGD4M1IZpYyTjLuMj/M0
+5rnP48/bNq9pXv+8KZX5Km4qfJUilWaVAZWPqkxVb9UU1Z2qbapP1DBqJmph
+atlq+9Uuq43Pp893ns+dXzT/5PyH6rC6iXq4+mr1w+o96pMamhq+GhkaVRqX
+NMY1GZpumsma5ZrnNMe0aFoLtQRa5VrntV4wlZnuzFRmJbOLOaGtru2nLdE+
+pN2rPa1jqLNYZ6NOs84TXZIuWzdBt1y3U3dCT0svWC9fr1HvoT5Rn62fpL9H
+v1t/ysDQINpgi0GbwaihiqG/YZ5ho+FjI6qRq9Eqo1qjO8Y4Y7ZxivE+41sm
+sImdSZJJjclNU9jU3lRgus+0zwxr5mgmNKs1u8eisNxZWaxG1qA5wzzIfKN5
+m/krCz2LWIudFt0WXyztLFMt6ywfWSlZBVhttOqw+sPaxJprXWN9x4Zq42Oz
+zqbd5rWtqS3fdr/tfTuaXbDdFrtOu8/2DvYi+yb7MQc9h3iHvQ732HR2KLuE
+fdUR6+jhuM7xjOMHJ3snsdNJp9+dWc4pzg3OowsMF/AX1C0YctFx4bgccpEu
+ZC6MX3hwodRV25XjWuv6zE3Xjed2xG3E3dg92f24+ysPSw+RR4vHlKeT5xrP
+C16Il69XkVevt5L3Yu9q76c+Oj6JPo0+E752vqt9L/hh/QL9dvrd89fw5/rX
++08EOASsCegKpARGBFYHPgsyCRIFdQTDwQHBu4IfL9JfJFzUFgJC/EN2hTwJ
+NQxdFfpzGC4sNKwm7Hm4VXh+eHcELWJFREPEu0iPyNLIR4uNFksWd0bJR8VF
+1UdNRXtFl0VLl1gsWbPkRoxajCCmPRYfGxV7JHZyqffS3UuH4+ziCuPuLjNc
+lrPs2nK15anLz66QX8FZcSoeGx8d3xD/iRPCqeVMrvRfuXflBNeTu4f7kufG
+K+eN8V34ZfyRBJeEsoTRRJfEXYljSa5JFUnjAk9BteB1sl/ygeSplJCUoykz
+qdGpzWmEtPi000IlYYqwK10zPSe9L8M0ozBDuspp1e5VE6JA0ZFMKHNZZruY
+jv5M9UiMJJslg1kLs2qy3mdHZZ/KUcwR5vTkmuRuyx3J88n7fjVmNXd1Z752
+/ob8wTXuaw6thdauXNu5Tnddwbrh9b7rj20gbUjZ8MtGy41lG99uit7UUaBR
+sL5gaLPv5sZCuUJR4b0tzlsObMVsFWzt3WazrWrblyJe0fViy+KK4k8l3JLr
+31l9V/ndzPaE7b2l9qX7d+B2CHfc3em681iZYlle2dCu4F2t5czyovK3u1fs
+vlZhW3FgD2mPZI+0MqiyvUqvakfVp+qk6oEaj5rmvep7t+2d2sfb17/fbX/T
+AY0DxQc+HhQcvH/I91BrrUFtxWHc4azDz+ui6rq/Z39ff0TtSPGRz0eFR6XH
+wo911TvU1zeoN5Q2wo2SxrHjccdv/eD1Q3sTq+lQM6O5+AQ4ITnx4sf4H++e
+DDzZeYp9qukn/Z/2ttBailqh1tzWibakNml7THvf6YDTnR3OHS0/m/989Iz2
+mZqzymdLz5HOFZybOZ93fvJCxoXxi4kXhzpXdD66tOTSna6wrt7LgZevXvG5
+cqnbvfv8VZerZ645XTt9nX297Yb9jdYeu56WX+x+aem172296XCz/ZbjrY6+
+BX3n+l37L972un3ljv+dGwOLBvruLr57/17cPel93v3RB6kPXj/Mejj9aP1j
+7OOiJwpPKp6qP6391fjXZqm99Oyg12DPs4hnj4a4Qy//lfmvT8MFz6nPK0a0
+RupHrUfPjPmM3Xqx9MXwy4yX0+OFvyn+tveV0auffnf7vWdiycTwa9HrmT9K
+3qi+OfrW9m3nZOjk03dp76anit6rvj/2gf2h+2P0x5Hp7E/4T5WfjT93fAn8
+8ngmbWbm3/eE8/syOll+AAAACXBIWXMAAAsTAAALEwEAmpwYAAAEJGlUWHRY
+TUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9i
+ZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRm
+OlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjIt
+cmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjph
+Ym91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRv
+YmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0
+cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iCiAgICAgICAgICAgIHhtbG5z
+OmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgICAg
+ICAgICAgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
+Ij4KICAgICAgICAgPHRpZmY6UmVzb2x1dGlvblVuaXQ+MTwvdGlmZjpSZXNv
+bHV0aW9uVW5pdD4KICAgICAgICAgPHRpZmY6Q29tcHJlc3Npb24+NTwvdGlm
+ZjpDb21wcmVzc2lvbj4KICAgICAgICAgPHRpZmY6WFJlc29sdXRpb24+NzI8
+L3RpZmY6WFJlc29sdXRpb24+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9u
+PjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgICAgIDx0aWZmOllSZXNvbHV0
+aW9uPjcyPC90aWZmOllSZXNvbHV0aW9uPgogICAgICAgICA8ZXhpZjpQaXhl
+bFhEaW1lbnNpb24+NzY8L2V4aWY6UGl4ZWxYRGltZW5zaW9uPgogICAgICAg
+ICA8ZXhpZjpDb2xvclNwYWNlPjE8L2V4aWY6Q29sb3JTcGFjZT4KICAgICAg
+ICAgPGV4aWY6UGl4ZWxZRGltZW5zaW9uPjc2PC9leGlmOlBpeGVsWURpbWVu
+c2lvbj4KICAgICAgICAgPGRjOnN1YmplY3Q+CiAgICAgICAgICAgIDxyZGY6
+U2VxLz4KICAgICAgICAgPC9kYzpzdWJqZWN0PgogICAgICAgICA8eG1wOk1v
+ZGlmeURhdGU+MjAxNDowOToyMyAyMjowOToxNDwveG1wOk1vZGlmeURhdGU+
+CiAgICAgICAgIDx4bXA6Q3JlYXRvclRvb2w+UGl4ZWxtYXRvciAzLjIuMTwv
+eG1wOkNyZWF0b3JUb29sPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAg
+PC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KkpvroQAABkNJREFUeAHtm0uIHFUY
+hWveM8ZpHN/RYCIS34mKGGSMMmLA6CKILmQwBOJCEcwqKzELceVWN+IyIgQM
+4gt84SMqBpNBkBiJGkEFMRFNMmSSzEzm5fmG7qEpbt1bt7q6XuOBQ3Xfuvf/
+z/nr3qrq6u6OIH9cLAlrxGvr20e0vVsE34rviL+Lv9W3J7XNDR05Zb5deR8U
+7xfXiVeKnaIN89p5XPxB/EL8WPxerCxqcrZd3CdOiwstkhj7RGISuzLol5On
+xSNiq0WKGk9scpCr1LhP6veLUUbTbicXOUuHHil+QZwS0y6KKx45yY2GUuAy
+qXxXdBlr9340oKXQWC11Y2K7ixE3PlrQVEhcI1WHxLhmsuqHJrQVCtx8cpOZ
+VRF886ANjYVAl1TsFX1NZN0fjWjNHTulIGvzSfOhNVfcpuwTYlIDWY9DK5pz
+AdP7EzFr063mQ3MuS/PREharUWy0Zwruog+IDQFl26I9008Cm0tcrMbBxYM3
+XM+gogI+GbWjRO2ZebhKRTklNo5UWbd4wIsXksywEWW4yCtLMTvjYcRXWpKC
+bfJNUuD+3l58C9Yt83cWuAC+0vCCp7aBT/3nxbKet8K68eL1JMO3unzLtFtk
+WwVQwKp4Kebx8KnurbLwjLhBHCimHW9VkxpxUHxVPOw92jJgi/bxjXP4HFCV
+93jDYypYrSj/iFUpTpQPPK4RrYhzW7FVES61RqnGTjw+4bISp2B3uIJUaL/T
+a5yC9VaoIC4rTq9xCjbrylKh/U6vroLdpGKsr1BBXFbwiudE4NP8j2LUVaWq
+7XiOfBpjm2HbNPBmcbkBz3g3wnanf1ojBo2j6o1DnZ3B6IpasL6nb/Hng0y5
+IgKT8+Khmelgz9nTwal53lnB13E1Uw9bwaz+r+jqCvZcsjIY7hsIZhdXrSl8
+sdq69Tl7//RkMHriWPD33JxLnLE2vk8rlpLsGBwKhvsHggn30Voak/+LhUXN
+aN81/m8iObZzWGRABg339QfTC9ZJGDk+zx1oRnsi4xKeaBxlmlJi45zNsxox
+cqMZ7UkPdeKCvX3uTNCrkpWpaGhFM9qTFizxOWy3rjZru3uD7RfWgoGOcpRt
+UjPrlYnxAO1JYXN6QEF5WGgFtxQ39vQGXbZI1gjZ7JzTlPpp5vzirUWMjGPq
+4/QejjOiBmbuciTevcH57TWRu7zlUjS84jnRuV3jFr+z+1Lb5VKwr+qe8W6E
+q5I87jhpHFnNxhOyZX3E4yoYZcnl13o5HQ+n1zgFS34Nzsl1C2mdXuMU7PMW
+BJRtaCpeecTDfUnVT/x4tD7O8jn616nz1xUuGt7w6ITP/Xmfoj0s8n/sFSIz
+Low4Szw8Jov33F+FgfezIn+r+UDkH77/I+0K+MywRm7+0P6hGF7vM2rbIh4V
+i4S1EvOeGP6ZOY+hHxKPi7GR5GkFYxDBsmwGS5RlWzSg6QYxPDlYjt7+vQfU
+q2G6G6bNdF6rD1naPKZXHNk0wEx/yxEITWgLzzCTB0eoBBV2RrR3eEC7Xxcv
+sHeLvXdUPcfFz2KPaLFjllc1foD7hphWsbBOLGISOxMkXZJJxLEMuWAALuEY
+PcebBKBQW0XOT8Qk9ndiIbFKqlgGnBuayS+SbxGj0KUdz4sUaUdUJ492YhCL
+mMSOAppMv/zGA17ajqQFawhj+YSvWI19PltixFmKqRYsyyXZKEZaS4fZnVas
+hjbnNo+ChUVtVMP1omvWUaCfxW/EUuFqqTX9m21W7es8nTyl/oxrPhfaXtOX
+MT5AkykHHvDSdgwpw1+iyRgfjeLiHnU8I5ri2NoYw9i4QJMpHh7w0nZw7zYm
+mkS8GTP7SvX7JSKGKW64jbHEiIO96hQez3s8ZHYf+nKECKb+NtEGzpvviyYT
+Pm3EcJ2D0WJajuTBQ2bYqEz8wMpkcErtu8TLxTC4X3pJNI1L0kYs0z0YudGA
+FlNctOPBG64rU1RARH4kborqoPZj4mGx8cUCuVaJG8Q0cVDB/hQpDKiJ/C/K
+tmQ/1f7NovNXdeqTGu5SJB6RmI5gkdvQjPZc8KyyFrk4Jm1ozhXPKTvPzE3i
+itSGRrQWAo9LxR9ikQrUrAVtaCwUOMm+KB4Vm8Xm+RotaLJdALQ7Xwwq/b3i
+TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII= “ alt=”“&gt;</p>
+
+<pre>    &lt;h1 class=&quot;title&quot;&gt;RuboCop Inspection Report&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;information&quot;&gt;
+    &lt;div class=&quot;infobox&quot;&gt;
+      10 files inspected,
+      44 offenses detected
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div id=&quot;offenses&quot;&gt;
+
+    &lt;div class=&quot;offense-box&quot;&gt;
+      &lt;div class=&quot;box-title&quot;&gt;&lt;h3&gt;Rakefile - 2 offenses&lt;/h3&gt;&lt;/div&gt;
+      &lt;div class=&quot;offense-reports&quot;&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #17&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [91/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;  sh &amp;quot;find lib -name \&amp;quot;*.rb\&amp;quot; -exec rubocop --format html -o #{path}index_ruboco&lt;span class=&quot;highlight convention&quot;&gt;p.html \\;&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #32&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [86/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;  sh &amp;#39;java -jar /Users/ms1/Programmierung/simian-2.4.0/bin/simian-2.4.0.jar ./**&lt;span class=&quot;highlight convention&quot;&gt;/*.rb&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;offense-box&quot;&gt;
+      &lt;div class=&quot;box-title&quot;&gt;&lt;h3&gt;bin/soacsv2mt940 - 13 offenses&lt;/h3&gt;&lt;/div&gt;
+      &lt;div class=&quot;offense-reports&quot;&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #3&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [90/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;# NAME: soacsv2mt940 -- convert bank Statement Of Account from .CSV format to MT&lt;span class=&quot;highlight convention&quot;&gt;940 format&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #5&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [108/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;# SYNOPSIS: soacsv2mt940 -c, --csv &amp;lt;file&amp;gt; [-m, --mt940 &amp;lt;file&amp;gt;] [-n, --nbr &amp;lt;numbe&lt;span class=&quot;highlight convention&quot;&gt;r&amp;gt;] [-b, --balance &amp;lt;amount&amp;gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #15&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Extra empty line detected at module body beginning.&lt;/span&gt;
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #16&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Assignment Branch Condition size for parse_and_check_options is too high. [31.4/15]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;  &lt;span class=&quot;highlight convention&quot;&gt;def&lt;/span&gt; parse_and_check_options&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #16&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Method has too many lines. [38/10]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;  &lt;span class=&quot;highlight convention&quot;&gt;def&lt;/span&gt; parse_and_check_options&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #20&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [124/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      opts.banner = &amp;#39;Usage: soacsvmt940 -c, --csv &amp;lt;file&amp;gt; [-m, --mt940 &amp;lt;file&amp;gt;] [-&lt;span class=&quot;highlight convention&quot;&gt;n, --nbr &amp;lt;number&amp;gt;] [-b, --balance &amp;lt;amount&amp;gt;]&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #21&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [99/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      opts.banner &amp;lt;&amp;lt; &amp;quot;\n Example: soacsvmt940 -c bank.csv --mt940 bank.txt -n 0 &lt;span class=&quot;highlight convention&quot;&gt;--balance -1523,89&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #27&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [143/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      opts.on(&amp;#39;-m&amp;#39;, &amp;#39;--mt940 &amp;lt;filename&amp;gt;&amp;#39;, &amp;#39;Optional: name of .mt940 target file;&lt;span class=&quot;highlight convention&quot;&gt; if not specified, the ending .mt940 will be used.&amp;#39;) do |mt940|&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #31&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [123/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      opts.on(&amp;#39;-n&amp;#39;, &amp;#39;--nbr &amp;lt;number&amp;gt;&amp;#39;, &amp;#39;Optional: number of the statement of acco&lt;span class=&quot;highlight convention&quot;&gt;unt; if ommited, 0 will be used.&amp;#39;) do |nbr|&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #35&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [117/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      opts.on(&amp;#39;-b&amp;#39;, &amp;#39;--balance &amp;lt;amount&amp;gt;&amp;#39;, &amp;#39;Optional: opening balance; 0 will be &lt;span class=&quot;highlight convention&quot;&gt;used if not specified.&amp;#39;) do |balance|&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #57&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Favor modifier &lt;code&gt;unless&lt;/code&gt; usage when having a single-line body. Another good alternative is the usage of control flow &lt;code&gt;&amp;&amp;&lt;/code&gt;/&lt;code&gt;||&lt;/code&gt;.&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;    &lt;span class=&quot;highlight convention&quot;&gt;unless&lt;/span&gt; options[:nbr]&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #66&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Trailing whitespace detected.&lt;/span&gt;
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #72&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [99/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;  soamt940 = SOAMT940.new(soacsv.file_read, options[:mt940_file], options[:nbr],&lt;span class=&quot;highlight convention&quot;&gt; options[:balance])&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;offense-box&quot;&gt;
+      &lt;div class=&quot;box-title&quot;&gt;&lt;h3&gt;lib/soacsv2mt940/soacsv.rb - 3 offenses&lt;/h3&gt;&lt;/div&gt;
+      &lt;div class=&quot;offense-reports&quot;&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #11&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Assignment Branch Condition size for file_read is too high. [25.51/15]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;    &lt;span class=&quot;highlight convention&quot;&gt;def&lt;/span&gt; file_read&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #11&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Method has too many lines. [24/10]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;    &lt;span class=&quot;highlight convention&quot;&gt;def&lt;/span&gt; file_read&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #34&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Use &lt;code&gt;fail&lt;/code&gt; instead of &lt;code&gt;raise&lt;/code&gt; to signal exceptions.&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;        &lt;span class=&quot;highlight convention&quot;&gt;raise&lt;/span&gt;(StandardError, &amp;quot;File not found: #{@csv_filename}&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;offense-box&quot;&gt;
+      &lt;div class=&quot;box-title&quot;&gt;&lt;h3&gt;lib/soacsv2mt940/soamt940.rb - 18 offenses&lt;/h3&gt;&lt;/div&gt;
+      &lt;div class=&quot;offense-reports&quot;&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #6&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Class has too many lines. [111/100]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;  &lt;span class=&quot;highlight convention&quot;&gt;class&lt;/span&gt; SOAMT940&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #21&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [96/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      LOGGER.debug &amp;#39;Konvertierung Commerzbank .csv-Kontoauszugsdatei ins Format &lt;span class=&quot;highlight convention&quot;&gt;.mt940 (SWIFT):&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #28&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Favor &lt;code&gt;format&lt;/code&gt; over &lt;code&gt;sprintf&lt;/code&gt;.&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      LOGGER.debug &amp;quot;- Eröffnungs-Saldo: #{&lt;span class=&quot;highlight convention&quot;&gt;sprintf&lt;/span&gt;(&amp;#39;%#.2f&amp;#39;, @soa_opening_balance)}&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #28&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [82/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      LOGGER.debug &amp;quot;- Eröffnungs-Saldo: #{sprintf(&amp;#39;%#.2f&amp;#39;, @soa_opening_balance)&lt;span class=&quot;highlight convention&quot;&gt;}&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #39&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Use &lt;code&gt;next&lt;/code&gt; to skip iteration.&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;        &lt;span class=&quot;highlight convention&quot;&gt;if csv_record&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #51&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Favor &lt;code&gt;format&lt;/code&gt; over &lt;code&gt;sprintf&lt;/code&gt;.&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      LOGGER.debug &amp;quot;- Schluß-Saldo: #{&lt;span class=&quot;highlight convention&quot;&gt;sprintf&lt;/span&gt;(&amp;#39;%#.2f&amp;#39;, @soa_closing_balance)}&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #65&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [100/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      record_type_25 = &amp;quot;:25:#{@csv_data[1][:auftraggeber_blz]}/#{@csv_data[1][:a&lt;span class=&quot;highlight convention&quot;&gt;uftraggeber_konto]}&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #67&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [107/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      LOGGER.debug &amp;quot;- BLZ/Konto: #{@csv_data[1][:auftraggeber_blz]} / #{@csv_dat&lt;span class=&quot;highlight convention&quot;&gt;a[1][:auftraggeber_konto]}&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #78&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [142/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      record_type_60 = &amp;quot;:60F:#{credit_debit}#{buchungsdatum.strftime(&amp;#39;%y%m%d&amp;#39;)}E&lt;span class=&quot;highlight convention&quot;&gt;UR#{sprintf(&amp;#39;%#.2f&amp;#39;, @soa_opening_balance).to_s.tr(&amp;#39;.&amp;#39;, &amp;#39;,&amp;#39;)}&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #78&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Favor &lt;code&gt;format&lt;/code&gt; over &lt;code&gt;sprintf&lt;/code&gt;.&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      record_type_60 = &amp;quot;:60F:#{credit_debit}#{buchungsdatum.strftime(&amp;#39;%y%m%d&amp;#39;)}EUR#{&lt;span class=&quot;highlight convention&quot;&gt;sprintf&lt;/span&gt;(&amp;#39;%#.2f&amp;#39;, @soa_opening_balance).to_s.tr(&amp;#39;.&amp;#39;, &amp;#39;,&amp;#39;)}&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #83&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Assignment Branch Condition size for write_record_type_61 is too high. [17.03/15]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;    &lt;span class=&quot;highlight convention&quot;&gt;def&lt;/span&gt; write_record_type_61(csv_record)&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #88&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Favor modifier &lt;code&gt;if&lt;/code&gt; usage when having a single-line body. Another good alternative is the usage of control flow &lt;code&gt;&amp;&amp;&lt;/code&gt;/&lt;code&gt;||&lt;/code&gt;.&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      &lt;span class=&quot;highlight convention&quot;&gt;if&lt;/span&gt; credit_debit == &amp;#39;D&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #91&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Favor &lt;code&gt;format&lt;/code&gt; over &lt;code&gt;sprintf&lt;/code&gt;.&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      betrag = &lt;span class=&quot;highlight convention&quot;&gt;sprintf&lt;/span&gt;(&amp;#39;%#.2f&amp;#39;, betrag).to_s.tr(&amp;#39;.&amp;#39;, &amp;#39;,&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #92&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [125/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      record_type_61 = &amp;quot;:61:#{valutadatum.strftime(&amp;#39;%y%m%d&amp;#39;)}#{buchungsdatum.str&lt;span class=&quot;highlight convention&quot;&gt;ftime(&amp;#39;%m%d&amp;#39;)}#{credit_debit}#{betrag}NONREF&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #99&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Favor modifier &lt;code&gt;if&lt;/code&gt; usage when having a single-line body. Another good alternative is the usage of control flow &lt;code&gt;&amp;&amp;&lt;/code&gt;/&lt;code&gt;||&lt;/code&gt;.&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      &lt;span class=&quot;highlight convention&quot;&gt;if&lt;/span&gt; credit_debit == &amp;#39;D&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #103&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [128/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      record_type_62 = &amp;quot;:62F:#{credit_debit}#{buchungsdatum.strftime(&amp;#39;%y%m%d&amp;#39;)}E&lt;span class=&quot;highlight convention&quot;&gt;UR#{sprintf(&amp;#39;%#.2f&amp;#39;, betrag).to_s.tr(&amp;#39;.&amp;#39;, &amp;#39;,&amp;#39;)}&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #103&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Favor &lt;code&gt;format&lt;/code&gt; over &lt;code&gt;sprintf&lt;/code&gt;.&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      record_type_62 = &amp;quot;:62F:#{credit_debit}#{buchungsdatum.strftime(&amp;#39;%y%m%d&amp;#39;)}EUR#{&lt;span class=&quot;highlight convention&quot;&gt;sprintf&lt;/span&gt;(&amp;#39;%#.2f&amp;#39;, betrag).to_s.tr(&amp;#39;.&amp;#39;, &amp;#39;,&amp;#39;)}&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #122&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [122/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      text.gsub(&amp;#39;ä&amp;#39;, &amp;#39;ae&amp;#39;).gsub(&amp;#39;Ä&amp;#39;, &amp;#39;AE&amp;#39;).gsub(&amp;#39;ö&amp;#39;, &amp;#39;oe&amp;#39;).gsub(&amp;#39;Ö&amp;#39;, &amp;#39;OE&amp;#39;).gsub(&lt;span class=&quot;highlight convention&quot;&gt;&amp;#39;ü&amp;#39;, &amp;#39;ue&amp;#39;).gsub(&amp;#39;Ü&amp;#39;, &amp;#39;UE&amp;#39;).gsub(&amp;#39;ß&amp;#39;, &amp;#39;ss&amp;#39;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;offense-box&quot;&gt;
+      &lt;div class=&quot;box-title&quot;&gt;&lt;h3&gt;test/soacsv2mt940_test.rb - 1 offense&lt;/h3&gt;&lt;/div&gt;
+      &lt;div class=&quot;offense-reports&quot;&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #16&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [90/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;    # wird nur bei Bedarf aus den Testcases aufgerufen, bspw. um Testdaten berei&lt;span class=&quot;highlight convention&quot;&gt;tzustellen&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;offense-box&quot;&gt;
+      &lt;div class=&quot;box-title&quot;&gt;&lt;h3&gt;test/soamt940_test.rb - 7 offenses&lt;/h3&gt;&lt;/div&gt;
+      &lt;div class=&quot;offense-reports&quot;&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #10&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Method has too many lines. [12/10]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;    &lt;span class=&quot;highlight convention&quot;&gt;def&lt;/span&gt; setup&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #16&lt;/span&gt; –
+            &lt;span class=&quot;severity warning&quot;&gt;warning:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Do not suppress exceptions.&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      &lt;span class=&quot;highlight warning&quot;&gt;rescue&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #21&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [98/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      @soamt940 = SOAMT940.new(@soacsv.file_read, @mt940_filename, @soa_nbr, @so&lt;span class=&quot;highlight convention&quot;&gt;a_opening_balance)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #30&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [99/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      soamt940_2 = SOAMT940.new(@soacsv.file_read, @mt940_filename, @soa_nbr, @s&lt;span class=&quot;highlight convention&quot;&gt;oa_opening_balance)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #36&lt;/span&gt; –
+            &lt;span class=&quot;severity warning&quot;&gt;warning:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Do not suppress exceptions.&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      &lt;span class=&quot;highlight warning&quot;&gt;rescue&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #45&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [100/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      output = input * 2 # due to two mt940 body records (record type 61 and 86)&lt;span class=&quot;highlight convention&quot;&gt; for each csv record&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class=&quot;report&quot;&gt;
+          &lt;div class=&quot;meta&quot;&gt;
+            &lt;span class=&quot;location&quot;&gt;Line #53&lt;/span&gt; –
+            &lt;span class=&quot;severity convention&quot;&gt;convention:&lt;/span&gt;
+            &lt;span class=&quot;message&quot;&gt;Line is too long. [82/80]&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;pre&gt;&lt;code&gt;      assert_equal File.size(@mt940_filename), File.size(@mt940_template_filenam&lt;span class=&quot;highlight convention&quot;&gt;e)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+  &lt;footer&gt;
+    Generated by &lt;a href=&quot;https://github.com/bbatsov/rubocop&quot;&gt;RuboCop&lt;/a&gt;
+    &lt;span class=&quot;version&quot;&gt;0.34.2&lt;/span&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;</pre>
+
+<p>&lt;/html&gt;</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

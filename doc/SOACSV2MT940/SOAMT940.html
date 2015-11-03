@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class SOACSV2MT940::SOAMT940 - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">Object
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-convert_umlaute">#convert_umlaute</a>
+    
+    <li ><a href="#method-i-csv2mt940">#csv2mt940</a>
+    
+    <li ><a href="#method-i-get_credit_debit">#get_credit_debit</a>
+    
+    <li ><a href="#method-i-write_body">#write_body</a>
+    
+    <li ><a href="#method-i-write_footer">#write_footer</a>
+    
+    <li ><a href="#method-i-write_header">#write_header</a>
+    
+    <li ><a href="#method-i-write_mt940">#write_mt940</a>
+    
+    <li ><a href="#method-i-write_record_type_20">#write_record_type_20</a>
+    
+    <li ><a href="#method-i-write_record_type_21">#write_record_type_21</a>
+    
+    <li ><a href="#method-i-write_record_type_25">#write_record_type_25</a>
+    
+    <li ><a href="#method-i-write_record_type_28">#write_record_type_28</a>
+    
+    <li ><a href="#method-i-write_record_type_60">#write_record_type_60</a>
+    
+    <li ><a href="#method-i-write_record_type_61">#write_record_type_61</a>
+    
+    <li ><a href="#method-i-write_record_type_62">#write_record_type_62</a>
+    
+    <li ><a href="#method-i-write_record_type_86">#write_record_type_86</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-SOACSV2MT940::SOAMT940">
+  <h1 id="class-SOACSV2MT940::SOAMT940" class="class">
+    class SOACSV2MT940::SOAMT940
+  </h1>
+
+  <section class="description">
+    
+<p>Class <a href="SOAMT940.html">SOAMT940</a> – Mapping statement of account
+.mt940 file</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(csv_data, filename_mt940, soa_nbr, soa_opening_balance)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">csv_data</span>, <span class="ruby-identifier">filename_mt940</span>, <span class="ruby-identifier">soa_nbr</span>, <span class="ruby-identifier">soa_opening_balance</span>)
+  <span class="ruby-ivar">@csv_data</span> = <span class="ruby-identifier">csv_data</span>
+  <span class="ruby-ivar">@filename_mt940</span> = <span class="ruby-identifier">filename_mt940</span> 
+  <span class="ruby-ivar">@soa_nbr</span> = <span class="ruby-identifier">soa_nbr</span>
+  <span class="ruby-ivar">@soa_opening_balance</span> = <span class="ruby-identifier">soa_opening_balance</span>.<span class="ruby-identifier">to_f</span>
+  <span class="ruby-ivar">@soa_closing_balance</span> = <span class="ruby-ivar">@soa_opening_balance</span>
+  <span class="ruby-identifier">filename_index</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-ivar">@filename_mt940</span>
+    <span class="ruby-identifier">filename_index</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-ivar">@filename_mt940</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;.#{filename_index}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-convert_umlaute" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">convert_umlaute</span><span
+            class="method-args">(text)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="convert_umlaute-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_umlaute</span>(<span class="ruby-identifier">text</span>)
+  <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;ä&#39;</span>, <span class="ruby-string">&#39;ae&#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;Ä&#39;</span>, <span class="ruby-string">&#39;AE&#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;ö&#39;</span>, <span class="ruby-string">&#39;oe&#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;Ö&#39;</span>, <span class="ruby-string">&#39;OE&#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;ü&#39;</span>, <span class="ruby-string">&#39;ue&#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;Ü&#39;</span>, <span class="ruby-string">&#39;UE&#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;ß&#39;</span>, <span class="ruby-string">&#39;ss&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-csv2mt940" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">csv2mt940</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="csv2mt940-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">csv2mt940</span>
+  <span class="ruby-constant">LOGGER</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&#39;Konvertierung Commerzbank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):&#39;</span>
+  <span class="ruby-identifier">write_header</span>
+  <span class="ruby-identifier">write_body</span>
+  <span class="ruby-identifier">write_footer</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_credit_debit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_credit_debit</span><span
+            class="method-args">(betrag)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_credit_debit-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_credit_debit</span>(<span class="ruby-identifier">betrag</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">betrag</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">credit_debit</span> = <span class="ruby-string">&#39;C&#39;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">credit_debit</span> = <span class="ruby-string">&#39;D&#39;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">credit_debit</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_body" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_body</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_body-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_body</span>
+  <span class="ruby-identifier">nbr_of_relevant_rows</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@csv_data</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv_record</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">csv_record</span>
+      <span class="ruby-identifier">write_record_type_61</span>(<span class="ruby-identifier">csv_record</span>)
+      <span class="ruby-identifier">write_record_type_86</span>(<span class="ruby-identifier">csv_record</span>)
+      <span class="ruby-ivar">@soa_closing_balance</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">csv_record</span>[<span class="ruby-value">:betrag</span>].<span class="ruby-identifier">tr</span>(<span class="ruby-string">&#39;,&#39;</span>, <span class="ruby-string">&#39;.&#39;</span>).<span class="ruby-identifier">to_f</span>
+      <span class="ruby-identifier">nbr_of_relevant_rows</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">LOGGER</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;- Umsatz-relevante Datensätze: #{nbr_of_relevant_rows}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_footer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_footer</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_footer-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_footer</span>
+  <span class="ruby-identifier">write_record_type_62</span>
+  <span class="ruby-constant">LOGGER</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;- Schluß-Saldo: #{format(&#39;%#.2f&#39;, @soa_closing_balance)}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_header" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_header</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_header-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_header</span>
+  <span class="ruby-constant">LOGGER</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;- Eröffnungs-Saldo: #{format(&#39;%#.2f&#39;, @soa_opening_balance)}&quot;</span>
+  <span class="ruby-identifier">write_record_type_20</span>
+  <span class="ruby-identifier">write_record_type_21</span>
+  <span class="ruby-identifier">write_record_type_25</span>
+  <span class="ruby-identifier">write_record_type_28</span>
+  <span class="ruby-identifier">write_record_type_60</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_mt940" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_mt940</span><span
+            class="method-args">(record)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_mt940-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 115</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_mt940</span>(<span class="ruby-identifier">record</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@filename_mt940</span>, <span class="ruby-string">&#39;a&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">record</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_record_type_20" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_record_type_20</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_record_type_20-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_record_type_20</span>
+  <span class="ruby-identifier">record_type_20</span> = <span class="ruby-string">&#39;:20:SOACSV2MT940&#39;</span>
+  <span class="ruby-identifier">write_mt940</span>(<span class="ruby-identifier">record_type_20</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_record_type_21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_record_type_21</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_record_type_21-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_record_type_21</span>
+  <span class="ruby-identifier">record_type_21</span> = <span class="ruby-string">&#39;:21:NONREF&#39;</span>
+  <span class="ruby-identifier">write_mt940</span>(<span class="ruby-identifier">record_type_21</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_record_type_25" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_record_type_25</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_record_type_25-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_record_type_25</span>
+  <span class="ruby-identifier">record_type_25</span> = <span class="ruby-node">&quot;:25:#{@csv_data[1][:auftraggeber_blz]}/#{@csv_data[1][:auftraggeber_konto]}&quot;</span>
+  <span class="ruby-identifier">write_mt940</span>(<span class="ruby-identifier">record_type_25</span>)
+  <span class="ruby-constant">LOGGER</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;- BLZ/Konto: #{@csv_data[1][:auftraggeber_blz]} / #{@csv_data[1][:auftraggeber_konto]}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_record_type_28" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_record_type_28</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_record_type_28-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_record_type_28</span>
+  <span class="ruby-identifier">record_type_28</span> = <span class="ruby-node">&quot;:28C:#{@soa_nbr}&quot;</span>
+  <span class="ruby-identifier">write_mt940</span>(<span class="ruby-identifier">record_type_28</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_record_type_60" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_record_type_60</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_record_type_60-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_record_type_60</span>
+  <span class="ruby-identifier">credit_debit</span> = <span class="ruby-identifier">get_credit_debit</span>(<span class="ruby-ivar">@soa_opening_balance</span>)
+  <span class="ruby-identifier">datum_kontoauszug</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">strptime</span>(<span class="ruby-ivar">@csv_data</span>[<span class="ruby-value">-1</span>][<span class="ruby-value">:buchungstag</span>], <span class="ruby-string">&#39;%d.%m.%Y&#39;</span>)
+  <span class="ruby-identifier">record_type_60</span> = <span class="ruby-node">&quot;:60F:#{credit_debit}#{datum_kontoauszug.strftime(&#39;%y%m%d&#39;)}EUR#{format(&#39;%#.2f&#39;, @soa_opening_balance).to_s.tr(&#39;.&#39;, &#39;,&#39;)}&quot;</span>
+  <span class="ruby-identifier">write_mt940</span>(<span class="ruby-identifier">record_type_60</span>)
+  <span class="ruby-constant">LOGGER</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;- Kontoauszugsdatum: #{datum_kontoauszug}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_record_type_61" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_record_type_61</span><span
+            class="method-args">(csv_record)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_record_type_61-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_record_type_61</span>(<span class="ruby-identifier">csv_record</span>)
+  <span class="ruby-identifier">buchungsdatum</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">strptime</span>(<span class="ruby-identifier">csv_record</span>[<span class="ruby-value">:buchungstag</span>], <span class="ruby-string">&#39;%d.%m.%Y&#39;</span>)
+  <span class="ruby-identifier">valutadatum</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">strptime</span>(<span class="ruby-identifier">csv_record</span>[<span class="ruby-value">:wertstellung</span>], <span class="ruby-string">&#39;%d.%m.%Y&#39;</span>)
+  <span class="ruby-identifier">betrag</span> = <span class="ruby-identifier">csv_record</span>[<span class="ruby-value">:betrag</span>].<span class="ruby-identifier">tr</span>(<span class="ruby-string">&#39;,&#39;</span>, <span class="ruby-string">&#39;.&#39;</span>).<span class="ruby-identifier">to_f</span>
+  <span class="ruby-identifier">credit_debit</span> = <span class="ruby-identifier">get_credit_debit</span>(<span class="ruby-identifier">betrag</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">credit_debit</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;D&#39;</span>
+    <span class="ruby-identifier">betrag</span> <span class="ruby-operator">*=</span> <span class="ruby-value">-1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">betrag</span> = <span class="ruby-identifier">format</span>(<span class="ruby-string">&#39;%#.2f&#39;</span>, <span class="ruby-identifier">betrag</span>).<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-string">&#39;.&#39;</span>, <span class="ruby-string">&#39;,&#39;</span>)
+  <span class="ruby-identifier">record_type_61</span> = <span class="ruby-node">&quot;:61:#{valutadatum.strftime(&#39;%y%m%d&#39;)}#{buchungsdatum.strftime(&#39;%m%d&#39;)}#{credit_debit}#{betrag}NONREF&quot;</span>
+  <span class="ruby-identifier">write_mt940</span>(<span class="ruby-identifier">record_type_61</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_record_type_62" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_record_type_62</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_record_type_62-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 96</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_record_type_62</span>
+  <span class="ruby-identifier">betrag</span> = <span class="ruby-ivar">@soa_closing_balance</span>
+  <span class="ruby-identifier">credit_debit</span> = <span class="ruby-identifier">get_credit_debit</span>(<span class="ruby-identifier">betrag</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">credit_debit</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;D&#39;</span>
+    <span class="ruby-identifier">betrag</span> <span class="ruby-operator">*=</span> <span class="ruby-value">-1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">datum_kontoauszug</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">strptime</span>(<span class="ruby-ivar">@csv_data</span>[<span class="ruby-value">-1</span>][<span class="ruby-value">:buchungstag</span>], <span class="ruby-string">&#39;%d.%m.%Y&#39;</span>)
+  <span class="ruby-identifier">record_type_62</span> = <span class="ruby-node">&quot;:62F:#{credit_debit}#{datum_kontoauszug.strftime(&#39;%y%m%d&#39;)}EUR#{format(&#39;%#.2f&#39;, betrag).to_s.tr(&#39;.&#39;, &#39;,&#39;)}&quot;</span>
+  <span class="ruby-identifier">write_mt940</span>(<span class="ruby-identifier">record_type_62</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_record_type_86" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_record_type_86</span><span
+            class="method-args">(csv_record)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_record_type_86-source">
+            <pre><span class="ruby-comment"># File lib/soacsv2mt940/soamt940.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_record_type_86</span>(<span class="ruby-identifier">csv_record</span>)
+  <span class="ruby-identifier">gvc</span> = <span class="ruby-string">&#39;999&#39;</span>
+  <span class="ruby-identifier">buchungstext</span> = <span class="ruby-identifier">convert_umlaute</span>(<span class="ruby-identifier">csv_record</span>[<span class="ruby-value">:buchungstext</span>]).<span class="ruby-identifier">delete</span>(<span class="ruby-string">&#39;&quot;&#39;</span>)
+  <span class="ruby-identifier">umsatzart</span> = <span class="ruby-identifier">convert_umlaute</span>(<span class="ruby-identifier">csv_record</span>[<span class="ruby-value">:umsatzart</span>]).<span class="ruby-identifier">upcase</span>
+  <span class="ruby-identifier">record_type_86</span> = <span class="ruby-node">&quot;:86:#{gvc}#{umsatzart}:#{buchungstext}&quot;</span>
+  <span class="ruby-identifier">write_mt940</span>(<span class="ruby-identifier">record_type_86</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
