@@ -3,7 +3,8 @@
 
 # Namespace: SOACSV2MT940 -- wraps everything together
 module SOACSV2MT940
-  # Class SOACSV -- Pre-processing / preparing statement of account .csv file
+  # Class SOACSV -- Represents the file containing the statement of account records in .csv format
+  # For pre-processing / preparing the statement of account .csv file
   class SOACSV
     def initialize(csv_filename)
       @csv_filename = csv_filename

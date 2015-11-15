@@ -7,7 +7,7 @@ module SOACSV2MT940
   class SOAMT940
     def initialize(csv_data, filename_mt940, soa_nbr, soa_opening_balance)
       @csv_data = csv_data
-      @filename_mt940 = filename_mt940 
+      @filename_mt940 = filename_mt940
       @soa_nbr = soa_nbr
       @soa_opening_balance = soa_opening_balance.to_f
       @soa_closing_balance = @soa_opening_balance
@@ -37,12 +37,11 @@ module SOACSV2MT940
     def write_body
       nbr_of_relevant_rows = 0
       @csv_data.each do |csv_record|
-        if csv_record
-          write_record_type_61(csv_record)
-          write_record_type_86(csv_record)
-          @soa_closing_balance += csv_record[:betrag].tr(',', '.').to_f
-          nbr_of_relevant_rows += 1
-        end
+        next unless csv_record
+        write_record_type_61(csv_record)
+        write_record_type_86(csv_record)
+        @soa_closing_balance += csv_record[:betrag].tr(',', '.').to_f
+        nbr_of_relevant_rows += 1
       end
       LOGGER.debug "- Umsatz-relevante Datensätze: #{nbr_of_relevant_rows}"
     end
@@ -76,7 +75,8 @@ module SOACSV2MT940
     def write_record_type_60
       credit_debit = get_credit_debit(@soa_opening_balance)
       datum_kontoauszug = Date.strptime(@csv_data[-1][:buchungstag], '%d.%m.%Y')
-      record_type_60 = ":60F:#{credit_debit}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{format('%#.2f', @soa_opening_balance).to_s.tr('.', ',')}"
+      record_type_60 = ":60F:#{credit_debit}#{datum_kontoauszug.strftime('%y%m%d')}"
+      record_type_60 << "EUR#{format('%#.2f', @soa_opening_balance).to_s.tr('.', ',')}"
       write_mt940(record_type_60)
       LOGGER.debug "- Kontoauszugsdatum: #{datum_kontoauszug}"
     end
@@ -121,11 +121,10 @@ module SOACSV2MT940
 
     def get_credit_debit(betrag)
       if betrag >= 0
-        credit_debit = 'C'
+        return 'C'
       else
-        credit_debit = 'D'
+        return 'D'
       end
-      credit_debit
     end
   end
 end
