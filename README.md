@@ -79,6 +79,7 @@ v2.0:
 
 - Datei per Dialog auswählen
 - Server-Version
+- Heroku-Deployment
 
 
 ---
