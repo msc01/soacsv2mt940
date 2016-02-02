@@ -2,5 +2,5 @@
 
 # Namespace: SOACSV2MT940 -- wraps everything together
 module SOACSV2MT940
-  VERSION = '0.1.6'
+  VERSION = '0.1.7'
 end

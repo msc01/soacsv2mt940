@@ -1,4 +1,10 @@
+<meta charset="utf-8"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+<link rel="stylesheet" href="/Users/ms1/Programmierung/Sprachen/milligram/milligram.min.css">
+
 # soacsv2mt940
+
 ## Übersicht
 Convert Statement Of Account .CSV to MT940 (swift) format -- Konvertierung Bankauszüge im .CSV-Format ins MT940-Format (SWIFT)
 
@@ -9,7 +15,7 @@ Aufruf:
 
 Beispiel:
 
-    soacsvmt940 -c bank.csv --mt940 bank.txt -n 0 --balance -1523,89
+    soacsvmt940 -c bank.csv --mt940 bank.txt -n 001 --balance -1523,89
 
 Parameter:
 
