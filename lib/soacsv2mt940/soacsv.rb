@@ -22,7 +22,9 @@ module SOACSV2MT940
         csv_file.shift # remove first row (header)
         csv_file.sort_by! { |x| x[:buchungstag] }
       else
-        raise(StandardError, "File not found: #{@csv_filename}")
+        msg = "File not found: #{@csv_filename}"
+        LOGGER.error(msg)
+        abort("ABORTED! #{msg}")
       end
     end
 
