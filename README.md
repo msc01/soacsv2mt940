@@ -42,8 +42,8 @@ Die Eingabe des Namens der zu verarbeitenden .CSV-Kontoauszugsdatei erfolgt zun�
 
 Prüfungen beim Einlesen der Eingabedatei:
 
-* Datei nicht vorhanden?
-* Datei leer?
+* Datei nicht vorhanden? √
+* Datei leer? √
 * Datei nicht im Format .csv?
 
 ### Verarbeitung

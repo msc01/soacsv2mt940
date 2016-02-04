@@ -13,7 +13,7 @@ module SOACSV2MT940
     def file_read
       csv_file = []
       row = 0
-      if File.exist? @csv_filename
+      if File.size? @csv_filename
         File.foreach @csv_filename do |record|
           csv_file[row] = csv_retrieve_fields_from(record)
           row += 1
@@ -22,7 +22,7 @@ module SOACSV2MT940
         csv_file.shift # remove first row (header)
         csv_file.sort_by! { |x| x[:buchungstag] }
       else
-        msg = "File not found: #{@csv_filename}"
+        msg = "File not found or empty: #{@csv_filename}"
         LOGGER.error(msg)
         abort("ABORTED! #{msg}")
       end
