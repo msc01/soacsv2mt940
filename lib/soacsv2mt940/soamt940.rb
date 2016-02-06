@@ -3,7 +3,7 @@
 
 # Namespace SOACSV2MT940 -- wraps everything together
 module SOACSV2MT940
-  # Class SOAMT940 -- Mapping statement of account .mt940 file
+  # Class SOAMT940 -- Generates the statement of account .mt940 file from the .csv file
   class SOAMT940
     def initialize(csv_data, filename_mt940, soa_nbr, soa_opening_balance)
       @csv_data = csv_data

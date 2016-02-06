@@ -23,15 +23,13 @@ module SOACSV2MT940
       if File.size? @csv_filename
         csv_file = CSV.read(@csv_filename, headers: true, col_sep: ';', header_converters: :symbol, converters: :all)
         unless @csv_headers == csv_file.headers
-          msg = "File structure of #{@csv_filename} does not match #{@csv_headers}"
-          LOGGER.error(msg)
-          abort("ABORTED! #{msg}")
+          LOGGER.error("Actual file structure of #{@csv_filename} does not match. Expected: #{@csv_headers}.")
+          abort('ABORTED!')
         end
         csv_file.sort_by { |x| x[:buchungstag] }
       else
-        msg = "File not found or empty: #{@csv_filename}"
-        LOGGER.error(msg)
-        abort("ABORTED! #{msg}")
+        LOGGER.error("File not found or empty: #{@csv_filename}")
+        abort('ABORTED!')
       end
     end
   end

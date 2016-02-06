@@ -18,14 +18,13 @@ module SOACSV2MT940
     end
 
     def test_datei_enthaelt_etwas
-      assert @soacsv.file_read.size > 0
+      # assert @soacsv.file_read.size > 0
+      assert !@soacsv.file_read.empty?
     end
 
     def test_soacsv_enthaelt_einen_satz_weniger_als_csv_datei
       i = 0
-      File.foreach @soacsv_filename do
-        i += 1
-      end
+      File.foreach(@soacsv_filename) { i += 1 }
       assert @soacsv.file_read.size, i - 1
     end
   end

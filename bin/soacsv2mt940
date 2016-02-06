@@ -13,7 +13,7 @@ module SOACSV2MT940
   def self.setup
     options = { csv_file: nil, mt940_file: nil, nbr: nil, balance: nil }
 
-    parser = OptionParser.new do|opts|
+    parser = OptionParser.new do |opts|
       opts.banner = "\nUsage: soacsvmt940 -c, --csv <file> \
                                           [-m, --mt940 <file>] \
                                           [-n, --nbr <number>] \
@@ -52,9 +52,8 @@ module SOACSV2MT940
     parser.parse!
 
     unless options[:csv_file]
-      msg = 'Name of .csv file is needed!'
-      LOGGER.error(msg)
-      abort("ABORTED! #{msg}")
+      LOGGER.error('Name of .csv file is needed!')
+      abort('ABORTED!')
     end
 
     unless options[:mt940_file]

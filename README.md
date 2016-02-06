@@ -40,19 +40,10 @@ Das Programm soll später nicht nur lokal sondern ggf. auch als Dienst / Webserv
 ### Eingabe
 Die Eingabe des Namens der zu verarbeitenden .CSV-Kontoauszugsdatei erfolgt zunächst per Kommandozeile beim Aufruf des Programms durch Übergabe des Dateinamens. Später soll die Datei per Datei-Browser ausgewählt werden können.
 
-Prüfungen beim Einlesen der Eingabedatei:
-
-* Datei nicht vorhanden? √
-* Datei leer? √
-* Datei nicht im Format .csv?
+Die Eingabedatei wird diversen Prüfungen unterzogen (Datei nicht vorhanden, leer, etc.)
 
 ### Verarbeitung
-Parsen .CSV - ermitteln der Felder mit mindestens folgenden Prüfungen:
-
-* Überschriftszeile vorhanden / entspricht Vorgabe?
-* Trennzeichen ist ";"?
-* Nicht alle Felder?
-* Felder enthalten gültige Werte?
+Parsen .CSV - ermitteln der Felder mit diversen Prüfungen (Überschriftszeile, etc.)
 
 Umwandeln ins Format mt940 in den Schritten (gemäß [mt940-Dateiaufbau] [3]):
 
@@ -61,12 +52,7 @@ Umwandeln ins Format mt940 in den Schritten (gemäß [mt940-Dateiaufbau] [3]):
 * Fuss
 
 ### Ausgabe
-Die Ausgabe erfolgt im gleichen Verzeichnis und unter gleichem Namen wie die Eingabe-Datei, nur mit der Endung .mt940, mit mindestens folgenden Prüfungen:
-
-* Ausgabedatei schon vorhanden?
- * Postfix Inkrement 1 an Dateinamen hängen, erneut versuchen (Schleife bis Erfolg)
-* Ausgabedatei kann aus sonstigen Gründen nicht geschrieben werden?
- * Abbruch
+Die Ausgabe erfolgt im gleichen Verzeichnis und unter gleichem Namen wie die Eingabe-Datei, nur mit der Endung .mt940. Falls die Ausgabedatei schon vorhanden ist, wird der Dateiname um eine lfd. Nr. erweitert.
 
 ### ToDo
 Folgende Punkte sind noch umzusetzen:
