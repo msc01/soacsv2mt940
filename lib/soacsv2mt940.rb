@@ -6,6 +6,7 @@
 require 'logger'
 require 'date'
 require 'optparse'
+require 'csv'
 
 require_relative 'soacsv2mt940/version'
 require_relative 'soacsv2mt940/soacsv'

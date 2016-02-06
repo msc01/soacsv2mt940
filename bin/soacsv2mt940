@@ -14,22 +14,32 @@ module SOACSV2MT940
     options = { csv_file: nil, mt940_file: nil, nbr: nil, balance: nil }
 
     parser = OptionParser.new do|opts|
-      opts.banner = "\nUsage: soacsvmt940 -c, --csv <file> [-m, --mt940 <file>] [-n, --nbr <number>] [-b, --balance <amount>]\n\n"
-      opts.banner << "Example: soacsvmt940 -c bank.csv --mt940 bank.txt -n 0 --balance -1523,89\n\nOptions:"
+      opts.banner = "\nUsage: soacsvmt940 -c, --csv <file> \
+                                          [-m, --mt940 <file>] \
+                                          [-n, --nbr <number>] \
+                                          [-b, --balance <amount>]\n\n"
+      opts.banner << "Example: soacsvmt940 -c bank.csv \
+                                           --mt940 bank.txt \
+                                           -n 0 \
+                                           --balance \
+                                           -1523,89\n\nOptions:"
 
       opts.on('-c', '--csv <filename>', 'Name of .csv input file.') do |csv|
         options[:csv_file] = csv
       end
 
-      opts.on('-m', '--mt940 <filename>', 'Optional: name of .mt940 target file; if not specified, the ending .mt940 will be used.') do |mt940|
+      opts.on('-m', '--mt940 <filename>', 'Optional: name of .mt940 target file; \
+        if not specified, the ending .mt940 will be used.') do |mt940|
         options[:mt940_file] = mt940
       end
 
-      opts.on('-n', '--nbr <number>', 'Optional: number of the statement of account; if ommited, 0 will be used.') do |nbr|
+      opts.on('-n', '--nbr <number>', 'Optional: number of the statement of account; \
+        if ommited, 0 will be used.') do |nbr|
         options[:nbr] = nbr
       end
 
-      opts.on('-b', '--balance <amount>', 'Optional: opening balance; 0 will be used if not specified.') do |balance|
+      opts.on('-b', '--balance <amount>', 'Optional: opening balance; \
+        0 will be used if not specified.') do |balance|
         options[:balance] = balance
       end
 
@@ -54,15 +64,15 @@ module SOACSV2MT940
     options[:nbr] = 0 unless options[:nbr]
 
     if options[:balance]
-      options[:balance] = options[:balance].tr(',', '.').to_f
+      options[:balance] = options[:balance].tr(',', '.')
     else
       options[:balance] = 0.0
     end
-    
+
     soacsv = SOACSV.new(options[:csv_file])
     soamt940 = SOAMT940.new(soacsv.file_read, options[:mt940_file], options[:nbr], options[:balance])
     soamt940.csv2mt940
   end
-  
+
   setup
 end

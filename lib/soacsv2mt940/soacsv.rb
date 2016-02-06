@@ -8,38 +8,31 @@ module SOACSV2MT940
   class SOACSV
     def initialize(csv_filename)
       @csv_filename = csv_filename
+      @csv_headers = [:buchungstag,
+                      :wertstellung,
+                      :umsatzart,
+                      :buchungstext,
+                      :betrag,
+                      :whrung,
+                      :auftraggeberkonto,
+                      :bankleitzahl_auftraggeberkonto,
+                      :iban_auftraggeberkonto]
     end
 
     def file_read
-      csv_file = []
-      row = 0
       if File.size? @csv_filename
-        File.foreach @csv_filename do |record|
-          csv_file[row] = csv_retrieve_fields_from(record)
-          row += 1
+        csv_file = CSV.read(@csv_filename, headers: true, col_sep: ';', header_converters: :symbol, converters: :all)
+        unless @csv_headers == csv_file.headers
+          msg = "File structure of #{@csv_filename} does not match #{@csv_headers}"
+          LOGGER.error(msg)
+          abort("ABORTED! #{msg}")
         end
-        # csv_preprocess
-        csv_file.shift # remove first row (header)
-        csv_file.sort_by! { |x| x[:buchungstag] }
+        csv_file.sort_by { |x| x[:buchungstag] }
       else
         msg = "File not found or empty: #{@csv_filename}"
         LOGGER.error(msg)
         abort("ABORTED! #{msg}")
       end
-    end
-
-    def csv_retrieve_fields_from(record)
-      {
-        buchungstag: record.split(';')[0],
-        wertstellung: record.split(';')[1],
-        umsatzart: record.split(';')[2],
-        buchungstext: record.split(';')[3],
-        betrag: record.split(';')[4],
-        waehrung: record.split(';')[5],
-        auftraggeber_konto: record.split(';')[6],
-        auftraggeber_blz: record.split(';')[7],
-        auftraggeber_iban: record.split(';')[8]
-      }
     end
   end
 end

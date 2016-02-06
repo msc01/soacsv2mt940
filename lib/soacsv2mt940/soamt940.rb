@@ -7,15 +7,15 @@ module SOACSV2MT940
   class SOAMT940
     def initialize(csv_data, filename_mt940, soa_nbr, soa_opening_balance)
       @csv_data = csv_data
-      @filename_mt940 = filename_mt940
       @soa_nbr = soa_nbr
       @soa_opening_balance = soa_opening_balance.to_f
       @soa_closing_balance = @soa_opening_balance
       filename_index = 0
-      while File.exist? @filename_mt940
+      while File.exist? filename_mt940
         filename_index += 1
-        @filename_mt940 += ".#{filename_index}"
+        filename_mt940 += ".#{filename_index}"
       end
+      @filename_mt940 = filename_mt940
     end
 
     def csv2mt940
@@ -62,9 +62,9 @@ module SOACSV2MT940
     end
 
     def write_record_type_25
-      record_type_25 = ":25:#{@csv_data[1][:auftraggeber_blz]}/#{@csv_data[1][:auftraggeber_konto]}"
+      record_type_25 = ":25:#{@csv_data[0][:bankleitzahl_auftraggeberkonto]}/#{@csv_data[0][:auftraggeberkonto]}"
       write_mt940(record_type_25)
-      LOGGER.debug "- BLZ/Konto: #{@csv_data[1][:auftraggeber_blz]} / #{@csv_data[1][:auftraggeber_konto]}"
+      LOGGER.debug "- BLZ/Konto: #{@csv_data[0][:bankleitzahl_auftraggeberkonto]} / #{@csv_data[0][:auftraggeberkonto]}"
     end
 
     def write_record_type_28
