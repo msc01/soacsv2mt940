@@ -83,7 +83,11 @@ module SOACSV2MT940
 
     def write_record_type_61(csv_record)
       buchungsdatum = Date.strptime(csv_record[:buchungstag], '%d.%m.%Y')
-      valutadatum = Date.strptime(csv_record[:wertstellung], '%d.%m.%Y')
+      valutadatum = if csv_record[:wertstellung]
+                      Date.strptime(csv_record[:wertstellung], '%d.%m.%Y')
+                    else
+                      buchungsdatum
+                    end
       betrag = csv_record[:betrag].tr(',', '.').to_f
       credit_debit = get_credit_debit(betrag)
       betrag *= -1 if credit_debit == 'D'
@@ -121,9 +125,9 @@ module SOACSV2MT940
 
     def get_credit_debit(betrag)
       if betrag >= 0
-        return 'C'
+        'C'
       else
-        return 'D'
+        'D'
       end
     end
   end
