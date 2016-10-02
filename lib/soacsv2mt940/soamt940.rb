@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# encoding: UTF-8
 
 # Namespace SOACSV2MT940 -- wraps everything together
 module SOACSV2MT940
@@ -19,14 +18,14 @@ module SOACSV2MT940
     end
 
     def csv2mt940
-      LOGGER.debug 'Konvertierung Commerzbank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'
+      LOGGER.info 'Konvertierung Commerzbank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'
       write_header
       write_body
       write_footer
     end
 
     def write_header
-      LOGGER.debug "- Eröffnungs-Saldo: #{format('%#.2f', @soa_opening_balance)}"
+      LOGGER.info "- Eröffnungs-Saldo: #{format('%#.2f', @soa_opening_balance)}"
       write_record_type_20
       write_record_type_21
       write_record_type_25
@@ -38,17 +37,18 @@ module SOACSV2MT940
       nbr_of_relevant_rows = 0
       @csv_data.each do |csv_record|
         next unless csv_record
+        LOGGER.debug "- <write_body> Datensatz #{nbr_of_relevant_rows}: #{csv_record}"
         write_record_type_61(csv_record)
         write_record_type_86(csv_record)
         @soa_closing_balance += csv_record[:betrag].tr(',', '.').to_f
         nbr_of_relevant_rows += 1
       end
-      LOGGER.debug "- Umsatz-relevante Datensätze: #{nbr_of_relevant_rows}"
+      LOGGER.info "- Umsatz-relevante Datensätze: #{nbr_of_relevant_rows}"
     end
 
     def write_footer
       write_record_type_62
-      LOGGER.debug "- Schluß-Saldo: #{format('%#.2f', @soa_closing_balance)}"
+      LOGGER.info "- Schluß-Saldo: #{format('%#.2f', @soa_closing_balance)}"
     end
 
     def write_record_type_20
@@ -64,7 +64,7 @@ module SOACSV2MT940
     def write_record_type_25
       record_type_25 = ":25:#{@csv_data[0][:bankleitzahl_auftraggeberkonto]}/#{@csv_data[0][:auftraggeberkonto]}"
       write_mt940(record_type_25)
-      LOGGER.debug "- BLZ/Konto: #{@csv_data[0][:bankleitzahl_auftraggeberkonto]} / #{@csv_data[0][:auftraggeberkonto]}"
+      LOGGER.info "- BLZ/Konto: #{@csv_data[0][:bankleitzahl_auftraggeberkonto]} / #{@csv_data[0][:auftraggeberkonto]}"
     end
 
     def write_record_type_28
@@ -78,7 +78,7 @@ module SOACSV2MT940
       record_type_60 = ":60F:#{credit_debit}#{datum_kontoauszug.strftime('%y%m%d')}"
       record_type_60 << "EUR#{format('%#.2f', @soa_opening_balance).to_s.tr('.', ',')}"
       write_mt940(record_type_60)
-      LOGGER.debug "- Kontoauszugsdatum: #{datum_kontoauszug}"
+      LOGGER.info "- Kontoauszugsdatum: #{datum_kontoauszug}"
     end
 
     def write_record_type_61(csv_record)
@@ -120,6 +120,7 @@ module SOACSV2MT940
     end
 
     def convert_umlaute(text)
+      return "" unless text
       text.gsub('ä', 'ae').gsub('Ä', 'AE').gsub('ö', 'oe').gsub('Ö', 'OE').gsub('ü', 'ue').gsub('Ü', 'UE').gsub('ß', 'ss')
     end
 
