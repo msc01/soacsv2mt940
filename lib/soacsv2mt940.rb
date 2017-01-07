@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# encoding: UTF-8
 
 # require 'debug'
 
@@ -15,5 +14,5 @@ require_relative 'soacsv2mt940/soamt940'
 # Namespace SOACSV2MT940 -- wraps everything together
 module SOACSV2MT940
   LOGGER = Logger.new(STDOUT)
-  LOGGER.level = Logger::INFO # INFO, WARN
+  LOGGER.level = Logger::DEBUG # INFO, WARN, DEBUG
 end
