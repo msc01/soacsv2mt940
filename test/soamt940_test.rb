@@ -46,6 +46,7 @@ module SOACSV2MT940
       output = input * 2 # due to two mt940 body records (record type 61 and 86) for each csv record
       output += 1 # one footer record
       output += 5 # due to record types 20, 21, 25, 28, 60
+      output -= 2 # due to one nil test record which does not get processed
 
       assert_equal mt940_nbr_of_records, output
     end
