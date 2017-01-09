@@ -120,7 +120,7 @@ module SOACSV2MT940
     end
 
     def convert_umlaute(text)
-      return "" unless text
+      return '' unless text
       text.gsub('ä', 'ae').gsub('Ä', 'AE').gsub('ö', 'oe').gsub('Ö', 'OE').gsub('ü', 'ue').gsub('Ü', 'UE').gsub('ß', 'ss')
     end
 

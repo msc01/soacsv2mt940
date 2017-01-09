@@ -19,7 +19,7 @@ module SOACSV2MT940
       @soa_nbr = 0
       @soa_opening_balance = 101_199.68
       @soacsv = SOACSV.new(@csv_filename)
-      @soamt940 = SOAMT940.new(@soacsv.file_read, @mt940_filename, @soa_nbr, @soa_opening_balance)
+      @soamt940 = SOAMT940.new(@soacsv.get, @mt940_filename, @soa_nbr, @soa_opening_balance)
       @soamt940.csv2mt940
     end
 
@@ -28,7 +28,7 @@ module SOACSV2MT940
     end
 
     def test_mt940datei_doppelt_anlegen
-      soamt940_2 = SOAMT940.new(@soacsv.file_read, @mt940_filename, @soa_nbr, @soa_opening_balance)
+      soamt940_2 = SOAMT940.new(@soacsv.get, @mt940_filename, @soa_nbr, @soa_opening_balance)
       soamt940_2.csv2mt940
       mt940_filename_duplicate = @mt940_filename + '.1'
       assert File.exist? mt940_filename_duplicate

@@ -5,35 +5,49 @@ module SOACSV2MT940
   # Class SOACSV -- Represents the file containing the statement of account records in .csv format
   # Pre-processing the statement of account .csv file
   class SOACSV
-    attr_reader :csv_file, :csv_headers
+    attr_reader :csv_file, :csv_structure
 
     def initialize(csv_filename)
       @csv_file = csv_filename
-      @csv_headers = [:buchungstag,
-                      :wertstellung,
-                      :umsatzart,
-                      :buchungstext,
-                      :betrag,
-                      :whrung,
-                      :auftraggeberkonto,
-                      :bankleitzahl_auftraggeberkonto,
-                      :iban_auftraggeberkonto]
+      @csv_structure = [:buchungstag,
+                        :wertstellung,
+                        :umsatzart,
+                        :buchungstext,
+                        :betrag,
+                        :whrung,
+                        :auftraggeberkonto,
+                        :bankleitzahl_auftraggeberkonto,
+                        :iban_auftraggeberkonto]
     end
 
-    def file_read
+    # Returns a sorted array containing the data records from the .CSV file
+    # without headers and without any rows containing columns without values / nil
+    def get
+      prepare_data(read_file)
+    end
+
+    def read_file
       if File.size? csv_file
-        csv_data = CSV.read(csv_file, headers: true, col_sep: ';', header_converters: :symbol, converters: :all)
-        unless csv_headers == csv_data.headers
-          LOGGER.error("Actual file structure of #{csv_file} does not match. Expected: #{csv_headers}.")
-          abort('ABORTED!')
-        end
-        # TODO: Own method for the following two lines...
-        csv_data.delete_if {|row| row[:buchungstag] == nil} # Is it good to delete without further notice?!
-        csv_data.sort_by { |row| row[:buchungstag]}
+        CSV.read(csv_file, headers: true, col_sep: ';', header_converters: :symbol, converters: :all)
       else
         LOGGER.error("File not found or empty: #{csv_file}")
         abort('ABORTED!')
       end
+    end
+
+    def prepare_data(csv_data)
+      check_data(csv_data)
+      csv_data.sort_by { |row| row[:buchungstag] }
+    end
+
+    def check_data(csv_data)
+      unless csv_data.headers == csv_structure
+        LOGGER.error("Structure of #{csv_file} does not match. Expected: #{csv_structure}. Actual: #{headers}")
+        abort('ABORTED!')
+      end
+      # TODO: Optimize to not iterate two times over csv_data...
+      csv_data.each { |row| LOGGER.info("Record not processed due to empty field(s): #{row}") if row[:buchungstag].nil? }
+      csv_data.delete_if { |row| row[:buchungstag].nil? }
     end
   end
 end
