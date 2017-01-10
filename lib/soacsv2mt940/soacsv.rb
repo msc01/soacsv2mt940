@@ -40,14 +40,18 @@ module SOACSV2MT940
       csv_data.sort_by { |row| row[:buchungstag] }
     end
 
+    # Checks an array containing SOA CSV data; returns the corrected array
     def check_data(csv_data)
       unless csv_data.headers == csv_structure
         LOGGER.error("Structure of #{csv_file} does not match. Expected: #{csv_structure}. Actual: #{headers}")
         abort('ABORTED!')
       end
-      # TODO: Optimize to not iterate two times over csv_data...
-      csv_data.each { |row| LOGGER.info("Record not processed due to empty field(s): #{row}") if row[:buchungstag].nil? }
-      csv_data.delete_if { |row| row[:buchungstag].nil? }
+      csv_data.each_with_index do |row, index|
+        if row[:buchungstag].nil?
+          LOGGER.info("Record nbr. #{index} not processed due to empty field(s): #{row}")
+          csv_data.delete(index)
+        end
+      end
     end
   end
 end
