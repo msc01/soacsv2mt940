@@ -1,31 +1,48 @@
 #!/usr/bin/env ruby
 
-# Namespace: SOACSV2MT940 -- wraps everything together
 module SOACSV2MT940
-  # Class SOACSV -- Represents the file containing the statement of account records in .csv format
-  # Pre-processing the statement of account .csv file
+  # Represents a file containing Statement Of Account (SOA) records in .CSV format.
   class SOACSV
-    attr_reader :csv_file, :csv_structure
+    # The structure of a record within a statement of account .CSV file.
+    SOA_CSV_STRUCTURE = [:buchungstag,
+                         :wertstellung,
+                         :umsatzart,
+                         :buchungstext,
+                         :betrag,
+                         :whrung,
+                         :auftraggeberkonto,
+                         :bankleitzahl_auftraggeberkonto,
+                         :iban_auftraggeberkonto]
+    # Struct representing a statement of account record from the .CSV file.
+    SOA_CSV_RECORD = Struct.new(*SOA_CSV_STRUCTURE)
 
+    # Name and directory of the .CSV file which shall be converted.
+    attr_reader :csv_file
+
+    # Creates a new SOACSV instance.
     def initialize(csv_filename)
       @csv_file = csv_filename
-      @csv_structure = [:buchungstag,
-                        :wertstellung,
-                        :umsatzart,
-                        :buchungstext,
-                        :betrag,
-                        :whrung,
-                        :auftraggeberkonto,
-                        :bankleitzahl_auftraggeberkonto,
-                        :iban_auftraggeberkonto]
     end
 
-    # Returns a sorted array containing the data records from the .CSV file
-    # without headers and without any rows containing columns without values / nil
+    # Returns a sorted array containing the data records from the .CSV file as CSV::Rows
+    # without headers and without any rows containing empy (nil) fields.
     def get
-      prepare_data(read_file)
+      process_data(read_file)
     end
 
+    # Returns a sorted array containing the data records from the .CSV file as SOA_CSV_RECORD objects
+    # without headers and without any rows containing empy (nil) fields.
+    def get2
+      arr = []
+      process_data(read_file).each do |record|
+        arr << SOA_CSV_RECORD.new(*record.fields)
+      end
+      arr
+    end
+
+    private
+
+    # Reads the .csv file, returns an array of CSV::Rows structured as described by SOA_CSV_STRUCTURE.
     def read_file
       if File.size? csv_file
         CSV.read(csv_file, headers: true, col_sep: ';', header_converters: :symbol, converters: :all)
@@ -35,20 +52,21 @@ module SOACSV2MT940
       end
     end
 
-    def prepare_data(csv_data)
+    # Checks, sorts and returns the corrected csv data.
+    def process_data(csv_data)
       check_data(csv_data)
       csv_data.sort_by { |row| row[:buchungstag] }
     end
 
-    # Checks an array containing SOA CSV data; returns the corrected array
+    # Checks the structucre of an array containing SOA CSV records; returns the array without nil records.
     def check_data(csv_data)
-      unless csv_data.headers == csv_structure
-        LOGGER.error("Structure of #{csv_file} does not match. Expected: #{csv_structure}. Actual: #{headers}")
+      unless csv_data.headers == SOA_CSV_STRUCTURE
+        LOGGER.error("Structure of #{csv_file} does not match. Expected: #{SOA_CSV_STRUCTURE.inspect}. Actual: #{headers.inspect}")
         abort('ABORTED!')
       end
       csv_data.each_with_index do |row, index|
         if row[:buchungstag].nil?
-          LOGGER.info("Record nbr. #{index} not processed due to empty field(s): #{row}")
+          LOGGER.info("Record nbr. #{index} not processed due to empty field(s): #{row.inspect}")
           csv_data.delete(index)
         end
       end

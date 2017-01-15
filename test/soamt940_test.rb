@@ -4,9 +4,7 @@ require_relative 'test_helper'
 require_relative '../lib/soacsv2mt940/soacsv'
 require_relative '../lib/soacsv2mt940/soamt940'
 
-# Namespace: SOACSV2MT940 -- wraps everything together
 module SOACSV2MT940
-  # Test-Klasse fuer Minitest Unit-Tests
   class SOAMT940Test < Minitest::Test
     def setup
       @csv_filename = 'data/test.csv'
@@ -28,8 +26,8 @@ module SOACSV2MT940
     end
 
     def test_mt940datei_doppelt_anlegen
-      soamt940_2 = SOAMT940.new(@soacsv.get, @mt940_filename, @soa_nbr, @soa_opening_balance)
-      soamt940_2.csv2mt940
+      soamt940b = SOAMT940.new(@soacsv.get, @mt940_filename, @soa_nbr, @soa_opening_balance)
+      soamt940b.csv2mt940
       mt940_filename_duplicate = @mt940_filename + '.1'
       assert File.exist? mt940_filename_duplicate
       begin

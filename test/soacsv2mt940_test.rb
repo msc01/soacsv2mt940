@@ -2,7 +2,6 @@
 
 require_relative 'test_helper'
 
-# Test-Klasse fuer Minitest Unit-Tests
 class SOACSV2MT940Test < Minitest::Test
   def setup
     # wird einmal vor jedem Testfall ausgefuehrt

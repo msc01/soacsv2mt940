@@ -2,12 +2,7 @@
 
 require_relative '../lib/soacsv2mt940.rb'
 
-# Namespace SOACSV2MT940 -- wraps everything together
-# NAME: soacsv2mt940 -- convert bank Statement Of Account from .CSV format to MT940 format
-#
-# SYNOPSIS: soacsv2mt940 -c, --csv <file> [-m, --mt940 <file>] [-n, --nbr <number>] [-b, --balance <amount>]
-#
-# EXAMPLE: soacsvmt940 -c bank.csv -m bank.txt --nbr 0 -b -1523,89
+# ...
 module SOACSV2MT940
   def self.setup
     options = { csv_file: nil, mt940_file: nil, nbr: nil, balance: nil }
