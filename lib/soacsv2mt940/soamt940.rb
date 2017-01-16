@@ -4,7 +4,14 @@ module SOACSV2MT940
   ##
   # Represents a Statement Of Account (SOA) file in the SWIFT mt940[https://de.wikipedia.org/wiki/MT940] format.
   class SOAMT940
-    attr_reader :csv_data, :soa_nbr, :soa_opening_balance, :filename_mt940
+    # An array containing CSV::Rows with the structure of SOACSV::SOA_CSV_STRUCTURE
+    attr_reader :csv_data
+    # The optional statement of account number.
+    attr_reader :soa_nbr
+    # The optional opening balance.
+    attr_reader :soa_opening_balance
+    # The name of the mt940 file which shall be created.
+    attr_reader :filename_mt940
 
     ##
     # Creates a SOAMT940 instance.

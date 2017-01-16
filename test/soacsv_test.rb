@@ -46,7 +46,7 @@ module SOACSV2MT940
       assert soacsv.get2[0].buchungstag
     end
 
-    def test_that_the_first_date_is_less_than_the_last
+    def test_that_the_first_date_is_less_than_the_last_and_therefore_ordering_works
       soacsv_filename = 'data/test.csv'
       soacsv = SOACSV.new(soacsv_filename)
 
