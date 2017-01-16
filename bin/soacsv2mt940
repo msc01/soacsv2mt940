@@ -64,8 +64,8 @@ module SOACSV2MT940
                           0.0
                         end
 
-    soacsv_data = SOACSV.new(options[:csv_file]).get
-    soamt940 = SOAMT940.new(soacsv_data, options[:mt940_file], options[:nbr], options[:balance])
+    soacsv = SOACSV.new(options[:csv_file]).get
+    soamt940 = SOAMT940.new(soacsv, options[:mt940_file], options[:nbr], options[:balance])
     soamt940.csv2mt940
   end
 

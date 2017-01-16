@@ -7,27 +7,57 @@ require_relative '../lib/soacsv2mt940/soacsv'
 module SOACSV2MT940
   # Test-Klasse fuer Minitest Unit-Tests
   class SOACSVTest < Minitest::Test
-    def setup
-      @soacsv_filename = 'data/test.csv'
-      @soacsv = SOACSV.new(@soacsv_filename)
+    def test_the_structure
+      soacsv_filename = 'data/test.structure'
+      soacsv = SOACSV.new(soacsv_filename)
+
+      assert_raises do
+        soacsv.get
+      end
     end
 
     def test_that_get_returns_an_array
-      assert_kind_of Array, @soacsv.get
+      soacsv_filename = 'data/test.csv'
+      soacsv = SOACSV.new(soacsv_filename)
+      
+      assert_kind_of Array, soacsv.get
     end
 
     def test_that_header_is_removed_afterwards
+      soacsv_filename = 'data/test.csv'
+      soacsv = SOACSV.new(soacsv_filename)
+
       i = 0
-      File.foreach(@soacsv_filename) { i += 1 }
-      assert @soacsv.get.size, i - 1
+      File.foreach(soacsv_filename) { i += 1 }
+      assert soacsv.get.size, i - 1
     end
 
-    def test_the_structure
-      puts 'Array of object:'
-      puts @soacsv.get2.inspect
-      puts 'Object [2]:'
-      puts @soacsv.get2[8].inspect
-      # binding.irb
+    def test_that_there_is_a_buchungstag
+      soacsv_filename = 'data/test.csv'
+      soacsv = SOACSV.new(soacsv_filename)
+  
+      assert soacsv.get[0][:buchungstag]
+    end
+
+    def test_that_there_is_another_buchungstag
+      soacsv_filename = 'data/test.csv'
+      soacsv = SOACSV.new(soacsv_filename)
+  
+      assert soacsv.get2[0].buchungstag
+    end
+
+    def test_that_the_first_date_is_less_than_the_last
+      soacsv_filename = 'data/test.csv'
+      soacsv = SOACSV.new(soacsv_filename)
+
+      first = Date.strptime(soacsv.get2.first.buchungstag, '%d.%m.%Y')
+      last = Date.strptime(soacsv.get2.last.buchungstag, '%d.%m.%Y')
+      assert first < last
+    end
+
+    def test_with_irb
+      skip
+      binding.irb
     end
   end
 end

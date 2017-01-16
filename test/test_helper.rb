@@ -1,4 +1,6 @@
 require 'simplecov'
+require 'minitest/pride'
+
 SimpleCov.start do
   add_filter '/test/'
   add_filter 'version.rb'

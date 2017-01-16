@@ -6,7 +6,10 @@ Rake::TestTask.new do |t|
   t.pattern = 'test/*_test.rb'
 end
 
-RuboCop::RakeTask.new
+RuboCop::RakeTask.new(:rubocop) do |r|
+  r.options = ['--display-cop-names', '--extra-details', '--display-style-guide']
+  r.patterns = ['lib', 'bin']
+end
 
 RDoc::Task.new do |rdoc|
   rdoc.rdoc_files.include('lib')
