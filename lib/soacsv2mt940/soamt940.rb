@@ -5,14 +5,23 @@ module SOACSV2MT940
   # Represents a Statement Of Account (SOA) file in the SWIFT mt940[https://de.wikipedia.org/wiki/MT940] format.
   # TODO: ERB?!
   class SOAMT940
+    ##
     # An array containing CSV::Rows with the structure of SOACSV::SOA_CSV_STRUCTURE
     attr_reader :csv_data
+
+    ##
     # The optional number of the statement of account.
     attr_reader :soa_nbr
+
+    ##
     # The optional opening balance of the statement of account.
     attr_reader :soa_opening_balance
+
+    ##
     # The closing balance of the statement of account.
     attr_reader :soa_closing_balance
+
+    ##
     # The name of the mt940 file which shall be created.
     attr_reader :filename_mt940
 
@@ -142,6 +151,7 @@ module SOACSV2MT940
       ":86:#{gvc}#{umsatzart}:#{buchungstext}"
     end
 
+    ##
     # Adds a given record to an mt940 file.
     def write_mt940(record)
       File.open(filename_mt940, 'a') do |file|
@@ -149,6 +159,7 @@ module SOACSV2MT940
       end
     end
 
+    ##
     # Converts german umlauts within a given text to their international equivalents.
     def convert_umlaut(text)
       return '' unless text

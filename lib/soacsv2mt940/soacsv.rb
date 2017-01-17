@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 
 module SOACSV2MT940
+  ##
   # Represents a file containing Statement Of Account (SOA) records in .CSV format.
   class SOACSV
+    ##
     # The structure of a record within a statement of account .CSV file.
     SOA_CSV_STRUCTURE = [:buchungstag,
                          :wertstellung,
@@ -13,23 +15,28 @@ module SOACSV2MT940
                          :auftraggeberkonto,
                          :bankleitzahl_auftraggeberkonto,
                          :iban_auftraggeberkonto]
+    ##
     # Represents a statement of account record from the .CSV file (Struct).
     SOA_CSV_RECORD = Struct.new(*SOA_CSV_STRUCTURE)
 
+    ##
     # Name and directory of the .CSV file which shall be converted.
     attr_reader :csv_filename
 
+    ##
     # Creates a new SOACSV instance for the given csv_filename
     def initialize(csv_filename)
       @csv_filename = csv_filename
     end
 
+    ##
     # Returns a sorted array containing the data records from the .CSV file as CSV::Rows
     # without headers and without any rows containing empy (nil) fields.
     def get
       process csv_file
     end
 
+    ##
     # Returns a sorted array containing the data records from the .CSV file as SOA_CSV_RECORD objects
     # without headers and without any rows containing empy (nil) fields.
     def get2
@@ -42,6 +49,7 @@ module SOACSV2MT940
 
     private
 
+    ##
     # Reads the .csv file, returns an array of CSV::Rows structured as described by SOA_CSV_STRUCTURE.
     def csv_file
       if File.size? csv_filename
@@ -52,12 +60,14 @@ module SOACSV2MT940
       end
     end
 
+    ##
     # Checks, sorts and returns the corrected csv data.
     def process(csv_data)
       check csv_data
       csv_data.sort_by { |row| row[:buchungstag] }
     end
 
+    ##
     # Checks the structucre of an array containing SOA CSV records; returns the array without nil records.
     def check(csv_data)
       unless csv_data.headers == SOA_CSV_STRUCTURE
