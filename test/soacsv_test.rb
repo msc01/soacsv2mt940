@@ -5,7 +5,6 @@ require_relative 'test_helper'
 require_relative '../lib/soacsv2mt940/soacsv'
 
 module SOACSV2MT940
-  # Test-Klasse fuer Minitest Unit-Tests
   class SOACSVTest < Minitest::Test
     def test_the_structure
       soacsv_filename = 'data/test.structure'

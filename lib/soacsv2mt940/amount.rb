@@ -4,12 +4,16 @@ module SOACSV2MT940
   # Represents the financial amount of a given number
   class Amount
     # The amount which needs to be financially represented.
-    # Format: A string with a comma as decimal-point (Germany) and an optional negative sign: "-9,99".
-    attr_reader :amount
+    # The format is either numeric or a string with a comma as decimal-point (Germany) and an optional negative sign: "-9,99".
+    attr_accessor :amount
 
     # Creates a new Amount instance from the given number
     def initialize(number)
-      @amount = number.tr(',', '.').to_f
+      @amount = if number.class == String
+                  number.tr(',', '.').to_f
+                else
+                  number
+                end
     end
 
     # Returns the credit / debit indicator for the amount
@@ -23,8 +27,14 @@ module SOACSV2MT940
       end
     end
 
+    # Returns the string representation of an amount instance.
     def to_s
-      amount.to_s.tr('.', ',')
+      format('%#.2f', amount).to_s.tr('.', ',')
+    end
+
+    # Returns the string representation of an amount instance without leading sign.
+    def without_sign
+      to_s.delete('-')
     end
   end
 end
