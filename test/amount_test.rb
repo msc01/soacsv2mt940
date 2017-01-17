@@ -27,8 +27,8 @@ module SOACSV2MT940
     end
 
     def test_that_to_s_works
-      amount = Amount.new("11,88")
-      assert_equal "11,88C", amount.to_s
+      amount = Amount.new("-11,88")
+      assert_equal "-11,88", amount.to_s
     end
 
     def test_credit_debit_indicator

@@ -3,7 +3,7 @@
 module SOACSV2MT940
   # Represents the financial amount of a given number
   class Amount
-    # The amount which needs to financially represented. 
+    # The amount which needs to be financially represented.
     # Format: A string with a comma as decimal-point (Germany) and an optional negative sign: "-9,99".
     attr_reader :amount
 
@@ -24,7 +24,7 @@ module SOACSV2MT940
     end
 
     def to_s
-      amount.to_s.tr('.', ',') + credit_debit_indicator
+      amount.to_s.tr('.', ',')
     end
   end
 end
