@@ -41,9 +41,11 @@ module SOACSV2MT940
     # without headers and without any rows containing empy (nil) fields.
     def get2
       arr = []
+
       process(csv_file).each do |record|
         arr << SOA_CSV_RECORD.new(*record.fields)
       end
+
       arr
     end
 
@@ -74,6 +76,7 @@ module SOACSV2MT940
         LOGGER.error("Structure of #{csv_file} does not match. Expected: #{SOA_CSV_STRUCTURE.inspect}. Actual: #{headers.inspect}")
         abort('ABORTED!')
       end
+
       csv_data.each_with_index do |row, index|
         if row[:buchungstag].nil?
           LOGGER.info("Record nbr. #{index} not processed due to empty field(s): #{row.inspect}")

@@ -11,7 +11,7 @@ module SOACSV2MT940
       soacsv = SOACSV.new(soacsv_filename)
 
       assert_raises do
-        soacsv.get
+        soacsv.get2
       end
     end
 
@@ -20,6 +20,13 @@ module SOACSV2MT940
       soacsv = SOACSV.new(soacsv_filename)
       
       assert_kind_of Array, soacsv.get
+    end
+
+    def test_that_get2_returns_an_array
+      soacsv_filename = 'data/test.csv'
+      soacsv = SOACSV.new(soacsv_filename)
+      
+      assert_kind_of Array, soacsv.get2
     end
 
     def test_that_header_is_removed_afterwards

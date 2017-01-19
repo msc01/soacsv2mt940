@@ -11,7 +11,7 @@ module SOACSV2MT940
     ##
     # Creates a new Amount instance from the given number
     def initialize(number)
-      @amount = if number.class == String
+      @amount = if number.is_a? String
                   number.tr(',', '.').to_f
                 else
                   number
