@@ -59,6 +59,7 @@ module SOACSV2MT940
     options[:nbr] = 0 unless options[:nbr]
 
     options[:balance] = if options[:balance]
+                          options[:balance].tr!('.', '')
                           options[:balance].tr(',', '.')
                         else
                           0.0
