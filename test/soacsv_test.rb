@@ -22,13 +22,6 @@ module SOACSV2MT940
       assert_kind_of Array, soacsv.get
     end
 
-    def test_that_get2_returns_an_array
-      soacsv_filename = 'data/test.csv'
-      soacsv = SOACSV.new(soacsv_filename)
-      
-      assert_kind_of Array, soacsv.get2
-    end
-
     def test_that_header_is_removed_afterwards
       soacsv_filename = 'data/test.csv'
       soacsv = SOACSV.new(soacsv_filename)
@@ -38,26 +31,19 @@ module SOACSV2MT940
       assert soacsv.get.size, i - 1
     end
 
-    def test_that_there_is_a_buchungstag
-      soacsv_filename = 'data/test.csv'
-      soacsv = SOACSV.new(soacsv_filename)
-  
-      assert soacsv.get[0][:buchungstag]
-    end
-
     def test_that_there_is_another_buchungstag
       soacsv_filename = 'data/test.csv'
       soacsv = SOACSV.new(soacsv_filename)
   
-      assert soacsv.get2[0].buchungstag
+      assert soacsv.get[0].buchungstag
     end
 
     def test_that_the_first_date_is_less_than_the_last_and_therefore_ordering_works
       soacsv_filename = 'data/test.csv'
       soacsv = SOACSV.new(soacsv_filename)
 
-      first = Date.strptime(soacsv.get2.first.buchungstag, '%d.%m.%Y')
-      last = Date.strptime(soacsv.get2.last.buchungstag, '%d.%m.%Y')
+      first = Date.strptime(soacsv.get.first.buchungstag, '%d.%m.%Y')
+      last = Date.strptime(soacsv.get.last.buchungstag, '%d.%m.%Y')
       assert first < last
     end
 

@@ -30,16 +30,9 @@ module SOACSV2MT940
     end
 
     ##
-    # Returns a sorted array containing the data records from the .CSV file as CSV::Rows
-    # without headers and without any rows containing empy (nil) fields.
-    def get
-      process csv_file
-    end
-
-    ##
     # Returns a sorted array containing the data records from the .CSV file as SOA_CSV_RECORD objects
     # without headers and without any rows containing empy (nil) fields.
-    def get2
+    def get
       arr = []
 
       process(csv_file).each do |record|
