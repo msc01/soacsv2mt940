@@ -50,7 +50,7 @@ module SOACSV2MT940
       assert_equal "D", amount.credit_debit_indicator
 
       amount = Amount.new("0,00")
-      assert_equal "", amount.credit_debit_indicator
+      assert_equal "D", amount.credit_debit_indicator
     end
 
     def test_with_irb

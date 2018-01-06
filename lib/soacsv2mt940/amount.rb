@@ -23,10 +23,8 @@ module SOACSV2MT940
     def credit_debit_indicator
       if amount.positive?
         'C'
-      elsif amount.negative?
-        'D'
       else
-        ''
+        'D'
       end
     end
 
