@@ -43,8 +43,6 @@ module SOACSV2MT940
     ##
     # Generates an .mt940 file from csv_data
     def csv2mt940
-      LOGGER.info 'Konvertierung Commerzbank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'
-
       header
       body
       footer

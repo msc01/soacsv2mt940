@@ -52,9 +52,7 @@ module SOACSV2MT940
       abort('ABORTED!')
     end
 
-    unless options[:mt940_file]
-      options[:mt940_file] = options[:csv_file].gsub(/CSV|csv/, 'mt940')
-    end
+    options[:mt940_file] = options[:csv_file].gsub(/CSV|csv/, 'mt940') unless options[:mt940_file]
 
     options[:nbr] = 0 unless options[:nbr]
 

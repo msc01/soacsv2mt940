@@ -53,7 +53,7 @@ module SOACSV2MT940
       assert_equal "D", amount.credit_debit_indicator
     end
 
-    def test_with_irb
+    def test_amount_with_irb
       skip
       Amount.new("-11,88")
       binding.irb

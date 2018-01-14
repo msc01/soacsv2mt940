@@ -47,7 +47,7 @@ module SOACSV2MT940
       assert first < last
     end
 
-    def test_with_irb
+    def test_soacsv_with_irb
       skip
       binding.irb
     end

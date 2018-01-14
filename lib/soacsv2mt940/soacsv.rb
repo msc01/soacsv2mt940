@@ -26,11 +26,13 @@ module SOACSV2MT940
     ##
     # Creates a new SOACSV instance for the given csv_filename
     def initialize(csv_filename)
+      LOGGER.info 'Konvertierung Commerzbank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'
+
       @csv_filename = csv_filename
     end
 
     ##
-    # Returns a sorted array containing the data records from the .CSV file as SOA_CSV_RECORD objects
+    # Returns a sorted array containing the data records from the .CSV file as SOA_CSV_RECORD objects structured as described by SOA_CSV_STRUCTURE.
     # without headers and without any rows containing empy (nil) fields.
     def get
       arr = []
@@ -45,7 +47,7 @@ module SOACSV2MT940
     private
 
     ##
-    # Reads the .csv file, returns an array of CSV::Rows structured as described by SOA_CSV_STRUCTURE.
+    # Reads the .csv file, returns an array of CSV::Rows / a CSV:Table?
     def csv_file
       if File.size? csv_filename
         CSV.read(csv_filename, headers: true, col_sep: ';', header_converters: :symbol, converters: :all)
@@ -58,24 +60,20 @@ module SOACSV2MT940
     ##
     # Checks, sorts and returns the corrected csv data.
     def process(csv_data)
-      check csv_data
-      csv_data.sort_by { |row| row[:buchungstag] }
-    end
-
-    ##
-    # Checks the structucre of an array containing SOA CSV records; returns the array without nil records.
-    def check(csv_data)
       unless csv_data.headers == SOA_CSV_STRUCTURE
         LOGGER.error("Structure of #{csv_file} does not match. Expected: #{SOA_CSV_STRUCTURE.inspect}. Actual: #{headers.inspect}")
         abort('ABORTED!')
       end
 
-      csv_data.each_with_index do |row, index|
-        if row[:buchungstag].nil?
-          LOGGER.info("Record nbr. #{index} not processed due to empty field(s): #{row.inspect}")
-          csv_data.delete(index)
-        end
+      index = 0
+      csv_data.delete_if do |row|
+        index += 1
+        retval = row[:buchungstag].nil? || row[:wertstellung].nil? || row[:umsatzart].nil?
+        LOGGER.info("- Record nbr. #{index} not processed due to empty field(s): #{row.inspect}") if retval
+        retval
       end
+
+      csv_data.sort_by { |row| row[:buchungstag] }
     end
   end
 end
