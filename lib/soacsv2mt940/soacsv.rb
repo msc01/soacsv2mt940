@@ -14,7 +14,8 @@ module SOACSV2MT940
                          :whrung,
                          :auftraggeberkonto,
                          :bankleitzahl_auftraggeberkonto,
-                         :iban_auftraggeberkonto]
+                         :iban_auftraggeberkonto,
+                         :kategorie]
     ##
     # Represents a statement of account record from the .CSV file (Struct).
     SOA_CSV_RECORD = Struct.new(*SOA_CSV_STRUCTURE)
@@ -61,7 +62,7 @@ module SOACSV2MT940
     # Checks, sorts and returns the corrected csv data.
     def process(csv_data)
       unless csv_data.headers == SOA_CSV_STRUCTURE
-        LOGGER.error("Structure of #{csv_file} does not match. Expected: #{SOA_CSV_STRUCTURE.inspect}. Actual: #{headers.inspect}")
+        LOGGER.error("Structure of #{csv_filename} does not match:\nExpected: #{SOA_CSV_STRUCTURE.inspect}.\nActual: #{csv_data.headers.inspect}.\nContent: #{csv_file}")
         abort('ABORTED!')
       end
 
