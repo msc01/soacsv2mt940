@@ -22,7 +22,7 @@ module SOACSV2MT940
       end
 
       optional_text = 'Optional: name of .mt940 target file; ' \
-                      'if not specified, the ending .mt940 will be used.'
+                      'if not specified, .mt940 will be added to the .csv input file.'
       opts.on('-m', '--mt940 <filename>', optional_text) do |mt940|
         options[:mt940_file] = mt940
       end
@@ -52,7 +52,7 @@ module SOACSV2MT940
       abort('ABORTED!')
     end
 
-    options[:mt940_file] = options[:csv_file].gsub(/CSV|csv/, 'mt940') unless options[:mt940_file]
+    options[:mt940_file] = options[:csv_file] + '.mt940' unless options[:mt940_file]
 
     options[:nbr] = 0 unless options[:nbr]
 

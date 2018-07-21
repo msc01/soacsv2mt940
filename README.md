@@ -20,7 +20,7 @@ Beispiel:
 Parameter:
 
 - `-c, --csv <filename>`: Name der Eingabe-Datei im .csv-Format, welche ins mt940-Format konvertiert werden soll.
-- `-m, --mt940 <filename>`: optionaler Name der Ausgabe-Datei; falls der Parameter nicht angegeben wird, wird der Name der Eingabe-Datei genommen und statt der Endung .csv wird die Endung .mt940 angefügt.
+- `-m, --mt940 <filename>`: optionaler Name der Ausgabe-Datei; falls nicht angegeben, wird die Endung Eingabe-Datei durch .mt940 ersetzt.
 - `-n, --nbr <number>`: optionale Kontoauszugs-Nr., welche im Kopf-Bereich der mt940-Datei (Satzart :28c:) vermerkt wird. Wird der Parameter nicht angegeben, wird 0 genommen.
 - `-b, --balance <amount>`: optionaler Eröffungs-Saldo des Kontoauszugs. Wird dieser nicht mit übergeben, so wird 0 genommen.
 - `-h, --help`: Anzeigen der Hilfe.
