@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative 'test_helper'
-
+# Test-Klasse SOACSV2MT940 [TODO]
 class SOACSV2MT940Test < Minitest::Test
   def setup
     # wird einmal vor jedem Testfall ausgefuehrt

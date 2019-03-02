@@ -5,6 +5,7 @@ require_relative 'test_helper'
 require_relative '../lib/soacsv2mt940/soacsv'
 
 module SOACSV2MT940
+  # Test-Klasse SOACSV
   class SOACSVTest < Minitest::Test
     def test_the_structure
       soacsv_filename = 'data/test.structure'
@@ -18,7 +19,7 @@ module SOACSV2MT940
     def test_that_get_returns_an_array
       soacsv_filename = 'data/test.csv'
       soacsv = SOACSV.new(soacsv_filename)
-      
+
       assert_kind_of Array, soacsv.get
     end
 
@@ -34,7 +35,7 @@ module SOACSV2MT940
     def test_that_there_is_another_buchungstag
       soacsv_filename = 'data/test.csv'
       soacsv = SOACSV.new(soacsv_filename)
-  
+
       assert soacsv.get[0].buchungstag
     end
 
@@ -42,9 +43,9 @@ module SOACSV2MT940
       soacsv_filename = 'data/test.csv'
       soacsv = SOACSV.new(soacsv_filename)
 
-      first = Date.strptime(soacsv.get.first.buchungstag, '%d.%m.%Y')
-      last = Date.strptime(soacsv.get.last.buchungstag, '%d.%m.%Y')
-      assert first < last
+      first_buchungstag = Date.strptime(soacsv.get.first.buchungstag, '%d.%m.%Y')
+      last_buchungstag = Date.strptime(soacsv.get.last.buchungstag, '%d.%m.%Y')
+      assert first_buchungstag < last_buchungstag
     end
 
     def test_soacsv_with_irb

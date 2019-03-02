@@ -5,15 +5,16 @@ require_relative '../lib/soacsv2mt940/soacsv'
 require_relative '../lib/soacsv2mt940/soamt940'
 
 module SOACSV2MT940
+  # Test-Klasse SOAMT940
   class SOAMT940Test < Minitest::Test
     def setup
       @csv_filename = 'data/test.csv'
       @mt940_filename = 'data/soamt940_test.mt940'
       @mt940_template_filename = 'data/soamt940_test_template.mt940'
-      begin
-        File.delete @mt940_filename
-      rescue
-      end
+    begin
+      File.delete @mt940_filename
+    rescue
+    end
       @soa_nbr = 0
       @soa_opening_balance = 101_199.68
       @soacsv = SOACSV.new(@csv_filename)
