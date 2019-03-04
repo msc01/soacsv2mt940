@@ -68,6 +68,7 @@ module SOACSV2MT940
 
       csv_data.each do |csv_record|
         next unless csv_record
+
         LOGGER.debug "- <write_body> Datensatz #{nbr_of_relevant_rows}: #{csv_record}"
 
         write_mt940 record_type_61(csv_record)
@@ -125,11 +126,12 @@ module SOACSV2MT940
     # Returns a SWIFT mt940 type 61 record
     def record_type_61(csv_record)
       buchungsdatum = Date.strptime(csv_record.buchungstag, '%d.%m.%Y')
-      valutadatum = if csv_record.wertstellung
-                      Date.strptime(csv_record.wertstellung, '%d.%m.%Y')
-                    else
-                      buchungsdatum
-                    end
+      # valutadatum = if csv_record.wertstellung
+      #                Date.strptime(csv_record.wertstellung, '%d.%m.%Y')
+      #              else
+      #                buchungsdatum
+      #              end
+      valutadatum = convert_valuta_date(csv_record.wertstellung) || buchungsdatum
       umsatz = Amount.new(csv_record.betrag)
       soa_closing_balance.amount += umsatz.amount
 
@@ -166,7 +168,21 @@ module SOACSV2MT940
     # Converts german umlauts within a given text to their international equivalents.
     def convert_umlaut(text)
       return '' unless text
+
       text.gsub('ä', 'ae').gsub('Ä', 'AE').gsub('ö', 'oe').gsub('Ö', 'OE').gsub('ü', 'ue').gsub('Ü', 'UE').gsub('ß', 'ss')
+    end
+
+    ##
+    # Converts valuta dates
+    def convert_valuta_date(valuta_date)
+      return nil unless valuta_date
+
+      day = valuta_date[0, 2].to_i
+      month = valuta_date[3, 2].to_i
+      year = valuta_date[6, 4].to_i
+      return nil unless Date.valid_date?(year, month, day)
+
+      Date.strptime(valuta_date, '%d.%m.%Y')
     end
   end
 end

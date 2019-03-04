@@ -15,7 +15,7 @@ module SOACSV2MT940
                          :auftraggeberkonto,
                          :bankleitzahl_auftraggeberkonto,
                          :iban_auftraggeberkonto,
-                         :kategorie]
+                         :kategorie].freeze
     ##
     # Represents a statement of account record from the .CSV file (Struct).
     SOA_CSV_RECORD = Struct.new(*SOA_CSV_STRUCTURE)

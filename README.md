@@ -57,6 +57,8 @@ Die Ausgabe erfolgt im gleichen Verzeichnis und unter gleichem Namen wie die Ein
 ### ToDo
 Folgende Punkte sind noch umzusetzen:
 
+- Wertstellung 30.2. fixen
+
 v1.0:
 
 - Abhängigkeit auf Filesystem/Verzeichnisstruktur aus Rakefile raus nehmen
