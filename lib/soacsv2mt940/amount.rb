@@ -21,7 +21,7 @@ module SOACSV2MT940
     ##
     # Returns the credit / debit indicator for the amount
     def credit_debit_indicator
-      if amount.positive?
+      if amount >= 0
         'C'
       else
         'D'
