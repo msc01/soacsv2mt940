@@ -2,7 +2,7 @@
 
 ## Description
 
-Convert Statement Of Account (SOA) .CSV file to mt940 (swift format) file.
+Convert bank Statement Of Account (SOA) .CSV file to mt940 (swift format) file.
 
 ## Synopsis
 

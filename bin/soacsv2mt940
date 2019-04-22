@@ -2,70 +2,83 @@
 
 require_relative '../lib/soacsv2mt940.rb'
 
-# Convert Statement Of Account .CSV file with SOA_CSV_STRUCTURE to SWIFT mt940[https://de.wikipedia.org/wiki/MT940] file.
+# Convert bank Statement Of Account .CSV file with SOA_CSV_STRUCTURE to SWIFT [mt940][https://de.wikipedia.org/wiki/MT940] file.
 module SOACSV2MT940
-  def self.setup
-    options = { csv_file: nil, mt940_file: nil, nbr: nil, balance: nil }
-    optional_text = ''
+  options = { csv_file: nil, mt940_file: nil, fmt: nil, nbr: nil, balance: nil }
+  optional_text = ''
 
-    parser = OptionParser.new do |opts|
-      opts.banner = "\nUsage: soacsvmt940 -c, --csv <file> " \
-                    '[-m, --mt940 <file>] ' \
-                    '[-n, --nbr <number>] ' \
-                    "[-b, --balance <amount>]\n\n" \
-                    'Example: soacsvmt940 -c bank.csv ' \
-                    '--mt940 bank.txt -n 0 ' \
-                    "--balance -1523,89\n\nOptions:"
+  parser = OptionParser.new do |opts|
+    opts.banner = "\nConvert Statement of Account (SOA) .csv file to MT940\n" \
+    "\nUsage: soacsvmt940 -c, --csv <file> " \
+    '[-m, --mt940 <file>] ' \
+    '[-n, --nbr <number>] ' \
+    '[-f, --format <format>] ' \
+    "[-b, --balance <amount>]\n\n" \
+    'Example: soacsvmt940 -c bank.csv ' \
+    '--mt940 bank.txt -n 0 ' \
+    '-f commerzbank ' \
+    "--balance -1523,89\n\nOptions:"
 
-      opts.on('-c', '--csv <filename>', 'Name of .csv input file.') do |csv|
-        options[:csv_file] = csv
-      end
-
-      optional_text = 'Optional: name of .mt940 target file; ' \
-                      'if not specified, .mt940 will be added to the .csv input file.'
-      opts.on('-m', '--mt940 <filename>', optional_text) do |mt940|
-        options[:mt940_file] = mt940
-      end
-
-      optional_text = 'Optional: number of the statement of account; ' \
-                      'if ommited, 0 will be used.'
-      opts.on('-n', '--nbr <number>', optional_text) do |nbr|
-        options[:nbr] = nbr
-      end
-
-      optional_text = 'Optional: opening balance; ' \
-                      '0 will be used if not specified.'
-      opts.on('-b', '--balance <amount>', optional_text) do |balance|
-        options[:balance] = balance
-      end
-
-      opts.on('-h', '--help', "Displays this help.\n\n") do
-        puts opts
-        exit
-      end
+    opts.on('-c', '--csv <filename>', 'Name of .csv input file.') do |csv|
+      options[:csv_file] = csv
     end
 
-    parser.parse!
-
-    unless options[:csv_file]
-      LOGGER.error('Name of .csv file is needed!')
-      abort('ABORTED!')
+    optional_text = 'Optional: name of .mt940 target file; ' \
+    'if not specified, .mt940 will be added to the name of the .csv input file.'
+    opts.on('-m', '--mt940 <filename>', optional_text) do |mt940|
+      options[:mt940_file] = mt940
     end
 
-    options[:mt940_file] = options[:csv_file] + '.mt940' unless options[:mt940_file]
+    optional_text = 'Optional: number of the statement of account; ' \
+    'if ommited, 0 will be used.'
+    opts.on('-n', '--nbr <number>', optional_text) do |nbr|
+      options[:nbr] = nbr
+    end
 
-    options[:nbr] = 0 unless options[:nbr]
+    optional_text = 'Optional: format of the statement of account .csv file; ' \
+    'defaults to commerzbank if not given.'
+    opts.on('-f', '--format <format>', optional_text) do |fmt|
+      options[:fmt] = fmt
+    end
 
-    options[:balance] = if options[:balance]
-                          options[:balance].tr('.', '').tr(',', '.')
-                        else
-                          0.0
-                        end
+    optional_text = 'Optional: opening balance; ' \
+    '0 will be used if not specified.'
+    opts.on('-b', '--balance <amount>', optional_text) do |balance|
+      options[:balance] = balance
+    end
 
-    soacsv = SOACSV.new(options[:csv_file]).get
-    soamt940 = SOAMT940.new(soacsv, options[:mt940_file], options[:nbr], options[:balance])
-    soamt940.csv2mt940
+    opts.on('-h', '--help', "Displays this help.\n\n") do
+      puts opts
+      exit
+    end
   end
 
-  setup
+  parser.parse!
+
+  unless options[:csv_file]
+    LOGGER.error('Name of .csv file is needed.')
+    abort('ABORTED!')
+  end
+
+  options[:mt940_file] = options[:csv_file] + '.mt940' unless options[:mt940_file]
+
+  options[:nbr] = 0 unless options[:nbr]
+
+  options[:fmt] = 'commerzbank' unless options[:fmt]
+
+  options[:balance] = if options[:balance]
+                        options[:balance].tr('.', '').tr(',', '.')
+                      else
+                        0.0
+                      end
+
+  case options[:fmt]
+  when 'commerzbank'
+    SOACSV.new(options[:csv_file]).get
+    soamt940 = SOAMT940.new(soacsv, options[:mt940_file], options[:nbr], options[:balance])
+    soamt940.csv2mt940
+  else
+    LOGGER.error('Format is currently not supported.')
+    abort('ABORTED!')
+  end
 end
