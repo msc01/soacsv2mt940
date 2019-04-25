@@ -18,7 +18,7 @@ Arguments:
 - `-m, --mt940 <filename>`: Optional name of the output file; if not given der the appendix .mt940 will be added to the file name of the input file.
 - `-n, --nbr <number>`: Optional number of the statement of account which will be written to record type :28c: of the mt940 file. Defaults to 0 if not given.
 - `-b, --balance <amount>`: Optional opening balance of the statement of account. Defaults to 0 if not given.
-- `-f, --format <format>`: Optional format of the .csv file. Either commerzbank or 1822direkt format is supported. Defaults to commerzbank if not given.
+- `-f, --format <format>`: Optional format of the .csv file. Could be either commerzbank or 1822direkt. Defaults to commerzbank if not given.
 - `-h, --help`: Show this information.
 
 ## Background
