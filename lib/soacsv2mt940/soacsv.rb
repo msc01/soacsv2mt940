@@ -2,7 +2,7 @@
 
 module SOACSV2MT940
   ##
-  # Represents a file containing Statement Of Account (SOA) records in .CSV format.
+  # Represents a file containing Statement Of Account (SOA) records in .CSV format for Commerzbank.
   class SOACSV
     ##
     # The structure of a record within a statement of account .CSV file.

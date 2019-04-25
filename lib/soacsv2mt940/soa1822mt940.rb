@@ -2,9 +2,9 @@
 
 module SOACSV2MT940
   ##
-  # Represents a Statement Of Account (SOA) file in the SWIFT mt940[https://de.wikipedia.org/wiki/MT940] format for Commerzbank.
+  # Represents a Statement Of Account (SOA) file in the SWIFT mt940[https://de.wikipedia.org/wiki/MT940] format for 1822direktBank.
   # - TODO: ERB template for the mt940 file? Or objects (for the records?)?
-  class SOAMT940
+  class SOA1822MT940
     ##
     # An array containing CSV::Rows with the structure of SOA_CSV_STRUCTURE
     attr_reader :csv_data
@@ -102,9 +102,10 @@ module SOACSV2MT940
     ##
     # Returns a SWIFT mt940 type 25 record
     def record_type_25
-      LOGGER.info "- BLZ/Konto: #{csv_data.first.bankleitzahl_auftraggeberkonto} / #{csv_data.first.auftraggeberkonto}"
+      blzkonto = "#{csv_data.first.empfngerauftraggeber_iban[4,8]}/#{csv_data.first.empfngerauftraggeber_iban[12,10]}"
+      LOGGER.info "- BLZ/Konto: #{blzkonto}"
 
-      ":25:#{csv_data.first.bankleitzahl_auftraggeberkonto}/#{csv_data.first.auftraggeberkonto}"
+      ":25:#{blzkonto}"
     end
 
     ##
@@ -116,7 +117,7 @@ module SOACSV2MT940
     ##
     # Returns a SWIFT mt940 type 60 record
     def record_type_60
-      datum_kontoauszug = Date.strptime(csv_data.last.buchungstag, '%d.%m.%Y')
+      datum_kontoauszug = Date.strptime(csv_data.last.datumzeit[0,10], '%d.%m.%Y')
       LOGGER.info "- Kontoauszugsdatum: #{datum_kontoauszug}"
 
       ":60F:#{soa_opening_balance.credit_debit_indicator}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{soa_opening_balance}"
@@ -126,13 +127,8 @@ module SOACSV2MT940
     # Returns a SWIFT mt940 type 61 record
     def record_type_61(csv_record)
       buchungsdatum = Date.strptime(csv_record.buchungstag, '%d.%m.%Y')
-      # valutadatum = if csv_record.wertstellung
-      #                Date.strptime(csv_record.wertstellung, '%d.%m.%Y')
-      #              else
-      #                buchungsdatum
-      #              end
       valutadatum = convert_valuta_date(csv_record.wertstellung) || buchungsdatum
-      umsatz = Amount.new(csv_record.betrag)
+      umsatz = Amount.new(csv_record.sollhaben)
       soa_closing_balance.amount += umsatz.amount
 
       ":61:#{valutadatum.strftime('%y%m%d')}#{buchungsdatum.strftime('%m%d')}#{umsatz.credit_debit_indicator}#{umsatz.without_sign}NONREF"
@@ -141,7 +137,7 @@ module SOACSV2MT940
     ##
     # Returns a SWIFT mt940 type 62 record
     def record_type_62
-      datum_kontoauszug = Date.strptime(csv_data.last.buchungstag, '%d.%m.%Y')
+      datum_kontoauszug = Date.strptime(csv_data.last.datumzeit[0,10], '%d.%m.%Y')
 
       ":62F:#{soa_closing_balance.credit_debit_indicator}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{soa_closing_balance.without_sign}"
     end
@@ -149,11 +145,28 @@ module SOACSV2MT940
     ##
     # Returns a SWIFT mt940 type 86 record
     def record_type_86(csv_record)
-      gvc = '999'
-      buchungstext = convert_umlaut(csv_record.buchungstext).delete('"')
-      umsatzart = convert_umlaut(csv_record.umsatzart).upcase
+      gvc = '999' # evtl. :buchungsschlssel?
+      buchungstext = convert_umlaut(csv_record.vwz0).delete('"') +
+                     convert_umlaut(csv_record.vwz1).delete('"') +
+                     convert_umlaut(csv_record.vwz2).delete('"') +
+                     convert_umlaut(csv_record.vwz3).delete('"') +
+                     convert_umlaut(csv_record.vwz4).delete('"') +
+                     convert_umlaut(csv_record.vwz5).delete('"') +
+                     convert_umlaut(csv_record.vwz6).delete('"') +
+                     convert_umlaut(csv_record.vwz7).delete('"') +
+                     convert_umlaut(csv_record.vwz8).delete('"') +
+                     convert_umlaut(csv_record.vwz9).delete('"') +
+                     convert_umlaut(csv_record.vwz10).delete('"') +
+                     convert_umlaut(csv_record.vwz11).delete('"') +
+                     convert_umlaut(csv_record.vwz12).delete('"') +
+                     convert_umlaut(csv_record.vwz13).delete('"') +
+                     convert_umlaut(csv_record.vwz14).delete('"') +
+                     convert_umlaut(csv_record.vwz15).delete('"') +
+                     convert_umlaut(csv_record.vwz16).delete('"') +
+                     convert_umlaut(csv_record.vwz17).delete('"')
+      buchungsart = convert_umlaut(csv_record.buchungsart).upcase
 
-      ":86:#{gvc}#{umsatzart}:#{buchungstext}"
+      ":86:#{gvc}#{buchungsart}:#{buchungstext}"
     end
 
     ##
