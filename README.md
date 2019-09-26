@@ -1,5 +1,7 @@
 # soacsv2mt940
 
+[![](https://codescene.io/projects/5634/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/5634/jobs/latest-successful/results)
+
 ## Description
 
 Convert bank Statement Of Account (SOA) .CSV file to mt940 (swift format) file.

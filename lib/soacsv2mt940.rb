@@ -25,5 +25,5 @@ module SOACSV2MT940
   # - WARN, or
   # - DEBUG.
   LOGGER = Logger.new(STDOUT)
-  LOGGER.level = Logger::DEBUG
+  LOGGER.level = Logger::INFO
 end
