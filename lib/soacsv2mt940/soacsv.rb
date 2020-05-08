@@ -74,7 +74,7 @@ module SOACSV2MT940
         retval
       end
 
-      csv_data.sort_by { |row| row[:buchungstag] }
+      csv_data.reverse_each
     end
   end
 end
