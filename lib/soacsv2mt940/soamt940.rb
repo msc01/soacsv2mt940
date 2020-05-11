@@ -126,11 +126,6 @@ module SOACSV2MT940
     # Returns a SWIFT mt940 type 61 record
     def record_type_61(csv_record)
       buchungsdatum = Date.strptime(csv_record.buchungstag, '%d.%m.%Y')
-      # valutadatum = if csv_record.wertstellung
-      #                Date.strptime(csv_record.wertstellung, '%d.%m.%Y')
-      #              else
-      #                buchungsdatum
-      #              end
       valutadatum = convert_valuta_date(csv_record.wertstellung) || buchungsdatum
       umsatz = Amount.new(csv_record.betrag)
       soa_closing_balance.amount += umsatz.amount

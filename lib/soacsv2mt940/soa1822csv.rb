@@ -102,7 +102,7 @@ module SOACSV2MT940
         retval
       end
 
-      csv_data.sort_by { |row| row[:buchungstag] }
+      csv_data.sort_by { |row| DateTime.parse(row[:buchungstag]) }
     end
   end
 end
