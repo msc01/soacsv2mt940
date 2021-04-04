@@ -29,6 +29,11 @@ Most banks offer exporting statement of account information from their online se
 
 This programm converts a given statement of account .csv export file into a swift mt940 file.
 
+## ToDo
+
+- Suppress / aggregate logging info for records not processed when not in debug mode.
+- Add VR-Bank format.
+
 ---
 
 [1]:data/test.csv
