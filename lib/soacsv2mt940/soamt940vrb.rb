@@ -4,7 +4,7 @@ module SOACSV2MT940
   ##
   # Represents a Statement Of Account (SOA) file in the SWIFT mt940[https://de.wikipedia.org/wiki/MT940] format for 1822direktBank.
   # - TODO: ERB template for the mt940 file? Or objects (for the records?)?
-  class SOA1822MT940
+  class SOAMT940VRB
     ##
     # An array containing CSV::Rows with the structure of SOA_CSV_STRUCTURE
     attr_reader :csv_data

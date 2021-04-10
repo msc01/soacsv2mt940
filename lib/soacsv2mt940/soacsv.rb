@@ -70,7 +70,7 @@ module SOACSV2MT940
       csv_data.delete_if do |row|
         index += 1
         retval = row[:buchungstag].nil? || row[:wertstellung].nil? || row[:umsatzart].nil?
-        LOGGER.info("- Record nbr. #{index} not processed due to empty field(s): #{row.inspect}") if retval
+        LOGGER.debug("- Record nbr. #{index} not processed due to empty field(s): #{row.inspect}") if retval
         retval
       end
 

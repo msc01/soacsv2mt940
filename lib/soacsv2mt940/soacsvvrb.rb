@@ -2,10 +2,10 @@
 
 module SOACSV2MT940
   ##
-  # Represents a file containing Statement Of Account (SOA) records in .CSV format for 1822direktBank.
-  class SOA1822CSV
+  # Represents a file containing Statement Of Account (SOA) records in .CSV format for VR-Bank.
+  class SOACSVVRB
     ##
-    # The structure of a record within a statement of account .CSV file from 1822direktBank
+    # The structure of a record within a statement of account .CSV file from VR-Bank
     SOA_CSV_STRUCTURE = [:kontonummer,               #
                          :datumzeit,                 #
                          :buchungstag,               # :buchungstag
@@ -55,7 +55,7 @@ module SOACSV2MT940
     ##
     # Creates a new SOACSV instance for the given csv_filename
     def initialize(csv_filename)
-      LOGGER.info 'Konvertierung 1822direktBank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'
+      LOGGER.info 'Konvertierung VR-Bank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'
 
       @csv_filename = csv_filename
     end
@@ -98,7 +98,7 @@ module SOACSV2MT940
       csv_data.delete_if do |row|
         index += 1
         retval = row[:buchungstag].nil? || row[:wertstellung].nil? || row[:buchungsart].nil?
-        LOGGER.info("- Record nbr. #{index} not processed due to empty field(s): #{row.inspect}") if retval
+        LOGGER.debug("- Record nbr. #{index} not processed due to empty field(s): #{row.inspect}") if retval
         retval
       end
 

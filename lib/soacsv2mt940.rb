@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-# require 'debug'
-
 require 'logger'
 require 'date'
 require 'optparse'
@@ -9,9 +7,11 @@ require 'csv'
 
 require_relative 'soacsv2mt940/version'
 require_relative 'soacsv2mt940/soacsv'
+require_relative 'soacsv2mt940/soacsvvrb'
+require_relative 'soacsv2mt940/soacsv1822'
 require_relative 'soacsv2mt940/soamt940'
-require_relative 'soacsv2mt940/soa1822csv'
-require_relative 'soacsv2mt940/soa1822mt940'
+require_relative 'soacsv2mt940/soamt9401822'
+require_relative 'soacsv2mt940/soamt940vrb'
 require_relative 'soacsv2mt940/amount'
 
 # Converts a
@@ -25,5 +25,5 @@ module SOACSV2MT940
   # - WARN, or
   # - DEBUG.
   LOGGER = Logger.new(STDOUT)
-  LOGGER.level = Logger::INFO
+  LOGGER.level = Logger::DEBUG
 end

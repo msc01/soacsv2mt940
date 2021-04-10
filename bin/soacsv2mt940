@@ -36,7 +36,7 @@ module SOACSV2MT940
     end
 
     optional_text = 'Optional: format of the statement of account .csv file; ' \
-    'either commerzbank or 1822direkt, defaults to commerzbank if not given.'
+    'commerzbank, 1822direkt, or VR-Bank; defaults to commerzbank if not given.'
     opts.on('-f', '--format <format>', optional_text) do |fmt|
       options[:fmt] = fmt
     end
@@ -77,8 +77,11 @@ module SOACSV2MT940
     soacsv = SOACSV.new(options[:csv_file]).get
     SOAMT940.new(soacsv, options[:mt940_file], options[:nbr], options[:balance]).csv2mt940
   when '1822direkt'
-    soacsv = SOA1822CSV.new(options[:csv_file]).get
-    SOA1822MT940.new(soacsv, options[:mt940_file], options[:nbr], options[:balance]).csv2mt940
+    soacsv = SOACSV1822.new(options[:csv_file]).get
+    SOAMT9401822.new(soacsv, options[:mt940_file], options[:nbr], options[:balance]).csv2mt940
+  when 'VR-Bank'
+    soacsv = SOACSVVRB.new(options[:csv_file]).get
+    SOAMT940VRB.new(soacsv, options[:mt940_file], options[:nbr], options[:balance]).csv2mt940
   else
     LOGGER.error('Format is currently not supported.')
     abort('ABORTED!')
