@@ -6,15 +6,6 @@ require_relative '../lib/soacsv2mt940/soacsv1822'
 
 module SOACSV2MT940
   class SOACSV1822Test < Minitest::Test
-    def test_the_structure
-      soacsv_filename = 'data/test.structure'
-      soacsv = SOACSV1822.new(soacsv_filename)
-
-      assert_raises do
-        soacsv.get2
-      end
-    end
-
     def test_that_get_returns_an_array
       soacsv_filename = 'data/test_1822.csv'
       soacsv = SOACSV1822.new(soacsv_filename)
