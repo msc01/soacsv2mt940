@@ -1,0 +1,27 @@
+"Donau-Iller Bank eG"
+
+"Umsatzanzeige"
+
+"BLZ:";"63091010";;"Datum:";"31.03.2021"
+"Konto:";"1008800049";;"Uhrzeit:";"11:23:33"
+"Abfrage von:";"Hermann Testkunde";;"Kontoinhaber:";"Hermann Testkunde"
+
+"Zeitraum:";;"von:";"24.03.2021";"bis:";
+"Betrag in EUR:";;"von:";" ";"bis:";" "
+"Sortiert nach:";"Buchungstag";"absteigend"
+
+"Buchungstag";"Valuta";"Auftraggeber/Zahlungsempf�nger";"Empf�nger/Zahlungspflichtiger";"Konto-Nr.";"IBAN";"BLZ";"BIC";"Vorgang/Verwendungszweck";"Kundenreferenz";"W�hrung";"Umsatz";" "
+"30.03.2021";"31.03.2021";"Hermann Testkunde";"Gartenbauverein";"12345678";;"70190000";;"�BERWEISUNG
+Quartalsbeitrag Gartenbauverein
+Musterstadt 73 e.V.
+vom 03.03.2005
+Verwendete TAN: 123456";;"EUR";"12,00";"S"
+"30.03.2021";"31.03.2021";"Hermann Testkunde";"Hermann Testkunde";;;;;"�BERTRAG
+Hermann Testkunde
+UEBERTRAG VOM ANLAGEKONTO";;"EUR";"112,00";"H"
+"30.03.2021";"31.03.2021";"Hermann Testkunde";;;;;;"�BERWEISUNG
+Kaufstadt Lebensmittel
+Vielen Dank fuer Ihren Einkauf";;"EUR";"258,17";"S"
+
+"24.03.2021";;;;;;;;;"Anfangssaldo";"EUR";"22.257,11";"H"
+"31.03.2021";;;;;;;;;"Endsaldo";"EUR";"21.488,94";"H"

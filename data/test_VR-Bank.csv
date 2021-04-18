@@ -1,27 +1,50 @@
-"Donau-Iller Bank eG"
+"Genossenschaftsbank Unterallgäu eG"
 
 "Umsatzanzeige"
 
-"BLZ:";"63091010";;"Datum:";"31.03.2021"
-"Konto:";"1008800049";;"Uhrzeit:";"11:23:33"
-"Abfrage von:";"Hermann Testkunde";;"Kontoinhaber:";"Hermann Testkunde"
+"BLZ:";"73160000";;"Datum:";"18.04.2019"
+"Konto:";"12345678";;"Uhrzeit:";"10:38:03"
+"Abfrage von:";"Vorname Nachname";;"Kontoinhaber:";"Vorname Nachname"
 
-"Zeitraum:";;"von:";"24.03.2021";"bis:";
+"Zeitraum:";;"von:";"11.04.2019";"bis:";
 "Betrag in EUR:";;"von:";" ";"bis:";" "
 "Sortiert nach:";"Buchungstag";"absteigend"
 
 "Buchungstag";"Valuta";"Auftraggeber/Zahlungsempfänger";"Empfänger/Zahlungspflichtiger";"Konto-Nr.";"IBAN";"BLZ";"BIC";"Vorgang/Verwendungszweck";"Kundenreferenz";"Währung";"Umsatz";" "
-"30.03.2021";"31.03.2021";"Hermann Testkunde";"Gartenbauverein";"12345678";;"70190000";;"ÜBERWEISUNG
-Quartalsbeitrag Gartenbauverein
-Musterstadt 73 e.V.
-vom 03.03.2005
-Verwendete TAN: 123456";;"EUR";"12,00";"S"
-"30.03.2021";"31.03.2021";"Hermann Testkunde";"Hermann Testkunde";;;;;"ÜBERTRAG
-Hermann Testkunde
-UEBERTRAG VOM ANLAGEKONTO";;"EUR";"112,00";"H"
-"30.03.2021";"31.03.2021";"Hermann Testkunde";;;;;;"ÜBERWEISUNG
-Kaufstadt Lebensmittel
-Vielen Dank fuer Ihren Einkauf";;"EUR";"258,17";"S"
+"18.04.2019";"18.04.2019";"GENODEF1MIR";"RAIFFBK SCHWABMÜNCHEN";;;;;"GAA-AUSZAHLUNG
+Untermeitingen/DE
+18.04.2019/09:04 girocard
+GA 72069220/00000806/030789
+Auszahlung       60,00 EUR
+73160000/0012345678/2/1222
+1,02 EUR Gebühr wurde von
+Ihrer GENOBANK übernommen";;"EUR";"60,00";"S"
+"16.04.2019";"16.04.2019";"ISSUER";"Drogeriemarkt Muller";;"DE63731600000012345678";;"GENODEF1MIR";"Basislastschrift
+MUELLER SAGT DANKE/Mindelhe
+im/DE
+15.04.2019 um 09:43:24 Uhr
+69507594/831872/ECTL/NPIN
+73160000/0012345678/2/1222
+REF 658154/260022";;"EUR";"31,49";"S"
+"16.04.2019";"16.04.2019";"ISSUER";"KERN SCHUHE + MODE";;"DE63731600000012345678";;"GENODEF1MIR";"Basislastschrift
+KERN SCHUHE + MODE/MINDELHE
+IM/DE
+15.04.2019 um 10:47:02 Uhr
+52015951/169528/CICC/FPIN
+73160000/0012345678/2/1222
+REF 434658/260022";;"EUR";"55,93";"S"
+"12.04.2019";"12.04.2019";"GENODEF1MIR";"GENOBANK UNTERALLGÄU";;;;;"GAA-AUSZAHLUNG
+Genobank Unterallgäu/Stette
+n/DE
+12.04.2019/13:48 girocard
+GA 73160000/00003717/012049
+73160000/0012345678/2/1222";;"EUR";"70,00";"S"
+"12.04.2019";"12.04.2019";"Nachname, Vorname";"Bundesagentur fuer Arbeit -Familienkasse";;"DE63731600000012345678";;"GENODEF1MIR";"GUTSCHRIFT
+KG858123FK123456 0419 02034
+825373/3000095947441 EREF:
+02034825373 IBAN: DE0776000
+0000076001615 BIC: MARKDEF1
+760";;"EUR";"388,00";"H"
 
-"24.03.2021";;;;;;;;;"Anfangssaldo";"EUR";"22.257,11";"H"
-"31.03.2021";;;;;;;;;"Endsaldo";"EUR";"21.488,94";"H"
+"12.04.2019";;;;;;;;;"Anfangssaldo";"EUR";"8,93";"H"
+"18.04.2019";;;;;;;;;"Endsaldo";"EUR";"179,51";"H"
