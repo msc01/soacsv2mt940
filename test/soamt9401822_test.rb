@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 
 require_relative 'test_helper'
-require_relative '../lib/soacsv2mt940/soa1822csv'
-require_relative '../lib/soacsv2mt940/soa1822mt940'
+require_relative '../lib/soacsv2mt940/soacsv1822'
+require_relative '../lib/soacsv2mt940/soamt9401822'
 
 module SOACSV2MT940
   # Test-Klasse SOA1822MT940
-  class SOA1822MT940Test < Minitest::Test
+  class SOAMT9401822Test < Minitest::Test
     def setup
       @csv_filename = 'data/test_1822.csv'
       @mt940_filename = 'data/soamt940_test_1822.mt940'
@@ -17,8 +17,8 @@ module SOACSV2MT940
     end
       @soa_nbr = 0
       @soa_opening_balance = 1000
-      @soacsv = SOA1822CSV.new(@csv_filename)
-      @soamt940 = SOA1822MT940.new(@soacsv.get, @mt940_filename, @soa_nbr, @soa_opening_balance)
+      @soacsv = SOACSV1822.new(@csv_filename)
+      @soamt940 = SOAMT9401822.new(@soacsv.get, @mt940_filename, @soa_nbr, @soa_opening_balance)
       @soamt940.csv2mt940
     end
 
@@ -27,7 +27,7 @@ module SOACSV2MT940
     end
 
     def test_mt940datei_doppelt_anlegen
-      soamt940b = SOA1822MT940.new(@soacsv.get, @mt940_filename, @soa_nbr, @soa_opening_balance)
+      soamt940b = SOAMT9401822.new(@soacsv.get, @mt940_filename, @soa_nbr, @soa_opening_balance)
       soamt940b.csv2mt940
       mt940_filename_duplicate = @mt940_filename + '.1'
       assert File.exist? mt940_filename_duplicate
