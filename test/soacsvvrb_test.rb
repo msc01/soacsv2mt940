@@ -38,9 +38,23 @@ module SOACSV2MT940
       last_buchungstag = Date.strptime(soacsv.get.last.buchungstag, '%d.%m.%Y')
       assert first_buchungstag < last_buchungstag
     end
+    
+    def test_blz_konto
+      soacsv_filename = 'data/test_VR-Bank.csv'
+      soacsv = SOACSVVRB.new(soacsv_filename)
+      soacsv.get
 
-    def test_soacsv_with_irb
+      assert soacsv.blz, '73160000'
+      assert soacsv.konto, '12345678'
+    end
+
+    def test_with_irb
       skip
+      
+      soacsv_filename = 'data/test_VR-Bank.csv'
+      soacsv = SOACSVVRB.new(soacsv_filename)
+      soacsv.get
+      
       binding.irb
     end
   end

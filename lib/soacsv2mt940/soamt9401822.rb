@@ -6,26 +6,6 @@ module SOACSV2MT940
   # - TODO: ERB template for the mt940 file? Or objects (for the records?)?
   class SOAMT9401822
     ##
-    # An array containing CSV::Rows with the structure of SOA_CSV_STRUCTURE
-    attr_reader :csv_data
-
-    ##
-    # The optional number of the statement of account.
-    attr_reader :soa_nbr
-
-    ##
-    # The optional opening balance of the statement of account.
-    attr_reader :soa_opening_balance
-
-    ##
-    # The closing balance of the statement of account.
-    attr_reader :soa_closing_balance
-
-    ##
-    # The name of the mt940 file which shall be created.
-    attr_reader :filename_mt940
-
-    ##
     # Creates a SOAMT940 instance.
     def initialize(csv_data, filename_mt940, soa_nbr, soa_opening_balance)
       @csv_data = csv_data
@@ -36,7 +16,7 @@ module SOACSV2MT940
       filename_index = 0
       while File.exist? @filename_mt940
         filename_index += 1
-        @filename_mt940 = "#{filename_mt940}.#{filename_index}"
+        @filename_mt940 = "#{@filename_mt940}.#{filename_index}"
       end
     end
 
@@ -53,7 +33,7 @@ module SOACSV2MT940
     ##
     # Writes the header of an .mt940 file.
     def header
-      LOGGER.info "- Eröffnungs-Saldo: #{soa_opening_balance}"
+      LOGGER.info "- Eröffnungs-Saldo: #{@soa_opening_balance}"
       write_mt940 record_type_20
       write_mt940 record_type_21
       write_mt940 record_type_25
@@ -66,7 +46,7 @@ module SOACSV2MT940
     def body
       nbr_of_relevant_rows = 0
 
-      csv_data.each do |csv_record|
+      @csv_data.each do |csv_record|
         next unless csv_record
 
         LOGGER.debug "- <write_body> Datensatz #{nbr_of_relevant_rows}: #{csv_record}"
@@ -84,7 +64,7 @@ module SOACSV2MT940
     # Writes the footer of an .mt940 file.
     def footer
       write_mt940 record_type_62
-      LOGGER.info "- Schluß-Saldo: #{soa_closing_balance}"
+      LOGGER.info "- Schluß-Saldo: #{@soa_closing_balance}"
     end
 
     ##
@@ -102,7 +82,7 @@ module SOACSV2MT940
     ##
     # Returns a SWIFT mt940 type 25 record
     def record_type_25
-      blzkonto = "#{csv_data.first.empfngerauftraggeber_iban[4,8]}/#{csv_data.first.empfngerauftraggeber_iban[12,10]}"
+      blzkonto = "#{@csv_data.first.empfngerauftraggeber_iban[4,8]}/#{@csv_data.first.empfngerauftraggeber_iban[12,10]}"
       LOGGER.info "- BLZ/Konto: #{blzkonto}"
 
       ":25:#{blzkonto}"
@@ -111,16 +91,16 @@ module SOACSV2MT940
     ##
     # Returns a SWIFT mt940 type 28 record
     def record_type_28
-      ":28C:#{soa_nbr}"
+      ":28C:#{@soa_nbr}"
     end
 
     ##
     # Returns a SWIFT mt940 type 60 record
     def record_type_60
-      datum_kontoauszug = Date.strptime(csv_data.last.datumzeit[0,10], '%d.%m.%Y')
+      datum_kontoauszug = Date.strptime(@csv_data.last.datumzeit[0,10], '%d.%m.%Y')
       LOGGER.info "- Kontoauszugsdatum: #{datum_kontoauszug}"
 
-      ":60F:#{soa_opening_balance.credit_debit_indicator}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{soa_opening_balance}"
+      ":60F:#{@soa_opening_balance.credit_debit_indicator}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{@soa_opening_balance}"
     end
 
     ##
@@ -129,7 +109,7 @@ module SOACSV2MT940
       buchungsdatum = Date.strptime(csv_record.buchungstag, '%d.%m.%Y')
       valutadatum = convert_valuta_date(csv_record.wertstellung) || buchungsdatum
       umsatz = Amount.new(csv_record.sollhaben)
-      soa_closing_balance.amount += umsatz.amount
+      @soa_closing_balance.amount += umsatz.amount
 
       ":61:#{valutadatum.strftime('%y%m%d')}#{buchungsdatum.strftime('%m%d')}#{umsatz.credit_debit_indicator}#{umsatz.without_sign}NONREF"
     end
@@ -137,9 +117,9 @@ module SOACSV2MT940
     ##
     # Returns a SWIFT mt940 type 62 record
     def record_type_62
-      datum_kontoauszug = Date.strptime(csv_data.last.datumzeit[0,10], '%d.%m.%Y')
+      datum_kontoauszug = Date.strptime(@csv_data.last.datumzeit[0,10], '%d.%m.%Y')
 
-      ":62F:#{soa_closing_balance.credit_debit_indicator}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{soa_closing_balance.without_sign}"
+      ":62F:#{@soa_closing_balance.credit_debit_indicator}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{@soa_closing_balance.without_sign}"
     end
 
     ##
@@ -172,7 +152,7 @@ module SOACSV2MT940
     ##
     # Adds a given record to an mt940 file.
     def write_mt940(record)
-      File.open(filename_mt940, 'a') do |file|
+      File.open(@filename_mt940, 'a') do |file|
         file.puts record
       end
     end

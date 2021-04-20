@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 require_relative 'test_helper'
-require_relative '../lib/soacsv2mt940/soa1822csv'
-require_relative '../lib/soacsv2mt940/soa1822mt940'
+require_relative '../lib/soacsv2mt940/soacsvvrb'
+require_relative '../lib/soacsv2mt940/soamt940vrb'
 
 module SOACSV2MT940
   # Test-Klasse SOA1822MT940

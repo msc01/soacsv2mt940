@@ -24,9 +24,8 @@ module SOACSV2MT940
     # Represents a statement of account record from the .CSV file (Struct).
     SOA_CSV_RECORD = Struct.new(*SOA_CSV_STRUCTURE)
 
-    ##
-    # Name and directory of the .CSV file which shall be converted.
-    attr_reader :csv_filename
+    attr_reader :blz
+    attr_reader :konto
 
     ##
     # Creates a new SOACSV instance for the given csv_filename
@@ -35,6 +34,8 @@ module SOACSV2MT940
 
       @csv_filename = csv_filename
       @csv_filename_tmp = "#{@csv_filename}.tmp"
+      @blz = ''
+      @konto = ''
     end
 
     ##
@@ -68,7 +69,7 @@ module SOACSV2MT940
     # Checks, sorts and returns the corrected csv data.
     def process(csv_data)
       
-      unless structure_equals_header_of?(csv_data)
+      unless soa_structure_equals_header_of?(csv_data)
         LOGGER.error("Structure of #{@csv_filename} does not match:\nExpected: #{SOA_CSV_STRUCTURE.inspect}.\nActual: #{csv_data.headers.inspect}.\nContent: #{csv_file}")
         abort('ABORTED!')
       end
@@ -85,17 +86,24 @@ module SOACSV2MT940
     end
 
     ##
-    # The first 12 and last 3 records of a VR-Bank csv file are not used
+    # The first 12 and last 3 records of a VR-Bank csv file are not used and 
+    # BLZ/Konto need to be extracted from the header of VR-Bank's csv file
     def prepare_vrbank_csv_file
       input_file_line_nbrs = File.open(@csv_filename,"r").readlines.size
       File.open(@csv_filename_tmp, 'w') do |out_file|
-        File.foreach(@csv_filename).with_index do |line,line_number|
-           out_file.puts line if line_number > 11 and line_number < input_file_line_nbrs - 3
+        File.foreach(@csv_filename).with_index do |line, line_number|
+          out_file.puts line if line_number > 11 and line_number < input_file_line_nbrs - 3
+           @blz = line.force_encoding(Encoding::ISO_8859_1).split('"')[3] if line_number == 4           
+           @konto = line.force_encoding(Encoding::ISO_8859_1).split('"')[3] if line_number == 5
         end
       end
     end
 
-    def structure_equals_header_of?(csv_data)
+    ##
+    # As the 13th field of the csv file for VR-Bank is named :"", which cannot always be handled properly,
+    # it is referred to as :umsatzart within SOA_CSV_STRUCTURE and SOA_CSV_RECORD, hence only the first 12
+    # fields of header from VR-Banks csv file shall be compared
+    def soa_structure_equals_header_of?(csv_data)
       retval = false
       if csv_data.headers[0] == SOA_CSV_STRUCTURE[0] and
         csv_data.headers[1] == SOA_CSV_STRUCTURE[1] and

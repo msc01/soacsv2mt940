@@ -22,10 +22,6 @@ module SOACSV2MT940
     SOA_CSV_RECORD = Struct.new(*SOA_CSV_STRUCTURE)
 
     ##
-    # Name and directory of the .CSV file which shall be converted.
-    attr_reader :csv_filename
-
-    ##
     # Creates a new SOACSV instance for the given csv_filename
     def initialize(csv_filename)
       LOGGER.info 'Konvertierung Commerzbank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'
@@ -51,10 +47,10 @@ module SOACSV2MT940
     ##
     # Reads the .csv file, returns an array of CSV::Rows / a CSV:Table?
     def csv_file
-      if File.size? csv_filename
-        CSV.read(csv_filename, headers: true, col_sep: ';', header_converters: :symbol, converters: :all)
+      if File.size? @csv_filename
+        CSV.read(@csv_filename, headers: true, col_sep: ';', header_converters: :symbol, converters: :all)
       else
-        LOGGER.error("File not found or empty: #{csv_filename}")
+        LOGGER.error("File not found or empty: #{@csv_filename}")
         abort('ABORTED!')
       end
     end
@@ -63,7 +59,7 @@ module SOACSV2MT940
     # Checks, sorts and returns the corrected csv data.
     def process(csv_data)
       unless csv_data.headers == SOA_CSV_STRUCTURE
-        LOGGER.error("Structure of #{csv_filename} does not match:\nExpected: #{SOA_CSV_STRUCTURE.inspect}.\nActual: #{csv_data.headers.inspect}.\nContent: #{csv_file}")
+        LOGGER.error("Structure of #{@csv_filename} does not match:\nExpected: #{SOA_CSV_STRUCTURE.inspect}.\nActual: #{csv_data.headers.inspect}.\nContent: #{csv_file}")
         abort('ABORTED!')
       end
 

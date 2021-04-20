@@ -49,10 +49,6 @@ module SOACSV2MT940
     SOA_CSV_RECORD = Struct.new(*SOA_CSV_STRUCTURE)
 
     ##
-    # Name and directory of the .CSV file which shall be converted.
-    attr_reader :csv_filename
-
-    ##
     # Creates a new SOACSV instance for the given csv_filename
     def initialize(csv_filename)
       LOGGER.info 'Konvertierung 1822direktBank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'

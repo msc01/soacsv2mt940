@@ -80,8 +80,8 @@ module SOACSV2MT940
     soacsv = SOACSV1822.new(options[:csv_file]).get
     SOAMT9401822.new(soacsv, options[:mt940_file], options[:nbr], options[:balance]).csv2mt940
   when 'VR-Bank'
-    soacsv = SOACSVVRB.new(options[:csv_file]).get
-    SOAMT940VRB.new(soacsv, options[:mt940_file], options[:nbr], options[:balance]).csv2mt940
+    soacsv = SOACSVVRB.new(options[:csv_file])
+    SOAMT940VRB.new(soacsv.get, options[:mt940_file], options[:nbr], options[:balance], soacsv.blz, soacsv.konto).csv2mt940
   else
     LOGGER.error('Format is currently not supported.')
     abort('ABORTED!')
