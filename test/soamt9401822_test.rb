@@ -5,16 +5,15 @@ require_relative '../lib/soacsv2mt940/soacsv1822'
 require_relative '../lib/soacsv2mt940/soamt9401822'
 
 module SOACSV2MT940
-  # Test-Klasse SOA1822MT940
   class SOAMT9401822Test < Minitest::Test
     def setup
       @csv_filename = 'data/test_1822.csv'
       @mt940_filename = 'data/soamt940_test_1822.mt940'
       @mt940_template_filename = 'data/soamt940_test_1822_template.mt940'
-    begin
-      File.delete @mt940_filename
-    rescue
-    end
+      begin
+        File.delete @mt940_filename
+      rescue StandardError
+      end
       @soa_nbr = 0
       @soa_opening_balance = 1000
       @soacsv = SOACSV1822.new(@csv_filename)
@@ -33,7 +32,7 @@ module SOACSV2MT940
       assert File.exist? mt940_filename_duplicate
       begin
         File.delete mt940_filename_duplicate
-      rescue
+      rescue StandardError
       end
     end
 

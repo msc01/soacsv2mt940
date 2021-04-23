@@ -5,7 +5,6 @@ require_relative 'test_helper'
 require_relative '../lib/soacsv2mt940/soacsvvrb'
 
 module SOACSV2MT940
-  # Test-Klasse SOACSVVRB
   class SOACSVVRBTest < Minitest::Test
     def test_that_get_returns_an_array
       soacsv_filename = 'data/test_VR-Bank.csv'
@@ -38,7 +37,7 @@ module SOACSV2MT940
       last_buchungstag = Date.strptime(soacsv.get.last.buchungstag, '%d.%m.%Y')
       assert first_buchungstag < last_buchungstag
     end
-    
+
     def test_blz_konto
       soacsv_filename = 'data/test_VR-Bank.csv'
       soacsv = SOACSVVRB.new(soacsv_filename)
@@ -50,11 +49,11 @@ module SOACSV2MT940
 
     def test_with_irb
       skip
-      
+
       soacsv_filename = 'data/test_VR-Bank.csv'
       soacsv = SOACSVVRB.new(soacsv_filename)
       soacsv.get
-      
+
       binding.irb
     end
   end

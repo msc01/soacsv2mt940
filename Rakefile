@@ -8,7 +8,7 @@ end
 
 RuboCop::RakeTask.new(:rubocop) do |r|
   r.options = ['--display-cop-names', '--extra-details', '--display-style-guide']
-  r.patterns = ['lib', 'bin']
+  r.patterns = %w[lib bin]
 end
 
 RDoc::Task.new do |rdoc|

@@ -4,25 +4,19 @@ module SOACSV2MT940
   ##
   # Represents a file containing Statement Of Account (SOA) records in .CSV format for Commerzbank.
   class SOACSV
-    ##
-    # The structure of a record within a statement of account .CSV file.
-    SOA_CSV_STRUCTURE = [:buchungstag,
-                         :wertstellung,
-                         :umsatzart,
-                         :buchungstext,
-                         :betrag,
-                         :whrung,
-                         :auftraggeberkonto,
-                         :bankleitzahl_auftraggeberkonto,
-                         :iban_auftraggeberkonto,
-                         :kategorie].freeze
-                                              
-    ##
-    # Represents a statement of account record from the .CSV file (Struct).
+    SOA_CSV_STRUCTURE = %i[buchungstag
+                           wertstellung
+                           umsatzart
+                           buchungstext
+                           betrag
+                           whrung
+                           auftraggeberkonto
+                           bankleitzahl_auftraggeberkonto
+                           iban_auftraggeberkonto
+                           kategorie].freeze
+
     SOA_CSV_RECORD = Struct.new(*SOA_CSV_STRUCTURE)
 
-    ##
-    # Creates a new SOACSV instance for the given csv_filename
     def initialize(csv_filename)
       LOGGER.info 'Konvertierung Commerzbank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'
 

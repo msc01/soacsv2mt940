@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/soacsv2mt940.rb'
+require_relative '../lib/soacsv2mt940'
 
 # Convert bank Statement Of Account .CSV file with SOA_CSV_STRUCTURE to SWIFT [mt940][https://de.wikipedia.org/wiki/MT940] file.
 module SOACSV2MT940
@@ -60,7 +60,7 @@ module SOACSV2MT940
     abort('ABORTED!')
   end
 
-  options[:mt940_file] = options[:csv_file] + '.mt940' unless options[:mt940_file]
+  options[:mt940_file] = options[:csv_file].mt940.to_s unless options[:mt940_file]
 
   options[:nbr] = 0 unless options[:nbr]
 

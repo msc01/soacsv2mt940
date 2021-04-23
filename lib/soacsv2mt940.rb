@@ -13,6 +13,7 @@ require_relative 'soacsv2mt940/soamt940'
 require_relative 'soacsv2mt940/soamt9401822'
 require_relative 'soacsv2mt940/soamt940vrb'
 require_relative 'soacsv2mt940/amount'
+require_relative 'soacsv2mt940/amountvrb'
 
 # Converts a
 # Statement Of Account (SOA) .CSV file with a SOA_CSV_STRUCTURE
@@ -20,10 +21,6 @@ require_relative 'soacsv2mt940/amount'
 #
 # Namespace SOACSV2MT940 wraps everything together
 module SOACSV2MT940
-  # Sets the log-level to either
-  # - INFO,
-  # - WARN, or
-  # - DEBUG.
   LOGGER = Logger.new(STDOUT)
   LOGGER.level = Logger::DEBUG
 end

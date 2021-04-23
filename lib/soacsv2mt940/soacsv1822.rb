@@ -4,8 +4,6 @@ module SOACSV2MT940
   ##
   # Represents a file containing Statement Of Account (SOA) records in .CSV format for 1822direktBank.
   class SOACSV1822
-    ##
-    # The structure of a record within a statement of account .CSV file from 1822direktBank
     SOA_CSV_STRUCTURE = [:kontonummer,               #
                          :datumzeit,                 #
                          :buchungstag,               # :buchungstag
@@ -44,12 +42,8 @@ module SOACSV2MT940
     # :auftraggeberkonto
     # :kategorie
 
-    ##
-    # Represents a statement of account record from the .CSV file (Struct).
     SOA_CSV_RECORD = Struct.new(*SOA_CSV_STRUCTURE)
 
-    ##
-    # Creates a new SOACSV instance for the given csv_filename
     def initialize(csv_filename)
       LOGGER.info 'Konvertierung 1822direktBank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'
 

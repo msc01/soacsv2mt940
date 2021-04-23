@@ -5,8 +5,6 @@ module SOACSV2MT940
   # Represents a Statement Of Account (SOA) file in the SWIFT mt940[https://de.wikipedia.org/wiki/MT940] format for 1822direktBank.
   # - TODO: ERB template for the mt940 file? Or objects (for the records?)?
   class SOAMT9401822
-    ##
-    # Creates a SOAMT940 instance.
     def initialize(csv_data, filename_mt940, soa_nbr, soa_opening_balance)
       @csv_data = csv_data
       @soa_nbr = soa_nbr
@@ -30,8 +28,6 @@ module SOACSV2MT940
 
     private
 
-    ##
-    # Writes the header of an .mt940 file.
     def header
       LOGGER.info "- Eröffnungs-Saldo: #{@soa_opening_balance}"
       write_mt940 record_type_20
@@ -41,8 +37,6 @@ module SOACSV2MT940
       write_mt940 record_type_60
     end
 
-    ##
-    # Writes the body of an .mt940 file.
     def body
       nbr_of_relevant_rows = 0
 
@@ -60,51 +54,37 @@ module SOACSV2MT940
       LOGGER.info "- Umsatz-relevante Datensätze: #{nbr_of_relevant_rows}"
     end
 
-    ##
-    # Writes the footer of an .mt940 file.
     def footer
       write_mt940 record_type_62
       LOGGER.info "- Schluß-Saldo: #{@soa_closing_balance}"
     end
 
-    ##
-    # Returns a SWIFT mt940 type 20 record
     def record_type_20
       ':20:SOACSV2MT940'
     end
 
-    ##
-    # Returns a SWIFT mt940 type 21 record
     def record_type_21
       ':21:NONREF'
     end
 
-    ##
-    # Returns a SWIFT mt940 type 25 record
     def record_type_25
-      blzkonto = "#{@csv_data.first.empfngerauftraggeber_iban[4,8]}/#{@csv_data.first.empfngerauftraggeber_iban[12,10]}"
+      blzkonto = "#{@csv_data.first.empfngerauftraggeber_iban[4, 8]}/#{@csv_data.first.empfngerauftraggeber_iban[12, 10]}"
       LOGGER.info "- BLZ/Konto: #{blzkonto}"
 
       ":25:#{blzkonto}"
     end
 
-    ##
-    # Returns a SWIFT mt940 type 28 record
     def record_type_28
       ":28C:#{@soa_nbr}"
     end
 
-    ##
-    # Returns a SWIFT mt940 type 60 record
     def record_type_60
-      datum_kontoauszug = Date.strptime(@csv_data.last.datumzeit[0,10], '%d.%m.%Y')
+      datum_kontoauszug = Date.strptime(@csv_data.last.datumzeit[0, 10], '%d.%m.%Y')
       LOGGER.info "- Kontoauszugsdatum: #{datum_kontoauszug}"
 
       ":60F:#{@soa_opening_balance.credit_debit_indicator}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{@soa_opening_balance}"
     end
 
-    ##
-    # Returns a SWIFT mt940 type 61 record
     def record_type_61(csv_record)
       buchungsdatum = Date.strptime(csv_record.buchungstag, '%d.%m.%Y')
       valutadatum = convert_valuta_date(csv_record.wertstellung) || buchungsdatum
@@ -114,16 +94,12 @@ module SOACSV2MT940
       ":61:#{valutadatum.strftime('%y%m%d')}#{buchungsdatum.strftime('%m%d')}#{umsatz.credit_debit_indicator}#{umsatz.without_sign}NONREF"
     end
 
-    ##
-    # Returns a SWIFT mt940 type 62 record
     def record_type_62
-      datum_kontoauszug = Date.strptime(@csv_data.last.datumzeit[0,10], '%d.%m.%Y')
+      datum_kontoauszug = Date.strptime(@csv_data.last.datumzeit[0, 10], '%d.%m.%Y')
 
       ":62F:#{@soa_closing_balance.credit_debit_indicator}#{datum_kontoauszug.strftime('%y%m%d')}EUR#{@soa_closing_balance.without_sign}"
     end
 
-    ##
-    # Returns a SWIFT mt940 type 86 record
     def record_type_86(csv_record)
       gvc = '999' # evtl. :buchungsschlssel?
       buchungstext = convert_umlaut(csv_record.vwz0).delete('"') +
@@ -149,24 +125,18 @@ module SOACSV2MT940
       ":86:#{gvc}#{buchungsart}:#{buchungstext}"
     end
 
-    ##
-    # Adds a given record to an mt940 file.
     def write_mt940(record)
       File.open(@filename_mt940, 'a') do |file|
         file.puts record
       end
     end
 
-    ##
-    # Converts german umlauts within a given text to their international equivalents.
     def convert_umlaut(text)
       return '' unless text
 
       text.gsub('ä', 'ae').gsub('Ä', 'AE').gsub('ö', 'oe').gsub('Ö', 'OE').gsub('ü', 'ue').gsub('Ü', 'UE').gsub('ß', 'ss')
     end
 
-    ##
-    # Converts valuta dates
     def convert_valuta_date(valuta_date)
       return nil unless valuta_date
 

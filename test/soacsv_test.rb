@@ -5,7 +5,6 @@ require_relative 'test_helper'
 require_relative '../lib/soacsv2mt940/soacsv'
 
 module SOACSV2MT940
-  # Test-Klasse SOACSV
   class SOACSVTest < Minitest::Test
     def test_that_get_returns_an_array
       soacsv_filename = 'data/test.csv'

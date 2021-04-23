@@ -4,31 +4,24 @@ module SOACSV2MT940
   ##
   # Represents a file containing Statement Of Account (SOA) records in .CSV format for VR-Bank.
   class SOACSVVRB
-    ##
-    # The structure of a record within a statement of account .CSV file from VR-Bank
-    SOA_CSV_STRUCTURE = [:buchungstag,
-                         :valuta, 
-                         :auftraggeberzahlungsempfnger, 
-                         :empfngerzahlungspflichtiger, 
-                         :kontonr, 
-                         :iban, 
-                         :blz, 
-                         :bic, 
-                         :vorgangverwendungszweck, 
-                         :kundenreferenz, 
-                         :whrung, 
-                         :umsatz, 
-                         :umsatzart].freeze # :""
+    SOA_CSV_STRUCTURE = %i[buchungstag
+                           valuta
+                           auftraggeberzahlungsempfnger
+                           empfngerzahlungspflichtiger
+                           kontonr
+                           iban
+                           blz
+                           bic
+                           vorgangverwendungszweck
+                           kundenreferenz
+                           whrung
+                           umsatz
+                           umsatzart].freeze # :""
 
-    ##
-    # Represents a statement of account record from the .CSV file (Struct).
     SOA_CSV_RECORD = Struct.new(*SOA_CSV_STRUCTURE)
 
-    attr_reader :blz
-    attr_reader :konto
+    attr_reader :blz, :konto
 
-    ##
-    # Creates a new SOACSV instance for the given csv_filename
     def initialize(csv_filename)
       LOGGER.info 'Konvertierung VR-Bank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'
 
@@ -58,7 +51,8 @@ module SOACSV2MT940
     def csv_file
       if File.size? @csv_filename
         prepare_vrbank_csv_file
-        CSV.read(@csv_filename_tmp, encoding: "ISO-8859-1:UTF-8", liberal_parsing: true, row_sep: :auto, col_sep: ';', headers: true, header_converters: :symbol, quote_empty: :false)
+        CSV.read(@csv_filename_tmp, encoding: 'ISO-8859-1:UTF-8', liberal_parsing: true, row_sep: :auto, col_sep: ';',
+                                    headers: true, header_converters: :symbol, quote_empty: :false)
       else
         LOGGER.error("File not found or empty: #{@csv_filename}")
         abort('ABORTED!')
@@ -68,7 +62,6 @@ module SOACSV2MT940
     ##
     # Checks, sorts and returns the corrected csv data.
     def process(csv_data)
-      
       unless soa_structure_equals_header_of?(csv_data)
         LOGGER.error("Structure of #{@csv_filename} does not match:\nExpected: #{SOA_CSV_STRUCTURE.inspect}.\nActual: #{csv_data.headers.inspect}.\nContent: #{csv_file}")
         abort('ABORTED!')
@@ -86,15 +79,15 @@ module SOACSV2MT940
     end
 
     ##
-    # The first 12 and last 3 records of a VR-Bank csv file are not used and 
+    # The first 12 and last 3 records of a VR-Bank csv file are not used and
     # BLZ/Konto need to be extracted from the header of VR-Bank's csv file
     def prepare_vrbank_csv_file
-      input_file_line_nbrs = File.open(@csv_filename,"r").readlines.size
+      input_file_line_nbrs = File.open(@csv_filename, 'r').readlines.size
       File.open(@csv_filename_tmp, 'w') do |out_file|
         File.foreach(@csv_filename).with_index do |line, line_number|
-          out_file.puts line if line_number > 11 and line_number < input_file_line_nbrs - 3
-           @blz = line.force_encoding(Encoding::ISO_8859_1).split('"')[3] if line_number == 4           
-           @konto = line.force_encoding(Encoding::ISO_8859_1).split('"')[3] if line_number == 5
+          out_file.puts line if (line_number > 11) && (line_number < input_file_line_nbrs - 3)
+          @blz = line.force_encoding(Encoding::ISO_8859_1).split('"')[3] if line_number == 4
+          @konto = line.force_encoding(Encoding::ISO_8859_1).split('"')[3] if line_number == 5
         end
       end
     end
@@ -105,19 +98,19 @@ module SOACSV2MT940
     # fields of header from VR-Banks csv file shall be compared
     def soa_structure_equals_header_of?(csv_data)
       retval = false
-      if csv_data.headers[0] == SOA_CSV_STRUCTURE[0] and
-        csv_data.headers[1] == SOA_CSV_STRUCTURE[1] and
-        csv_data.headers[2] == SOA_CSV_STRUCTURE[2] and
-        csv_data.headers[3] == SOA_CSV_STRUCTURE[3] and
-        csv_data.headers[4] == SOA_CSV_STRUCTURE[4] and
-        csv_data.headers[5] == SOA_CSV_STRUCTURE[5] and
-        csv_data.headers[6] == SOA_CSV_STRUCTURE[6] and
-        csv_data.headers[7] == SOA_CSV_STRUCTURE[7] and
-        csv_data.headers[8] == SOA_CSV_STRUCTURE[8] and
-        csv_data.headers[9] == SOA_CSV_STRUCTURE[9] and
-        csv_data.headers[10] == SOA_CSV_STRUCTURE[10] and
-        csv_data.headers[11] == SOA_CSV_STRUCTURE[11]
-          retval = true
+      if (csv_data.headers[0] == SOA_CSV_STRUCTURE[0]) &&
+         (csv_data.headers[1] == SOA_CSV_STRUCTURE[1]) &&
+         (csv_data.headers[2] == SOA_CSV_STRUCTURE[2]) &&
+         (csv_data.headers[3] == SOA_CSV_STRUCTURE[3]) &&
+         (csv_data.headers[4] == SOA_CSV_STRUCTURE[4]) &&
+         (csv_data.headers[5] == SOA_CSV_STRUCTURE[5]) &&
+         (csv_data.headers[6] == SOA_CSV_STRUCTURE[6]) &&
+         (csv_data.headers[7] == SOA_CSV_STRUCTURE[7]) &&
+         (csv_data.headers[8] == SOA_CSV_STRUCTURE[8]) &&
+         (csv_data.headers[9] == SOA_CSV_STRUCTURE[9]) &&
+         (csv_data.headers[10] == SOA_CSV_STRUCTURE[10]) &&
+         (csv_data.headers[11] == SOA_CSV_STRUCTURE[11])
+        retval = true
       end
       retval
     end
