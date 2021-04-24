@@ -44,5 +44,11 @@ module SOACSV2MT940
       require 'fileutils'
       assert FileUtils.compare_file(@mt940_filename, @mt940_template_filename)
     end
+
+    def test_with_irb
+      skip
+
+      binding.irb
+    end
   end
 end

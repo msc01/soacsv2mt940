@@ -5,7 +5,11 @@ module SOACSV2MT940
     attr_accessor :amount
 
     def initialize(number, soll_haben)
-      super(number)
+      @amount = if number.is_a? String
+        number.delete('.').tr(',', '.').to_f
+      else
+        number
+      end
       @amount *= -1 if soll_haben == 'S'
     end
   end

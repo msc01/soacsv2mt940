@@ -60,7 +60,7 @@ module SOACSV2MT940
     abort('ABORTED!')
   end
 
-  options[:mt940_file] = options[:csv_file].mt940.to_s unless options[:mt940_file]
+  options[:mt940_file] = options[:csv_file] + '.mt940' unless options[:mt940_file]
 
   options[:nbr] = 0 unless options[:nbr]
 
@@ -82,6 +82,10 @@ module SOACSV2MT940
   when 'VR-Bank'
     soacsv = SOACSVVRB.new(options[:csv_file])
     SOAMT940VRB.new(soacsv.get, options[:mt940_file], options[:nbr], options[:balance], soacsv.blz, soacsv.konto).csv2mt940
+    begin
+      File.delete "#{options[:csv_file]}.tmp"
+    rescue StandardError
+    end
   else
     LOGGER.error('Format is currently not supported.')
     abort('ABORTED!')
