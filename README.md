@@ -20,7 +20,7 @@ Arguments:
 - `-m, --mt940 <filename>`: Optional name of the output file; if not given der the appendix .mt940 will be added to the file name of the input file.
 - `-n, --nbr <number>`: Optional number of the statement of account which will be written to record type :28c: of the mt940 file. Defaults to 0 if not given.
 - `-b, --balance <amount>`: Optional opening balance of the statement of account. Defaults to 0 if not given.
-- `-f, --format <format>`: Optional format of the .csv file. Could be either commerzbank or 1822direkt. Defaults to commerzbank if not given.
+- `-f, --format <format>`: Optional format of the .csv file. Could be either commerzbank, 1822direkt, or VR-Bank. Defaults to commerzbank if not given.
 - `-h, --help`: Show this information.
 
 ## Background
@@ -31,7 +31,9 @@ This programm converts a given statement of account .csv export file into a swif
 
 ## ToDo
 
-- Suppress / aggregate logging info for records not processed when not in debug mode.
+- refactoring
+  - soamt940*: cleaning up vrb/1822 by inheriting from from soamt940.
+  - Rubocop: styling, etc.
 
 ---
 
