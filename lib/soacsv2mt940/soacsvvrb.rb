@@ -3,45 +3,32 @@
 module SOACSV2MT940
   ##
   # Represents a file containing Statement Of Account (SOA) records in .CSV format for VR-Bank.
-  class SOACSVVRB
-    SOA_CSV_STRUCTURE = %i[buchungstag
-                           valuta
-                           auftraggeberzahlungsempfnger
-                           empfngerzahlungspflichtiger
-                           kontonr
-                           iban
-                           blz
-                           bic
-                           vorgangverwendungszweck
-                           kundenreferenz
-                           whrung
-                           umsatz
-                           umsatzart].freeze # :""
-
-    SOA_CSV_RECORD = Struct.new(*SOA_CSV_STRUCTURE)
-
+  class SOACSVVRB < SOACSV
     attr_reader :blz, :konto
 
     def initialize(csv_filename)
+      @soa_csv_structure = [:buchungstag,
+                             :valuta,
+                             :auftraggeberzahlungsempfnger,
+                             :empfngerzahlungspflichtiger,
+                             :kontonr,
+                             :iban,
+                             :blz,
+                             :bic,
+                             :vorgangverwendungszweck,
+                             :kundenreferenz,
+                             :whrung,
+                             :umsatz,
+                             :umsatzart]
+
+      @soa_csv_record = Struct.new(*@soa_csv_structure)
+
       LOGGER.info 'Konvertierung VR-Bank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'
 
       @csv_filename = csv_filename
       @csv_filename_tmp = "#{@csv_filename}.tmp"
       @blz = ''
       @konto = ''
-    end
-
-    ##
-    # Returns a sorted array containing the data records from the .CSV file as SOA_CSV_RECORD objects structured as described by SOA_CSV_STRUCTURE.
-    # without headers and without any rows containing empy (nil) fields.
-    def get
-      arr = []
-
-      process(csv_file).each do |record|
-        arr << SOA_CSV_RECORD.new(*record.fields)
-      end
-
-      arr
     end
 
     private
@@ -63,7 +50,7 @@ module SOACSV2MT940
     # Checks, sorts and returns the corrected csv data.
     def process(csv_data)
       unless soa_structure_equals_header_of?(csv_data)
-        LOGGER.error("Structure of #{@csv_filename} does not match:\nExpected: #{SOA_CSV_STRUCTURE.inspect}.\nActual: #{csv_data.headers.inspect}.\nContent: #{csv_file}")
+        LOGGER.error("Structure of #{@csv_filename} does not match:\nExpected: #{@soa_csv_structure.inspect}.\nActual: #{csv_data.headers.inspect}.\nContent: #{csv_file}")
         abort('ABORTED!')
       end
 
@@ -94,22 +81,22 @@ module SOACSV2MT940
 
     ##
     # As the 13th field of the csv file for VR-Bank is named :"", which cannot always be handled properly,
-    # it is referred to as :umsatzart within SOA_CSV_STRUCTURE and SOA_CSV_RECORD, hence only the first 12
+    # it is referred to as :umsatzart within @soa_csv_structure and @soa_csv_record, hence only the first 12
     # fields of header from VR-Banks csv file shall be compared
     def soa_structure_equals_header_of?(csv_data)
       retval = false
-      if (csv_data.headers[0] == SOA_CSV_STRUCTURE[0]) &&
-         (csv_data.headers[1] == SOA_CSV_STRUCTURE[1]) &&
-         (csv_data.headers[2] == SOA_CSV_STRUCTURE[2]) &&
-         (csv_data.headers[3] == SOA_CSV_STRUCTURE[3]) &&
-         (csv_data.headers[4] == SOA_CSV_STRUCTURE[4]) &&
-         (csv_data.headers[5] == SOA_CSV_STRUCTURE[5]) &&
-         (csv_data.headers[6] == SOA_CSV_STRUCTURE[6]) &&
-         (csv_data.headers[7] == SOA_CSV_STRUCTURE[7]) &&
-         (csv_data.headers[8] == SOA_CSV_STRUCTURE[8]) &&
-         (csv_data.headers[9] == SOA_CSV_STRUCTURE[9]) &&
-         (csv_data.headers[10] == SOA_CSV_STRUCTURE[10]) &&
-         (csv_data.headers[11] == SOA_CSV_STRUCTURE[11])
+      if (csv_data.headers[0] == @soa_csv_structure[0]) &&
+         (csv_data.headers[1] == @soa_csv_structure[1]) &&
+         (csv_data.headers[2] == @soa_csv_structure[2]) &&
+         (csv_data.headers[3] == @soa_csv_structure[3]) &&
+         (csv_data.headers[4] == @soa_csv_structure[4]) &&
+         (csv_data.headers[5] == @soa_csv_structure[5]) &&
+         (csv_data.headers[6] == @soa_csv_structure[6]) &&
+         (csv_data.headers[7] == @soa_csv_structure[7]) &&
+         (csv_data.headers[8] == @soa_csv_structure[8]) &&
+         (csv_data.headers[9] == @soa_csv_structure[9]) &&
+         (csv_data.headers[10] == @soa_csv_structure[10]) &&
+         (csv_data.headers[11] == @soa_csv_structure[11])
         retval = true
       end
       retval

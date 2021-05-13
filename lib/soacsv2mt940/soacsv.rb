@@ -4,33 +4,33 @@ module SOACSV2MT940
   ##
   # Represents a file containing Statement Of Account (SOA) records in .CSV format for Commerzbank.
   class SOACSV
-    SOA_CSV_STRUCTURE = %i[buchungstag
-                           wertstellung
-                           umsatzart
-                           buchungstext
-                           betrag
-                           whrung
-                           auftraggeberkonto
-                           bankleitzahl_auftraggeberkonto
-                           iban_auftraggeberkonto
-                           kategorie].freeze
-
-    SOA_CSV_RECORD = Struct.new(*SOA_CSV_STRUCTURE)
-
     def initialize(csv_filename)
+      @soa_csv_structure = [:buchungstag,
+                            :wertstellung,
+                            :umsatzart,
+                            :buchungstext,
+                            :betrag,
+                            :whrung,
+                            :auftraggeberkonto,
+                            :bankleitzahl_auftraggeberkonto,
+                            :iban_auftraggeberkonto,
+                            :kategorie]
+
+      @soa_csv_record = Struct.new(*@soa_csv_structure)
+
       LOGGER.info 'Konvertierung Commerzbank .csv-Kontoauszugsdatei ins Format .mt940 (SWIFT):'
 
       @csv_filename = csv_filename
     end
 
     ##
-    # Returns a sorted array containing the data records from the .CSV file as SOA_CSV_RECORD objects structured as described by SOA_CSV_STRUCTURE.
+    # Returns a sorted array containing the data records from the .CSV file as @soa_csv_record objects structured as described by @soa_csv_structure.
     # without headers and without any rows containing empy (nil) fields.
     def get
       arr = []
 
       process(csv_file).each do |record|
-        arr << SOA_CSV_RECORD.new(*record.fields)
+        arr << @soa_csv_record.new(*record.fields)
       end
 
       arr
@@ -52,8 +52,8 @@ module SOACSV2MT940
     ##
     # Checks, sorts and returns the corrected csv data.
     def process(csv_data)
-      unless csv_data.headers == SOA_CSV_STRUCTURE
-        LOGGER.error("Structure of #{@csv_filename} does not match:\nExpected: #{SOA_CSV_STRUCTURE.inspect}.\nActual: #{csv_data.headers.inspect}.\nContent: #{csv_file}")
+      unless csv_data.headers == @soa_csv_structure
+        LOGGER.error("Structure of #{@csv_filename} does not match:\nExpected: #{@soa_csv_structure.inspect}.\nActual: #{csv_data.headers.inspect}.\nContent: #{csv_file}")
         abort('ABORTED!')
       end
 
