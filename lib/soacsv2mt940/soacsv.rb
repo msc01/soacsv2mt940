@@ -13,8 +13,7 @@ module SOACSV2MT940
                             :whrung,
                             :auftraggeberkonto,
                             :bankleitzahl_auftraggeberkonto,
-                            :iban_auftraggeberkonto,
-                            :kategorie]
+                            :iban_auftraggeberkonto]
 
       @soa_csv_record = Struct.new(*@soa_csv_structure)
 
