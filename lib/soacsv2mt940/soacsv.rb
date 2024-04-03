@@ -11,9 +11,10 @@ module SOACSV2MT940
                             :buchungstext,
                             :betrag,
                             :whrung,
-                            :auftraggeberkonto,
-                            :bankleitzahl_auftraggeberkonto,
-                            :iban_auftraggeberkonto]
+#                            :auftraggeberkonto,
+#                            :bankleitzahl_auftraggeberkonto,
+                            :iban_kontoinhaber,
+                            :kategorie]
 
       @soa_csv_record = Struct.new(*@soa_csv_structure)
 

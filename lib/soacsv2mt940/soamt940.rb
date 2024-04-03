@@ -66,9 +66,11 @@ module SOACSV2MT940
     end
 
     def record_type_25
-      LOGGER.info "- BLZ/Konto: #{@csv_data.first.bankleitzahl_auftraggeberkonto} / #{@csv_data.first.auftraggeberkonto}"
 
-      ":25:#{@csv_data.first.bankleitzahl_auftraggeberkonto}/#{@csv_data.first.auftraggeberkonto}"
+      blzkonto = "#{@csv_data.first.iban_kontoinhaber[4, 8]}/#{@csv_data.first.iban_kontoinhaber[12, 10]}"
+      LOGGER.info "- BLZ/Konto: #{blzkonto}"
+
+      ":25:#{blzkonto}"
     end
 
     def record_type_28
